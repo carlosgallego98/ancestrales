@@ -1,0 +1,1 @@
+.profile-card{margin-top:150px}.profile-pic{margin-top:-110px;position:relative;-webkit-transition:.2s;transition:.2s;cursor:pointer}.profile-pic:hover{margin-top:-115px;margin-bottom:5px}.profile-pic img{max-height:200px;border-radius:100%}.profile-info{height:100%}@media screen and (max-width: 768px){.profile-info{text-align:center}}
