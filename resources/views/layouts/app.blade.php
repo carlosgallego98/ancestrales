@@ -8,8 +8,13 @@
     <title>Store</title>
     <link rel="stylesheet" href="./vendor/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="./vendor/bootstrap/mdb.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
-        crossorigin="anonymous">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="/vendor/font-awesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="/vendor/font-awesome/css/regular.min.css">
+    <link rel="stylesheet" href="/vendor/font-awesome/css/solid.min.css">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/img/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="css/styles.min.css">
 
 
@@ -53,10 +58,10 @@
         </div>
 
         <!-- Carrusel de Imagenes publicitarias y Anuncios -->
-        <div class="header-carrousel carousel slide" data-ride="carousel">
+        <div class="header-carrousel carousel slide" data-ride="carousel" id="header-carrousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img class="d-block w-100" src="http://www.wradio.com.co/images/3779052_n_vir3.jpg" alt="First slide">
+                    <img class="d-block w-100" src="./img/slider-inicio/1.png" alt="First slide">
                 </div>
                 <div class="carousel-item">
                     <img class="d-block w-100" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMnNwtCkkWKtxg3ES6ZLX4kQGh1rhozj6agR4ovR1F-J2NxfD1Tw"
@@ -111,7 +116,7 @@
 
     <!-- Contenido de la pagina -->
     <div class="main">
-      @yield('content')
+        @yield('conteinido')
     </div>
     <!-- Contenido de la pagina -->
 

@@ -9,12 +9,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title>BebídasTípicasCL | Escritorio</title>
+  <title>@yield('titulo') | BebídasTípicasCL</title>
 
   <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/vendor/font-awesome/css/fontawesome.min.css">
+  <link rel="stylesheet" href="/vendor/font-awesome/css/regular.min.css">
+  <link rel="stylesheet" href="/vendor/font-awesome/css/solid.min.css">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="/img/favicon.png" type="image/x-icon">
+
   <!-- Theme style -->
+
   <link rel="stylesheet" href="/adminlte/css/adminlte.min.css">
+  
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -22,14 +30,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <div class="wrapper">
 
   <!-- Navbar -->
-    @include('layouts.components.navbar')
+    @include('admin.components.navbar')
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
-      <img src="/adminlte/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+      <img src="/img/favicon.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
       <span class="brand-text font-weight-light">Bebídas Típicas CL</span>
     </a>
@@ -48,7 +56,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
-        @include('layouts.components.sidebar')
+        @include('admin.components.sidebar')
       </nav>
       <!-- /.sidebar-menu -->
     </div>

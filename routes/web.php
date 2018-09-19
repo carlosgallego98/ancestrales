@@ -11,14 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::namespace('Admin')->prefix('admin')->group(function(){
   Route::get('/panel','AdminController@escritorio')->name('escritorio');
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('inicio');
