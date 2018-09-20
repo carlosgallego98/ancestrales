@@ -13,7 +13,7 @@
         </h3>
     </div>
     <hr>
-    <div class="card-body pt-0 px-sm-5">
+    <div class="card-body p-2 px-sm-5">
         <div class="form-row">
             <div class="col-md-6">
                 <div class="md-form">
@@ -48,11 +48,11 @@
         <div class="form-row">
             <div class="col-md-7 py-md-4 text-center">
                 <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" class="custom-control-input" id="genero" name="genero" value="M">
+                    <input type="radio" class="custom-control-input" id="masculino" name="genero" value="M">
                     <label class="custom-control-label" for="masculino">Masculino</label>
                 </div>
                 <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" class="custom-control-input" id="genero" name="genero" value="F">
+                    <input type="radio" class="custom-control-input" id="femenino" name="genero" value="F">
                     <label class="custom-control-label" for="femenino">Femenino</label>
                 </div>
             </div>
@@ -63,10 +63,12 @@
               </div>
             </div>
         </div>
+        <div class="form-row justify-content-center mb-2">
+            <input type="submit" value="Registrarme" class="btn btn-outline-primary">
+        </div>
+        <p class="text-center">¿Ya tienes cuenta? <a href="{{ route('login') }}">Inicia Sesión</a></p>
+
     </div>
-    <div class="form-row justify-content-center p-1">
-      <input type="submit" value="Registrarme" class="btn btn-outline-primary">
-  </div>
 </form>
 @endsection
 

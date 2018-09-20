@@ -42,17 +42,29 @@
 
             <div class="collapse navbar-collapse" id="userbar">
                 <ul class="navbar-nav ml-auto text-align-center">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Inicia Sesion</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Regístrate</a>
-                    </li>
-                    <!-- Menu que aparece al iniciar Sesion  -->
-                    <!-- <li class="nav-item"><a class="nav-link" href="#">Mi cuenta</a></li>
+                    @if (Auth::check())
+                    <li class="nav-item"><a class="nav-link" href="#">{{Auth::user()->nombres}}</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Mi Ordenes</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Cerrar Sesión</a></li>
-                     -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                    {{ __('Cerrar Sesión') }}
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                        </li>
+                    @else
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('login') }}">Inicia Sesion</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('register') }}">Regístrate</a>
+                    </li>
+                    @endif
+            
                 </ul>
             </div>
         </div>
