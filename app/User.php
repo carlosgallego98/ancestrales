@@ -13,15 +13,15 @@ class User extends Authenticatable
     protected $fillable = [
         'nombres',
         'apellidos',
-        'telefono',
         'correo',
+        'genero',
         'fecha_nacimiento',
         'direccion',
-        'pass',
+        'password',
     ];
 
     protected $hidden = [
-        'pass', 'remember_token',
+        'password', 'remember_token',
     ];
     
     public function comentarios(){

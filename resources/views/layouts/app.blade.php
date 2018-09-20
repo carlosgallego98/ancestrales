@@ -17,7 +17,7 @@
     <link rel="shortcut icon" href="/img/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="css/styles.min.css">
 
-
+    @stack('styles')
 </head>
 
 <body>
@@ -151,6 +151,7 @@
         crossorigin="anonymous"></script>
     <script type="text/javascript" src="./vendor/bootstrap/bootstrap.bundle.js"></script>
     <script type="text/javascript" src="./vendor/bootstrap/mdb.min.js"></script>
+    @stack('scripts')
 
 </body>
 

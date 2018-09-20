@@ -22,9 +22,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Theme style -->
 
   <link rel="stylesheet" href="/adminlte/css/adminlte.min.css">
-  
+
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+  @stack('styles')
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -122,5 +124,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="/vendor/bootstrap/bootstrap.bundle.js"></script>
 <!-- AdminLTE App -->
 <script src="/adminlte/js/adminlte.min.js"></script>
+
+@stack('scripts')
 </body>
 </html>

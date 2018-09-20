@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="./vendor/bootstrap/mdb.min.css">
     <link rel="stylesheet" href="./vendor/font-awesome/css/fontawesome.min.css">
     <link rel="stylesheet" href="./css/auth.min.css">
+    @stack('styles')
 </head>
 
 <body>
@@ -21,7 +22,7 @@
 
     <div class="container">
         <div class="row vh-100 flex-center">
-            
+
                 @if ($errors->any())
                 <div class="col-md-6">
                         <div class="alert alert-secondary">
@@ -51,6 +52,7 @@
 
     <script src="./js/auth.js"></script>
 
+    @stack('scripts')
 </body>
 
 </html>
