@@ -1,22 +1,26 @@
-.vh-100 {
-    height: 100vh;
+body {
+    background: url('/img/login-bg.png')
 }
 
-#particles-js {
-    position: absolute;
-    width: 100%;
-    height: 100vh;
-    background: #F3EFF5;
+.vh-100 {
+    min-height: 100vh;
+    height: auto;
 }
 
 .card {
     z-index: 100;
+    background-color: rgba(#ffffff, $alpha: .9);
+    transition: .2s;
+
+    &:hover {
+        background-color: #ffffff;
+    }
 }
 
 .auth-logo {
     position: absolute;
-    padding: 30px;
     bottom: 0;
+    padding: 40px 30px;
     transition: .2s;
     z-index: 99;
 
@@ -26,7 +30,7 @@
 
     img {
         height: 64px;
-        filter: opacity(50%);
+        filter: opacity(80%);
     }
 }
 

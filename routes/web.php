@@ -12,7 +12,7 @@
 */
 
 Route::namespace('Admin')->prefix('admin')->group(function(){
-  Route::get('/panel','AdminController@escritorio')->name('escritorio');
+  Route::get('/','AdminController@escritorio')->name('escritorio');
 });
 
 Auth::routes();

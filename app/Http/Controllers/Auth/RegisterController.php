@@ -51,10 +51,9 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'nombres' => 'required|string|max:255',
             'apellidos' => 'required|string|max:255',
-            'correo' => 'required|string|email|max:255|unique:users',
-            'fecha_nacimiento' => 'required|string|string|max:255',
-            'password' => 'required|string|min:6',
-            'password_confirmation' => 'min:6|same:password'
+            'correo' => 'bail|required|string|email|unique:users|max:255',
+            'fecha_nacimiento' => 'bail|required|string|string|max:255',
+            'password' => 'bail|required|string|confirmed|min:6',
         ]);
     }
 
@@ -74,5 +73,17 @@ class RegisterController extends Controller
             'fecha_nacimiento' => $data['fecha_nacimiento'],
             'password' => Hash::make($data['password']),
         ]);
+    }
+
+        /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'password.confirmed' => 'Las Contraseñas no coinciden',
+        ];
     }
 }

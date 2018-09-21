@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.auth')
 
-@section('content')
+@section('formulario')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -21,11 +21,13 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+                                <input id="correo" type="email" class="form-control{{ $errors->has('correo') ? ' is-invalid' : '' }}" name="correo" value="{{ old('correo') }}" required>
 
-                                @if ($errors->has('email'))
+                                @if ($errors->any())
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                        @foreach ($errors as $error)
+                                        <strong>{{ $error }}</strong>
+                                        @endforeach
                                     </span>
                                 @endif
                             </div>
