@@ -8,9 +8,35 @@
     transition: .2s;
     cursor: pointer;
 
+    .editar-perfil {
+        display: none;
+        position: absolute;
+        transition: .2s all;
+
+        a {
+            color: white;
+
+            &:hover {
+                transition: .2s all;
+                color: darken(white, 20%);
+            }
+        }
+
+        &.show {
+            transition: .2s all;
+            top: 90px;
+            left: 55px;
+            display: flex;
+            flex-direction: column;
+        }
+    }
+
     &:hover {
-        margin-top: -115px;
-        margin-bottom: 5px;
+        img {
+            transition: .2s;
+            filter: brightness(50%) blur(3px);
+        }
+
     }
 
     img {

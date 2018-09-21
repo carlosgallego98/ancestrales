@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Store</title>
+    <title>@yield('titulo')Bebidas Critina Lozano</title>
     <link rel="stylesheet" href="./vendor/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="./vendor/bootstrap/mdb.min.css">
     <!-- Font Awesome Icons -->
@@ -43,7 +43,7 @@
             <div class="collapse navbar-collapse" id="userbar">
                 <ul class="navbar-nav ml-auto text-align-center">
                     @if (Auth::check())
-                    <li class="nav-item"><a class="nav-link" href="#">{{Auth::user()->nombres}}</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('perfil') }}">{{Auth::user()->nombres}}</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Mi Ordenes</a></li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('logout') }}"
@@ -69,35 +69,39 @@
             </div>
         </div>
 
-        <!-- Carrusel de Imagenes publicitarias y Anuncios -->
+        @if (Request::is('*/*'))
+            <!-- Carrusel de Imagenes publicitarias y Anuncios -->
         <div class="header-carrousel carousel slide" data-ride="carousel" id="header-carrousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img class="d-block w-100" src="./img/slider-inicio/1.png" alt="First slide">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img class="d-block w-100" src="./img/slider-inicio/1.png" alt="First slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMnNwtCkkWKtxg3ES6ZLX4kQGh1rhozj6agR4ovR1F-J2NxfD1Tw"
+                            alt="Second slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJ0dle3yEUTr07wuj9F4NQUa-eJX-6rBDKglO3w7G596oXHvDnlQ"
+                            alt="Third slide">
+                    </div>
                 </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMnNwtCkkWKtxg3ES6ZLX4kQGh1rhozj6agR4ovR1F-J2NxfD1Tw"
-                        alt="Second slide">
-                </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJ0dle3yEUTr07wuj9F4NQUa-eJX-6rBDKglO3w7G596oXHvDnlQ"
-                        alt="Third slide">
-                </div>
+                <a class="carousel-control-prev" href="#header-carrousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Anterior</span>
+                </a>
+                <a class="carousel-control-next" href="#header-carrousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Siguiente</span>
+                </a>
             </div>
-            <a class="carousel-control-prev" href="#header-carrousel" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Anterior</span>
-            </a>
-            <a class="carousel-control-next" href="#header-carrousel" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Siguiente</span>
-            </a>
-        </div>
+        @else
+            
+        @endif
 
         <!-- Barra de Navegacion Principal -->
         <nav class="navbar navbar-expand-lg bg-primary">
             <div class="container">
-                <a class="navbar-brand mx-auto clearfix" href="#">
+                <a class="navbar-brand mx-auto clearfix" href="{{ route('inicio') }}">
                     <img src="./img/logo.png" alt="Comidas Típicas Cristina Lozano">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMain"

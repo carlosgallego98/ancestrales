@@ -15,7 +15,7 @@ class CreateTelefonosUsuarios extends Migration
     {
         Schema::create('numeros_telefonicos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('numero_teléfono')->unique();
+            $table->string('numero')->unique();
             $table->unsignedInteger('id_usuario');
             $table->foreign('id_usuario')->references('id')->on('users');
             $table->timestamps();

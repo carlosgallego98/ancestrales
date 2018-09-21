@@ -28,6 +28,9 @@ class User extends Authenticatable
         return $this->hasMany(Comentario::class,'id_usuario');
     }
     public function pedidos(){
-        return $this->hasMany(Pedido::class);
+        return $this->hasMany(Pedido::class,'id_usuario');
+    }
+    public function numeros(){
+        return $this->hasMany(TelefonoUsuario::class,'id_usuario');
     }
 }

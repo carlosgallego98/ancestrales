@@ -12,7 +12,7 @@
                     <img src="./img/logo.png" alt="Bebidas Típicas Cristina Lozano">
                 </a>
             </div>
-            <h3 class="h3-responsive font-weight-bold">
+            <h3 class="h3-responsive font-weight-bold ">
                 Iniciar Sesión
             </h3>
         </div>

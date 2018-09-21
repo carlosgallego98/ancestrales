@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Envio;
+use App\User;
 use Illuminate\Http\Request;
 
-class EnvioController extends Controller
+class UserController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +15,7 @@ class EnvioController extends Controller
      */
     public function index()
     {
-        //
+        return view('perfil');
     }
 
     /**
@@ -41,10 +42,10 @@ class EnvioController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Envio  $envio
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(Envio $envio)
+    public function show(User $user)
     {
         //
     }
@@ -52,10 +53,10 @@ class EnvioController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Envio  $envio
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(Envio $envio)
+    public function edit(User $user)
     {
         //
     }
@@ -64,10 +65,10 @@ class EnvioController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Envio  $envio
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Envio $envio)
+    public function update(Request $request, User $user)
     {
         //
     }
@@ -75,10 +76,10 @@ class EnvioController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Envio  $envio
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Envio $envio)
+    public function destroy(User $user)
     {
         //
     }

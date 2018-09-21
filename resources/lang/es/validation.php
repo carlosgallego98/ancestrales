@@ -29,7 +29,7 @@ return [
         'array'   => ':attribute tiene que tener entre :min - :max ítems.',
     ],
     'boolean'              => 'El campo :attribute debe tener un valor verdadero o falso.',
-    'confirmed'            => 'La confirmación de :attribute no coincide.',
+    'confirmed'            => 'Las contraseñas no coinciden.',
     'date'                 => ':attribute no es una fecha válida.',
     'date_format'          => ':attribute no corresponde al formato :format.',
     'different'            => ':attribute y :other deben ser diferentes.',
@@ -128,7 +128,7 @@ return [
             'min' => 'La :attribute debe contener más de :min caracteres',
         ],
         'email'    => [
-            'unique' => 'El :attribute ya ha sido registrado.',
+            'unique' => ':attribute ya está registrado.',
         ],
     ],
 

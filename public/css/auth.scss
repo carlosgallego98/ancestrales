@@ -17,21 +17,8 @@ body {
     }
 }
 
-.auth-logo {
-    position: absolute;
-    bottom: 0;
-    padding: 40px 30px;
-    transition: .2s;
-    z-index: 99;
-
-    @media screen and (max-width: 768px) {
-        display: none;
-    }
-
-    img {
-        height: 64px;
-        filter: opacity(80%);
-    }
+.h3-responsive {
+    text-transform: uppercase;
 }
 
 .login-logo {

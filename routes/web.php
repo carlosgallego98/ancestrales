@@ -18,3 +18,7 @@ Route::namespace('Admin')->prefix('admin')->group(function(){
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('inicio');
+
+Route::middleware('auth')->group(function(){
+  Route::get('/perfil','UserController@index')->name('perfil');
+});

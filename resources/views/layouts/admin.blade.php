@@ -9,7 +9,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title>@yield('titulo') | BebídasTípicasCL</title>
+  <title>@yield('titulo')Bebidas Critina Lozano</title>
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="/vendor/font-awesome/css/fontawesome.min.css">
@@ -18,7 +18,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
   <!-- Favicon -->
   <link rel="shortcut icon" href="/img/favicon.png" type="image/x-icon">
-
   <!-- Theme style -->
 
   <link rel="stylesheet" href="/adminlte/css/adminlte.min.css">
