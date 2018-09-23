@@ -1,20 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('titulo')Bebidas Critina Lozano</title>
-    <link rel="stylesheet" href="./vendor/bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" href="./vendor/bootstrap/mdb.min.css">
+    <meta name="theme-color" content="#1049A9" />
+    
+    <link rel="stylesheet" href="/vendor/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="/vendor/bootstrap/mdb.min.css">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="/vendor/font-awesome/css/fontawesome.min.css">
     <link rel="stylesheet" href="/vendor/font-awesome/css/regular.min.css">
     <link rel="stylesheet" href="/vendor/font-awesome/css/solid.min.css">
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="/img/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+
+    <!-- Custom Styles -->
     <link rel="stylesheet" href="css/styles.min.css">
 
     @stack('styles')
@@ -27,12 +31,6 @@
         <!-- Barra de Usuario y Publicaciones -->
         <div class="navbar navbar-expand-lg userbar navbar-dark bg-secondary sticky-top">
 
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link text-align-center" href="#">Aqui Aparece la ultima publicacion con descuento</a>
-                </li>
-            </ul>
-
             <div class="mx-auto">
                 <a class="navbar-toggler" data-toggle="collapse" data-target="#userbar" aria-controls="userbar"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -40,6 +38,11 @@
                 </a>
             </div>
 
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link text-align-center" href="#">Aqui Aparece la ultima publicacion con descuento</a>
+                </li>
+            </ul>
             <div class="collapse navbar-collapse" id="userbar">
                 <ul class="navbar-nav ml-auto text-align-center">
                     @if (Auth::check())
@@ -70,7 +73,7 @@
         </div>
 
         @if (Request::is('*/*'))
-            <!-- Carrusel de Imagenes publicitarias y Anuncios -->
+            <!-- Carrusel de Imagenes publicitarias y Anuncios de la página principal-->
         <div class="header-carrousel carousel slide" data-ride="carousel" id="header-carrousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
@@ -161,12 +164,11 @@
         </div>
     </footer>
 
-    <script src="./vendor/jquery/jquery.min.js"></script>
-    </script>
+    <script src="/vendor/jquery/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
         crossorigin="anonymous"></script>
-    <script type="text/javascript" src="./vendor/bootstrap/bootstrap.bundle.js"></script>
-    <script type="text/javascript" src="./vendor/bootstrap/mdb.min.js"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/bootstrap.bundle.js"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/mdb.min.js"></script>
     @stack('scripts')
 
 </body>

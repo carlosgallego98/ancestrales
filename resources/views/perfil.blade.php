@@ -1,72 +1,73 @@
-@extends('layouts.app')
-@section('titulo','Perfíl | ')
-
+@extends('layouts.app') 
+@section('titulo','Perfíl | ') 
 @section('conteinido')
-<div class="card card-body profile-card container">
+<div class="container">
 
-    <div class="row mx-auto">
-        <div class="profile-pic">
-            <img class="z-depth-2" src="https://casafranciscanaoutreach.org/wp-content/uploads/2016/09/generic_avatar.jpg"
-                alt="Foto de Mr. Lorem Ipsum">
-            <div class="editar-perfil text-center text-white">
-                <a href="#">
-                    Editar Perfil
-                </a>
-            </div>
+    <div class="row mx-auto align-items-center">
+
+        <div class="card card-body imagen-perfil">
+            <img class="hoverable" src="https://casafranciscanaoutreach.org/wp-content/uploads/2016/09/generic_avatar.jpg" alt="Foto de {{Auth::user()->nombres}}">
+
+            <ul class="nav d-flex justify-content-center py-1">
+                <li class="nav-item"><a href="#" class="nav-link btn btn-dark">Editar Perfil</a></li>
+            </ul>
+
         </div>
-    </div>
-    <div class="row my-5">
-        <div class="col-md text-center">
-            <div class="profile-info align-content-center">
+
+        <div class="d-flex flex-column mx-auto">
+
+            <div class="card card-body flex-center info-perfil">
+
                 <h3 class="h3-responsive font-weight-bold">
                     {{Auth::user()->nombres." ".Auth::user()->apellidos}}
                 </h3>
-                <p class="d-flex flex-column">
-                    <span class="text-muted">{{Auth::user()->correo}}</span>
-                    @isset(Auth::user()->direccion)
-                    <span>{{Auth::user()->direccion}}</span>
-                    @else
-                    <span>Sin direccion</span>
-                    @endif
-                    @empty(Auth::user()->numeros)
-                    <span>Sin numeros telefonicos</span>
-                    <a href="#"><i class="fas fa-plus"> Agregar un Número</i></a>
-                    @else
-                    <ul class="list-inline">
-                        @foreach (Auth::user()->numeros as $numero)
-                        <li class="list-inline-item font-weight-bold">{{$numero->numero}}</li>
-                        @endforeach
-                        <br>
-                    <a href="#"> <i class="fas fa-pen"></i> Editar Números</a>
 
-                    </ul>
-                    @endif
-                </p>
+                <span>{{Auth::user()->correo}} </span> @isset(Auth::user()->direccion)
+                <span>{{Auth::user()->direccion}}</span> @else
+                <span>Sin direccion</span> @endif
+
+            </div>
+
+            <div class="card">
+                <div class="card-body text-center">
+                    <h6 class="card-title h6-responsive font-weight-bold">
+                        Números de Teléfono
+                    </h6>
+                    @forelse (Auth::user()->numeros as $numero) {{ (!$loop->first) ? ',': '' }}
+                    <span>{{$numero->numero}}</span> @empty
+                    <span>Sin Números de Teléfono</span>
+                    <nav class="nav"><a href="#" class="nav-item">Agrega un Número</a> @endforelse
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="row py-3">
-        <div class="col-md-6">
-            Ordenes de Bebidas
-        </div>
-        <div class="col-md-6">
-            Bebidas Guardadas
+    <div class="card card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <h6 class="card-title h6-responsive font-weight-bold">
+                    Lo que has Ordenado
+                </h6>
+            </div>
+            <div class="col-md-6">
+                <h6 class="card-title h6-responsive font-weight-bold">
+                    Tu Bebidas Guardadas
+                </h6>
+            </div>
         </div>
     </div>
-
 </div>
 @endsection
-@push('styles')
-<link rel="stylesheet" href="/css/profile.min.css">
-@endpush
-@push('scripts')
+ @push('styles')
+<link rel="stylesheet" href="/css/profile.min.css"> 
+@endpush @push('scripts')
 <script>
-    $(document).ready(function () {
-        $('.profile-pic').hover(function () {
-            $('.editar-perfil').toggleClass('show');
-        });
-    });
+    $(document).ready(() => {});
 
 </script>
+
+
+
+
+
 @endpush

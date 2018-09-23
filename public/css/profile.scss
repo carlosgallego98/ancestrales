@@ -1,53 +1,21 @@
-.profile-card {
-    margin-top: 150px;
+.card {
+    margin: 10px 10px;
 }
 
-.profile-pic {
-    margin-top: -110px;
-    position: relative;
-    transition: .2s;
-    cursor: pointer;
-
-    .editar-perfil {
-        display: none;
-        position: absolute;
-        transition: .2s all;
-
-        a {
-            color: white;
-
-            &:hover {
-                transition: .2s all;
-                color: darken(white, 20%);
-            }
-        }
-
-        &.show {
-            transition: .2s all;
-            top: 90px;
-            left: 55px;
-            display: flex;
-            flex-direction: column;
-        }
-    }
-
-    &:hover {
-        img {
-            transition: .2s;
-            filter: brightness(50%) blur(3px);
-        }
-
-    }
+.imagen-perfil {
+    background-image: url('/img/bg-perfil.png');
+    background-position: center;
+    background-size: cover;
 
     img {
         max-height: 200px;
+        width: 200px;
+        margin: 0 auto;
         border-radius: 100%;
-
     }
 }
 
-.profile-info {
-    height: 100%;
+.info-perfil {
 
     @media screen and (max-width: 768px) {
         text-align: center;
