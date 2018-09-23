@@ -2,14 +2,14 @@
 @section('titulo','Perfíl | ') 
 @section('conteinido')
 <div class="container">
-
+    @include('perfil.modals.editar_perfil')
     <div class="row mx-auto align-items-center">
 
         <div class="card card-body imagen-perfil">
             <img class="hoverable" src="https://casafranciscanaoutreach.org/wp-content/uploads/2016/09/generic_avatar.jpg" alt="Foto de {{Auth::user()->nombres}}">
 
             <ul class="nav d-flex justify-content-center py-1">
-                <li class="nav-item"><a href="#" class="nav-link btn btn-dark">Editar Perfil</a></li>
+                <li class="nav-item"><a href="#" class="nav-link btn btn-dark" data-toggle="modal" data-target="#modalEditarPerfil">Editar Perfil</a></li>
             </ul>
 
         </div>
@@ -36,7 +36,7 @@
                     @forelse (Auth::user()->numeros as $numero) {{ (!$loop->first) ? ',': '' }}
                     <span>{{$numero->numero}}</span> @empty
                     <span>Sin Números de Teléfono</span>
-                    <nav class="nav"><a href="#" class="nav-item">Agrega un Número</a> @endforelse
+                    <a href="#" class="text-center">Agrega un Número</a> @endforelse
                 </div>
             </div>
         </div>
@@ -65,6 +65,18 @@
     $(document).ready(() => {});
 
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

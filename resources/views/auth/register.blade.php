@@ -1,7 +1,5 @@
-@extends('layouts.auth')
-
-@section('titulo','Registro')
-
+@extends('layouts.auth') 
+@section('titulo','Registro') 
 @section('formulario')
 <div class="col-md-6">
     <form method="POST" class="card" action="{{ route('register') }}">
@@ -38,10 +36,17 @@
                     </div>
                 </div>
             </div>
-            <div class="md-form">
-                <label for="correo">Correo Electrónico</label>
-                <input type="email" name="correo" id="correo" class="form-control" required value="{{ old('correo') }}">
+            <div class="form-row">
+                <div class="md-form col-md-8">
+                    <label for="correo">Correo Electrónico</label>
+                    <input type="email" name="correo" id="correo" class="form-control" required value="{{ old('correo') }}">
+                </div>
+                <div class="md-form col-md-4">
+                    <label for="cedula" data-toggle="tooltip" data-placement="right" title="Cédula de Ciudadania o Extranjera">Cédula (CC o CE)</label>
+                    <input type="text" class="form-control" name="cedula" id="cedula">
+                </div>
             </div>
+
             <div class="form-row">
                 <div class="md-form col-md-6">
                     <label for="password">Contraseña</label>
@@ -49,19 +54,17 @@
                 </div>
                 <div class="md-form col-md-6">
                     <label for="password-confirm">Confirmacion Contraseña</label>
-                    <input class="form-control" type="password" name="password_confirmation" id="password_confirmation"
-                        required>
+                    <input class="form-control" type="password" name="password_confirmation" id="password_confirmation" required>
                 </div>
             </div>
             <div class="form-row">
                 <div class="col-md-7 py-md-4 text-center">
                     <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input" id="masculino" name="genero" value="M"
-                            required ">
-                        <label class=" custom-control-label" for="masculino">Hombre</label>
+                        <input type="radio" class="custom-control-input" id="masculino" name="genero" value="M" required ">
+                        <label class=" custom-control-label " for="masculino ">Hombre</label>
                     </div>
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input" id="femenino" name="genero" value="F" required
+                    <div class="custom-control custom-radio custom-control-inline ">
+                        <input type="radio " class="custom-control-input " id="femenino " name="genero " value="F " required
                             ">
                         <label class=" custom-control-label" for="femenino">Mujer</label>
                     </div>
@@ -69,8 +72,8 @@
                 <div class="col-md-5">
                     <div class="md-form">
                         <label for="fecha_nacimiento">Fecha Nacimiento</label>
-                        <input data-date-format="yyyy-mm-dd" type="text" name="fecha_nacimiento" id="fecha_nacimiento"
-                            class="form-control" required value="{{old('fecha_nacimiento')}}">
+                        <input data-date-format="yyyy-mm-dd" type="text" name="fecha_nacimiento" id="fecha_nacimiento" class="form-control" required
+                            value="{{old('fecha_nacimiento')}}">
                     </div>
                 </div>
             </div>
@@ -82,15 +85,27 @@
     </form>
 </div>
 @endsection
-
-@push('styles')
-<link rel="stylesheet" href="./vendor/bootstrap-datepicker/css/bootstrap-datepicker3.min.css">
-@endpush
-@push('scripts')
+ @push('styles')
+<link rel="stylesheet" href="./vendor/bootstrap-datepicker/css/bootstrap-datepicker3.min.css"> 
+@endpush @push('scripts')
 <script src="./vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
 <script src="./vendor/bootstrap-datepicker/locales/bootstrap-datepicker.es.min.js"></script>
 <script>
     $('#fecha_nacimiento').datepicker({});
+    $('[data-toggle="tooltip"]').tooltip()
 
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
 @endpush
