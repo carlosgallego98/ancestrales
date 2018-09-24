@@ -6,7 +6,7 @@
     <div class="row mx-auto align-items-center">
 
         <div class="card card-body imagen-perfil">
-            <img src="https://casafranciscanaoutreach.org/wp-content/uploads/2016/09/generic_avatar.jpg" alt="Foto de {{Auth::user()->nombres}}">
+            <img src="/subidas/fotos_perfil/{{Auth::user()->foto_perfil}}" alt="Foto de {{Auth::user()->nombres}}">
 
             <ul class="nav d-flex justify-content-center py-1">
                 <li class="nav-item"><a href="#" class="nav-link btn btn-dark" data-toggle="modal" data-target="#modalEditarPerfil">Editar Perfil</a></li>

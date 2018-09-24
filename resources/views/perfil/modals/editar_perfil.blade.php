@@ -3,15 +3,16 @@
         <div class="modal-content">
             <div class="modal-body text-center">
                 <h4 class="h4-responsive font-weight-bold">Editar Perfil</h4>
-                <img class="hoverable img-modal" src="https://casafranciscanaoutreach.org/wp-content/uploads/2016/09/generic_avatar.jpg"
+                <img class="hoverable img-modal" src="/subidas/fotos_perfil/{{Auth::user()->foto_perfil}}"
                     id="avatar" alt="Foto de {{Auth::user()->nombres}}">
-                <form action="/actualizar_avatar" method="post">
+            <form action="{{url('/actualizar-avatar')}}" method="post" enctype="multipart/form-data">
+                    @csrf
                     <input type='file' id="input-imagen" name="input-imagen" accept="image/*" class="hidden"
                     onchange="readURL(this)" />
                     <button href="#" id="btn-cambiar-foto" class="btn btn-primary hidden" type="submit">Guardar</button>
-                </form>
+            </form>
                 <hr>
-                <form action="/actualizar-perfil" enctype="multipart/form-data" method="POST">
+            <form action="{{ url( '/actualizar-perfil', Auth::user() ) }}" method="POST">
                     @csrf
                 <input type="text" value="{{Auth::user()->id}}" name="id_usuario" class="hidden">
                     <div class="form-row">
