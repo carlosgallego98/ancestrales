@@ -11,7 +11,7 @@
 |
 */
 
-Route::namespace('Admin')->prefix('admin')->group(function(){
+Route::namespace('Admin')->prefix('admin')->middleware('auth')->group(function(){
   Route::get('/','AdminController@escritorio')->name('escritorio');
 });
 
@@ -21,4 +21,5 @@ Route::get('/', 'HomeController@index')->name('inicio');
 
 Route::middleware('auth')->group(function(){
   Route::get('/perfil','UserController@index')->name('perfil');
+  Route::post('/actualizar-perfil','UserController@actualizar_perfil');
 });

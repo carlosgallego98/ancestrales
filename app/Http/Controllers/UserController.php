@@ -18,6 +18,9 @@ class UserController extends Controller
         return view('perfil');
     }
 
+    public function actualizar_perfil(Request $request){
+        return $request;
+    }
     /**
      * Show the form for creating a new resource.
      *
