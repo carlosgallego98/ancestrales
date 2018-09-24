@@ -5,10 +5,15 @@
                 <h4 class="h4-responsive font-weight-bold">Editar Perfil</h4>
                 <img class="hoverable img-modal" src="https://casafranciscanaoutreach.org/wp-content/uploads/2016/09/generic_avatar.jpg"
                     id="avatar" alt="Foto de {{Auth::user()->nombres}}">
+                <form action="/actualizar_avatar" method="post">
+                    <input type='file' id="input-imagen" name="input-imagen" accept="image/*" class="hidden"
+                    onchange="readURL(this)" />
+                    <button href="#" id="btn-cambiar-foto" class="btn btn-primary hidden" type="submit">Guardar</button>
+                </form>
                 <hr>
-                <form action="{{url('/actualizar-perfil')}}" enctype="multipart/form-data" method="post">
+                <form action="/actualizar-perfil" enctype="multipart/form-data" method="POST">
                     @csrf
-                    <input type='file' id="input-imagen" name="input-imagen" accept="image/*" class="hidden" onchange="readURL(this)" />
+                <input type="text" value="{{Auth::user()->id}}" name="id_usuario" class="hidden">
                     <div class="form-row">
                         <div class="md-form col-md-6">
                             <label for="nombres">Nombres</label>
@@ -17,7 +22,8 @@
 
                         <div class="md-form col-md-6">
                             <label for="apellidos">Apellidos</label>
-                            <input type="text" value="{{Auth::user()->apellidos}}" class="form-control" name="apellidos" id="apellido">
+                            <input type="text" value="{{Auth::user()->apellidos}}" class="form-control" name="apellidos"
+                                id="apellido">
                         </div>
                     </div>
                     <div class="form-row">
@@ -27,7 +33,8 @@
                         </div>
                         <div class="md-form col-md-4">
                             <label for="direccion">Direccion</label>
-                            <input type="text" value="{{Auth::user()->direccion}}" class="form-control" name="direccion" id="direccion">
+                            <input type="text" value="{{Auth::user()->direccion}}" class="form-control" name="direccion"
+                                id="direccion">
                         </div>
                     </div>
                     <button class="btn btn-primary" type="submit">Guardar</button>
@@ -47,15 +54,22 @@
                     .attr('src', e.target.result);
             };
             reader.readAsDataURL(input.files[0]);
+            $('#btn-cambiar-foto').removeClass('hidden');
 
         }
     }
 
     $('#avatar').click(() => {
-        $('#input-imagen').click()
+        $('#input-imagen').click();
     })
 
 </script>
+
+
+
+
+
+
 
 
 

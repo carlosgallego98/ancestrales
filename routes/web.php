@@ -21,5 +21,6 @@ Route::get('/', 'HomeController@index')->name('inicio');
 
 Route::middleware('auth')->group(function(){
   Route::get('/perfil','UserController@index')->name('perfil');
-  Route::post('/actualizar-perfil','UserController@actualizar_perfil');
+  Route::post('/actializar-avatar','UserController@actualizar_avatar');
+  Route::post('/actualizar-perfil','UserController@update');
 });

@@ -18,8 +18,10 @@ class UserController extends Controller
         return view('perfil');
     }
 
-    public function actualizar_perfil(Request $request){
-        return $request->file('input-imagen');
+    public function actualizar_avatar(Request $request){
+                $imagen = $request->file('input-imagen');
+        $img = \Image::make($imagen)->resize(300, 200);
+        return $img->response('jpg');
     }
     /**
      * Show the form for creating a new resource.
@@ -71,9 +73,9 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request,User $user)
     {
-        //
+        return $user;
     }
 
     /**

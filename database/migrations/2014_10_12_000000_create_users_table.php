@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('direccion')->nullable();
             $table->string('correo')->unique();
             $table->string('cedula')->unique();
+            $table->string('foto_perfil')->default('default_avatar.jpg');
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
