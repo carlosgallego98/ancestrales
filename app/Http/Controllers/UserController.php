@@ -19,7 +19,7 @@ class UserController extends Controller
     }
 
     public function actualizar_perfil(Request $request){
-        return $request;
+        return $request->file('input-imagen');
     }
     /**
      * Show the form for creating a new resource.
