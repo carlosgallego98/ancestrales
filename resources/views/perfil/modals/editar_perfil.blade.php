@@ -6,20 +6,21 @@
 
                 <div action="#" method="post">
                     <div class="text-center">
-                        <form action="#" method="post" id="form-imagen" class="hidden">
-                            <input type="file" name="input-imagen" id="input-imagen">
+                        <form action="#" method="post" id="form-imagen" class="text-center d-flex flex-column">
+                            <input type='file' id="input-imagen" name="input-imagen" accept="image/*" class="hidden"
+                                onchange="readURL(this)" />
+                            <img class="hoverable img-modal" src="https://casafranciscanaoutreach.org/wp-content/uploads/2016/09/generic_avatar.jpg"
+                                id="avatar" alt="Foto de {{Auth::user()->nombres}}">
+                            <div class="actiones-form hidden">
+                                <a href="#" class="" id="guardar-foto" type="submit" class="links-modal-imagen">Guardar</a>
+                            </div>
+
                         </form>
 
-                        <img class="hoverable img-modal" src="https://casafranciscanaoutreach.org/wp-content/uploads/2016/09/generic_avatar.jpg"
-                            id="avatar" alt="Foto de {{Auth::user()->nombres}}">
-
-                        <nav class="d-flex py-2 justify-content-between links-modal-imagen">
-                            <a href="#">Guardar</a>
-                            <a href="#">Cancelar</a>
-                        </nav>
 
                     </div>
                 </div>
+                <hr>
                 <form action="#" method="post">
                     @csrf
                     <div class="form-row">
@@ -44,7 +45,7 @@
                         </div>
                     </div>
                     <div class="text-center">
-                        <button class="btn btn-primary">Guardar</button>
+                        <button class="btn btn-primary" type="submit">Guardar</button>
                         <button class="btn btn-outline-primary" data-dismiss="modal">Cancelar</button>
                     </div>
                 </form>
@@ -54,15 +55,24 @@
 </div>
 @push('scripts')
 <script>
-    $(document).ready(()=>{
+    function readURL(input) {
+        console.log(input)
 
-    $('#avatar').click(()=>{
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#avatar')
+                    .attr('src', e.target.result);
+            };
+            reader.readAsDataURL(input.files[0]);
+            $('#guardar-foto').removeClass('hidden');
+
+        }
+    }
+
+    $('#avatar').click(() => {
         $('#input-imagen').click()
     })
-
-    $('#input-imagen').change(()=>{
-    })
-})
 
 </script>
 
