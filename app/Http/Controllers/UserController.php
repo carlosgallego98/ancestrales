@@ -19,9 +19,11 @@ class UserController extends Controller
     }
 
     public function actualizar_avatar(Request $request){
-                $imagen = $request->file('input-imagen');
-        $img = \Image::make($imagen)->resize(300, 200);
-        return $img->response('jpg');
+        $imagen = $request->file('input-imagen');
+        $nombre_avatar = time() . '.' . $imagen->getClientOriginalExtension();
+        $img = \Image::make($imagen)->resize(300, 200)->store('avatares');
+        return back();
+
     }
     /**
      * Show the form for creating a new resource.
