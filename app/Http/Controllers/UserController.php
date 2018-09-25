@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\User;
+Use Image;
+use Storage;
+use Auth;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -18,12 +21,23 @@ class UserController extends Controller
         return view('perfil');
     }
 
-    public function actualizar_avatar(Request $request){
+    public function actualizar_avatar(Request $request)
+    {
+        $usuario = Auth::user();
         $imagen = $request->file('input-imagen');
-        $nombre_avatar = time() . '.' . $imagen->getClientOriginalExtension();
-        $img = \Image::make($imagen)->resize(300, 200)->store('avatares');
+        $ajuste = Image::make($imagen)->fit(300)->encode('jpg');
+        $hash = md5($ajuste->__toString()); 
+        $id_usuario = $usuario->id;  
+        $directorio = "fotos_perfil/{$id_usuario}_{$hash}.jpg";
+    
+        if (Storage::disk('subidas')->put( $directorio, $ajuste)) {
+            $usuario->foto_perfil = "{$id_usuario}_{$hash}.jpg";
+            return back()->with('success','Imagen de Perfil Cambiada');
+        } else {
+            # code...
+        }
+        
         return back();
-
     }
     /**
      * Show the form for creating a new resource.

@@ -55,10 +55,10 @@ return [
             'visibility' => 'public',
         ],
 
-        'avatares' => [
+        'subidas' => [
             'driver' => 'local',
-            'root' => storage_path('app/public/subidas/avatares'),
-            'url' => env('APP_URL').'/subidas/avatares',
+            'root' => storage_path('app/public/subidas'),
+            'url' => env('APP_URL').'/subidas',
             'visibility' => 'public',
         ],
 
