@@ -25,19 +25,17 @@ class UserController extends Controller
     {
         $usuario = Auth::user();
         $imagen = $request->file('input-imagen');
-        $ajuste = Image::make($imagen)->fit(300)->encode('jpg');
-        $hash = md5($ajuste->__toString()); 
-        $id_usuario = $usuario->id;  
-        $directorio = "fotos_perfil/{$id_usuario}_{$hash}.jpg";
+        $image_ajustada = Image::make($imagen)->fit(300)->encode('jpg');
+        $nombre_archivo = "avatar_{$usuario->id}_".time().".jpg";
+        $directorio = "usuario_{$usuario->id}_{$usuario->created_at->format('dmy')}/foto_perfil/{$nombre_archivo}";
     
-        if (Storage::disk('subidas')->put( $directorio, $ajuste)) {
-            $usuario->foto_perfil = "{$id_usuario}_{$hash}.jpg";
-            return back()->with('success','Imagen de Perfil Cambiada');
+        if (Storage::disk('subidas')->put( $directorio, $image_ajustada)) {
+            $usuario->foto_perfil = $nombre_archivo;
+            $usuario->save();
+            return back();
         } else {
             # code...
         }
-        
-        return back();
     }
     /**
      * Show the form for creating a new resource.
@@ -91,7 +89,12 @@ class UserController extends Controller
      */
     public function update(Request $request,User $user)
     {
-        return $user;
+        $user->nombres = $request['nombres'];
+        $user->apellidos = $request['apellidos'];
+        $user->correo = $request['correo'];
+        $user->direccion = $request['direccion'];
+        $user->save();
+        return back();
     }
 
     /**

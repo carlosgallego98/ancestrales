@@ -24,6 +24,19 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+
+    public function avatar(){
+        $carpeta_personal = "usuario_{$this->id}_{$this->created_at->format('dmy')}";
+
+        if($this->imagen_perfil !== 'default_avatar.jpg'){
+            $foto_perfil = "/storage/subidas/{$carpeta_personal}/foto_perfil/{$this->foto_perfil}";
+            return $foto_perfil;
+        }else{
+            $foto_perfil = "/img/default_avatar.jpg";
+            return $foto_perfil;
+        }
+    }
     
     public function comentarios(){
         return $this->hasMany(Comentario::class,'id_usuario');

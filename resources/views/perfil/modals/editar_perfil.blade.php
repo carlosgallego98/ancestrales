@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-body text-center">
                 <h4 class="h4-responsive font-weight-bold">Editar Perfil</h4>
-                <img class="hoverable img-modal" src="/storage/subidas/fotos_perfil/{{Auth::user()->foto_perfil}}" alt="Foto de {{Auth::user()->nombres}}"
+                <img class="hoverable img-modal" src="{{Auth::user()->avatar()}}" alt="Foto de {{Auth::user()->nombres}}"
                     id="avatar" alt="Foto de {{Auth::user()->nombres}}">
             <form action="{{url('/actualizar-avatar')}}" method="post" enctype="multipart/form-data">
                     @csrf
