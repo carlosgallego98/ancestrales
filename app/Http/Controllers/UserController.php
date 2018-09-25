@@ -32,9 +32,13 @@ class UserController extends Controller
         if (Storage::disk('subidas')->put( $directorio, $image_ajustada)) {
             $usuario->foto_perfil = $nombre_archivo;
             $usuario->save();
-            return back();
+
+            $request->session()->flash('alert-success', 'Foto de perfil actualizada!');
+            return redirect()->back();
+
         } else {
-            # code...
+            $request->session()->flash('alert-danger', 'Hubo un error!');
+            return redirect()->back();
         }
     }
     /**
@@ -94,7 +98,9 @@ class UserController extends Controller
         $user->correo = $request['correo'];
         $user->direccion = $request['direccion'];
         $user->save();
-        return back();
+
+        $request->session()->flash('alert-success', 'Has actualizado tu perfil!');
+        return redirect()->back();
     }
 
     /**

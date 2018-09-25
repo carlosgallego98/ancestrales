@@ -130,11 +130,11 @@
                 </div>
             </div>
         </nav>
-
     </header>
 
     <!-- Contenido de la pagina -->
     <div class="main">
+        @include('componentes.alert')
         @yield('conteinido')
     </div>
     <!-- Contenido de la pagina -->
