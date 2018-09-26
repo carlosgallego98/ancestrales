@@ -11,8 +11,14 @@
 |
 */
 
-Route::namespace('Admin')->prefix('admin')->middleware('auth')->group(function(){
-  Route::get('/','AdminController@escritorio')->name('escritorio');
+Route::group(
+  [
+    'namespace'=> 'Admin',
+    'prefix' => 'escritorio',
+    'middleware' => 'role:gerente|produccion|despacho|proveedor|relaciones_publicas|trasnporte'
+  ],function(){
+    Route::get('/','AdminController@escritorio')->name('escritorio');
+
 });
 
 Auth::routes();
@@ -23,5 +29,4 @@ Route::middleware('auth')->group(function(){
   Route::get('/perfil','UserController@index')->name('perfil');
   Route::post('/actualizar-avatar','UserController@actualizar_avatar');
   Route::post('/actualizar-perfil/{user}','UserController@update');
-
 });

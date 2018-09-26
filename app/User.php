@@ -5,10 +5,12 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
     use Notifiable;
+    use HasRoles;
 
     protected $fillable = [
         'nombres',
@@ -35,9 +37,10 @@ class User extends Authenticatable
         } else {
             return '/img/default_avatar.jpg';
         }
-        
+    }
 
-        return $foto_perfil;
+    public function rol(){
+        return $this->getRoleNames();
     }
     
     public function comentarios(){

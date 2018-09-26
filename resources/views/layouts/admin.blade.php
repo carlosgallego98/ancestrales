@@ -17,13 +17,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="/vendor/font-awesome/css/solid.min.css">
 
   <!-- Favicon -->
-  <link rel="shortcut icon" href="/img/favicon.png" type="image/x-icon">
+  <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
   <!-- Theme style -->
 
   <link rel="stylesheet" href="/adminlte/css/adminlte.min.css">
 
-  <!-- Google Font: Source Sans Pro -->
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
   @stack('styles')
 </head>
@@ -38,7 +36,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
-      <img src="/img/favicon.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+      <img src="favicon.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
       <span class="brand-text font-weight-light">Bebídas Típicas CL</span>
     </a>
@@ -51,7 +49,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <img src="/adminlte/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Ana Cristina</a>
+          <a href="#" class="d-block">{{Auth::user()->nombres}}</a>
         </div>
       </div>
 
@@ -72,6 +70,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1 class="m-0 text-dark">@yield('titulo')</h1>
+            @foreach(Auth::user()->rol() as $role)
+              <h6 class="text-capitalize">{{$role}}</h6>
+            @endforeach
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
