@@ -1,130 +1,155 @@
 <!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
-<html lang="en">
+<html>
+
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>@yield('titulo') | Bebidas Cristina Lozano</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="/adminlte/plugins/bootstrap/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="/vendor/font-awesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="/vendor/font-awesome/css/regular.min.css">
+    <link rel="stylesheet" href="/vendor/font-awesome/css/solid.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="/adminlte/skins/skin-blue-light.min.css">
+    <link rel="stylesheet" href="/adminlte/css/AdminLTE.css">
+    <link rel="stylesheet" href="/adminlte/css/skins/skin-blue.min.css">
 
-  <title>@yield('titulo')Bebidas Critina Lozano</title>
+    <!-- Google Font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="/vendor/font-awesome/css/fontawesome.min.css">
-  <link rel="stylesheet" href="/vendor/font-awesome/css/regular.min.css">
-  <link rel="stylesheet" href="/vendor/font-awesome/css/solid.min.css">
-
-  <!-- Favicon -->
-  <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
-  <!-- Theme style -->
-
-  <link rel="stylesheet" href="/adminlte/css/adminlte.min.css">
-
-
-  @stack('styles')
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
 </head>
-<body class="hold-transition sidebar-mini">
-<div class="wrapper">
 
-  <!-- Navbar -->
-    @include('admin.components.navbar')
-  <!-- /.navbar -->
+<body class="hold-transition skin-blue-light sidebar-mini">
+    <div class="wrapper">
 
-  <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-      <img src="favicon.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-           style="opacity: .8">
-      <span class="brand-text font-weight-light">Bebídas Típicas CL</span>
-    </a>
+        <header class="main-header">
 
-    <!-- Sidebar -->
-    <div class="sidebar">
-      <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img src="/adminlte/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+            <a href="index2.html" class="logo">
+                <span class="logo-mini"><b>B</b>CL</span>
+                <span class="logo-lg">Bebidas <b>Ancestrales</b></span>
+            </a>
+
+            <nav class="navbar navbar-static-top" role="navigation">
+                <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                    <i class="fa fa-bars"></i>
+                    <span class="sr-only">Menu</span>
+                </a>
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        <li class="nav-item">
+                            <a href="{{ route('inicio') }}" target="_blank">
+                                <i class="fa fa-share"></i>
+                                Página Principal
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav">
+
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <img src="{{Auth::user()->avatar()}}" class="user-image" alt="User Image">
+
+                                <span class="hidden-xs">{{Auth::user()->nombres}}</span>
+                                <span class="hidden-xs">{{Auth::user()->apellidos}}</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="user-header">
+                                    <img src="/adminlte/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+
+                                    <p>
+                                        {{Auth::user()->nombres}} {{Auth::user()->apellidos}} <br>
+                                    </p>
+                                </li>
+                                <li class="user-footer">
+                                    <div class="pull-left">
+                                        <a href="{{ route('perfil') }}" class="btn btn-default btn-flat">Perfil</a>
+                                    </div>
+                                    <div class="pull-right">
+                                        <a href="#" class="btn btn-default btn-flat">Cerrar Sesión</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <aside class="main-sidebar">
+
+            <section class="sidebar">
+
+
+                <div class="user-panel">
+                    <div class="pull-left image">
+                        <img src="{{Auth::user()->avatar()}}" class="img-circle" alt="User Image">
+                    </div>
+                    <div class="pull-left info">
+                        <p>{{Auth::user()->nombres}} <small>{{Auth::user()->apellidos}}</small></p>
+                    </div>
+                </div>
+
+                {{--
+        <form action="#" method="get" class="sidebar-form">
+        <div class="input-group">
+          <input type="text" name="q" class="form-control" placeholder="Search...">
+          <span class="input-group-btn">
+              <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+              </button>
+            </span>
         </div>
-        <div class="info">
-          <a href="#" class="d-block">{{Auth::user()->nombres}}</a>
+      </form> 
+      --}}
+
+                <ul class="sidebar-menu" data-widget="tree">
+                    @include('admin.componentes.sidebar')
+                </ul>
+            </section>
+        </aside>
+
+        <div class="content-wrapper">
+            <section class="content-header">
+                <h1>
+                    @yield('titulo')
+                    @foreach (Auth::user()->rol() as $rol)
+                    <small class="text-capitalize">{{$rol}}</small>
+                    @endforeach
+                </h1>
+
+                <ol class="breadcrumb">
+                    <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+                    <li class="active">Here</li>
+                </ol>
+            </section>
+            <section class="content container-fluid">
+
+                @yield('contenido')
+
+            </section>
         </div>
-      </div>
 
-      <!-- Sidebar Menu -->
-      <nav class="mt-2">
-        @include('admin.components.sidebar')
-      </nav>
-      <!-- /.sidebar-menu -->
+
+
+        <footer class="main-footer text-center">
+            <strong>Copyright &copy; {{date('Y')}} <a href="#">Bebidas Cristina Lozano</a>.</strong> Todos los derechos
+            reservados.
+        </footer>
+
     </div>
-    <!-- /.sidebar -->
-  </aside>
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0 text-dark">@yield('titulo')</h1>
-            @foreach(Auth::user()->rol() as $role)
-              <h6 class="text-capitalize text-muted">{{$role}}</h6>
-            @endforeach
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Escritorio</a></li>
-            </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
+    <!-- jQuery 3 -->
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="/adminlte/plugins/bootstrap/bootstrap.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="/adminlte/js/adminlte.min.js"></script>
 
-    <!-- Main content -->
-    <div class="content">
-      <div class="container-fluid">
-        @yield('contenido')
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-    <div class="p-3">
-      <h5>Title</h5>
-      <p>Sidebar content</p>
-    </div>
-  </aside>
-  <!-- /.control-sidebar -->
-
-  <!-- Main Footer -->
-  <footer class="main-footer">
-    <!-- To the right -->
-    <div class="float-right d-none d-sm-inline">
-      Anything you want
-    </div>
-    <!-- Default to the left -->
-    <strong>Copyright &copy; 2014-2018 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
-  </footer>
-</div>
-<!-- ./wrapper -->
-
-<!-- REQUIRED SCRIPTS -->
-
-<!-- jQuery -->
-<script src="/vendor/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="/vendor/bootstrap/bootstrap.bundle.js"></script>
-<!-- AdminLTE App -->
-<script src="/adminlte/js/adminlte.min.js"></script>
-
-@stack('scripts')
+    <!-- Optionally, you can add Slimscroll and FastClick plugins.
+     Both of these plugins are recommended to enhance the
+     user experience. -->
 </body>
+
 </html>
