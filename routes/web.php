@@ -11,13 +11,42 @@
 |
 */
 
+Route::group(['namespace'=> 'Admin'] , function(){
+  Route::get('/panel','AdminController@panel')->name('panel');
+});
+
 Route::group(
-  [
-    'namespace'=> 'Admin',
-    'prefix' => 'escritorio',
-    'middleware' => 'role:gerente|produccion|despacho|proveedor|relaciones_publicas|trasnporte'
+  ['namespace'=> 'Admin',
+   'prefix' => 'gerencia',
+   'middleware' => 'role:gerente'
   ],function(){
-    Route::get('/','AdminController@escritorio')->name('escritorio');
+    Route::get('/','AdminController@gerente')->name('gerente');
+});
+
+Route::group(
+  ['namespace'=> 'Admin',
+   'prefix' => 'produccion-y-despacho',
+   'middleware' => 'role:produccion|despacho'
+  ],function(){
+    Route::get('/','AdminController@produccion_despacho')->name('produccion');
+
+});
+
+Route::group(
+  ['namespace'=> 'Admin',
+   'prefix' => 'proveedor',
+   'middleware' => 'role:proveedor'
+  ],function(){
+    Route::get('/','AdminController@proveedor')->name('proveedor');
+
+});
+
+Route::group(
+  ['namespace'=> 'Admin',
+   'prefix' => 'relaciones-publicas',
+   'middleware' => 'role:relaciones_publicas'
+  ],function(){
+    Route::get('/','AdminController@relaciones')->name('relaciones');
 
 });
 

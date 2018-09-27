@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Spatie\Permission\Models\Role;
 
 class RegisterController extends Controller
 {
@@ -52,6 +53,7 @@ class RegisterController extends Controller
             'nombres' => 'required|string|max:255',
             'apellidos' => 'required|string|max:255',
             'correo' => 'bail|required|string|email|unique:users|max:255',
+            'cedula' => 'bail|required|string|string|unique:users|max:11',
             'fecha_nacimiento' => 'bail|required|string|string|max:255',
             'password' => 'bail|required|string|confirmed|min:6',
         ]);
@@ -65,7 +67,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $usuario = User::create([
             'nombres' => $data['nombres'],
             'apellidos' => $data['apellidos'],
             'cedula' => $data['cedula'],
@@ -74,6 +76,9 @@ class RegisterController extends Controller
             'fecha_nacimiento' => $data['fecha_nacimiento'],
             'password' => Hash::make($data['password']),
         ]);
+        $role = Role::findByName('comprador');
+        $usuario->assignRole($role);
+        return $usuario;
     }
 
         /**

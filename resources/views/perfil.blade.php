@@ -63,23 +63,5 @@
 @endpush @push('scripts')
 <script>
     $(document).ready(() => {});
-
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @endpush

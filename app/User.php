@@ -30,11 +30,12 @@ class User extends Authenticatable
 
     public function avatar(){
         $carpeta_personal = "usuario_{$this->id}_{$this->created_at->format('dmy')}";
-        $foto_perfil = "/storage/subidas/{$carpeta_personal}/foto_perfil/{$this->foto_perfil}";
+        $foto_perfil = "storage/subidas/{$carpeta_personal}/foto_perfil/{$this->foto_perfil}";
 
-        if (file_exists("storage/subidas/{$carpeta_personal}/foto_perfil/{$this->foto_perfil}")) {
+        if (file_exists($foto_perfil)) {
             return $foto_perfil;
-        } else {
+        }
+         else {
             return '/img/default_avatar.jpg';
         }
     }

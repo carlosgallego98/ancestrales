@@ -71,7 +71,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <div class="col-sm-6">
             <h1 class="m-0 text-dark">@yield('titulo')</h1>
             @foreach(Auth::user()->rol() as $role)
-              <h6 class="text-capitalize">{{$role}}</h6>
+              <h6 class="text-capitalize text-muted">{{$role}}</h6>
             @endforeach
           </div><!-- /.col -->
           <div class="col-sm-6">
