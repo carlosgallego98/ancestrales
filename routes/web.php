@@ -54,6 +54,8 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('inicio');
 
+Route::get('/productos','ApiController@productos');
+
 Route::middleware('auth')->group(function(){
   Route::get('/perfil','UserController@index')->name('perfil');
   Route::post('/actualizar-avatar','UserController@actualizar_avatar');

@@ -13,7 +13,7 @@ class BebidaMateriaPrima extends Migration
      */
     public function up()
     {
-      Schema::create('bebida_materia_prima', function (Blueprint $table) {
+      Schema::create('producto_materia_prima', function (Blueprint $table) {
       $table->increments('id');
       $table->unsignedInteger('producto_id');
       $table->unsignedInteger('materia_prima_id');
@@ -30,6 +30,6 @@ class BebidaMateriaPrima extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('producto_materia_prima');
     }
 }

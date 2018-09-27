@@ -17,7 +17,7 @@ class CreateMateriaPrimasTable extends Migration
             $table->increments('id');
             $table->string('nombre');
             $table->integer('cantidad')->unsigned();
-            $table->integer('descripcion')->unsigned();
+            $table->text('descripcion');
             $table->integer('nivel_minimo')->unsigned();
             $table->timestamps();
         });
