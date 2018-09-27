@@ -1,44 +1,49 @@
 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
+    <li class="nav-header">Administracion</li>
     <li class="nav-item">
-        @foreach (Auth::user()->rol() as $rol)
-        @switch($rol)
-        @case('gerente')
-        <a href="{{ route('gerente') }}" class="nav-link {{(Request::is('*gerencia') ? 'active' : '')}}">
-            <i class="nav-icon fa fa-solar-panel"></i>
-            <p>
-                Escritorio
-            </p>
+        <a href="#" class="nav-link">
+            <i class="nav-icon fa fa-file"></i>
+            <p>Escritorio</p>
         </a>
-        @break
-        @case('produccion')
-        @case('despacho')
-        <a href="{{ route('produccion') }}" class="nav-link {{(Request::is('*produccion-y-despacho') ? 'active' : '')}}">
-            <i class="nav-icon fa fa-solar-panel"></i>
-            <p>
-                Escritorio
-            </p>
-        </a>
-        @break
-        @case('proveedor')
-        <a href="{{ route('proveedor') }}" class="nav-link {{(Request::is('*proveedor') ? 'active' : '')}}">
-            <i class="nav-icon fa fa-solar-panel"></i>
-            <p>
-                Escritorio
-            </p>
-        </a>
-        @break
+    </li>
 
-        @case('relaciones_publicas')
-        <a href="{{ route('relaciones') }}" class="nav-link {{(Request::is('*relaciones-publicas') ? 'active' : '')}}">
-            <i class="nav-icon fa fa-solar-panel"></i>
-            <p>
-                Escritorio
-            </p>
+    <li class="nav-header">Produccion</li>
+    <li class="nav-item">
+        <a href="#" class="nav-link">
+            <i class="nav-icon fa fa-file"></i>
+            <p>Productos</p>
         </a>
-        @break
-        @default
+    </li>
+    <li class="nav-item">
+        <a href="#" class="nav-link">
+            <i class="nav-icon fa fa-file"></i>
+            <p>Materia Prima</p>
+        </a>
+    </li>
 
-        @endswitch
-        @endforeach
+    <li class="nav-header">Proveedor</li>
+    <li class="nav-item">
+        <a href="#" class="nav-link">
+            <i class="nav-icon fa fa-file"></i>
+            <p>Productos</p>
+        </a>
+    </li>
+
+    <li class="nav-header">Servicio al Cliente</li>
+    <li class="nav-item">
+        <a href="#" class="nav-link">
+            <i class="nav-icon fa fa-file"></i>
+            <p>Usuarios</p>
+        </a>
+    </li>
+
+    <li class="nav-header">Despacho</li>
+    <li class="nav-item">
+        <a href="#" class="nav-link">
+            <i class="nav-icon fa fa-file"></i>
+            <p>Ordenes</p>
+            <p>Envios</p>
+        </a>
     </li>
 </ul>

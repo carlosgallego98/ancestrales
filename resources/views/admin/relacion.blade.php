@@ -2,6 +2,6 @@
 
 @section('titulo','Escritorio ')
 
-@section('content')
+@section('contenido')
 
 @endsection
