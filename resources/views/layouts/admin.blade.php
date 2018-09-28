@@ -7,14 +7,14 @@
     <title>@yield('titulo') | Bebidas Cristina Lozano</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="stylesheet" href="/adminlte/plugins/bootstrap/bootstrap.min.css">
-    <!-- Font Awesome -->
+        <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="/vendor/font-awesome/css/fontawesome.min.css">
     <link rel="stylesheet" href="/vendor/font-awesome/css/regular.min.css">
     <link rel="stylesheet" href="/vendor/font-awesome/css/solid.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="/adminlte/skins/skin-blue-light.min.css">
-    <link rel="stylesheet" href="/adminlte/css/AdminLTE.css">
     <link rel="stylesheet" href="/adminlte/css/skins/skin-blue.min.css">
+    <link rel="stylesheet" href="/adminlte/skins/skin-blue-light.min.css">
+    <link rel="stylesheet" href="/adminlte/css/AdminLTE.min.css">
 
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
@@ -34,10 +34,8 @@
 
             <nav class="navbar navbar-static-top" role="navigation">
                     <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
+                            <i class="fa fa-bars"></i>
+                        <span class="sr-only">Toggle navigation</span>
                           </a>
                     
                 <div class="navbar-custom-menu">

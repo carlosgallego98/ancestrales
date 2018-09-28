@@ -3,29 +3,26 @@
 
 @case('gerente')
 <li class="header">Administracion / Gerencia</li>
+
 <li class=""><a href="#">
         <i class="fa fa-desktop"></i>
         <span>Centro de Control</span></a>
 </li>
 
-<li class="">
-    <a href="#">
+<li class=""><a href="#">
         <i class="fa fa-cubes"></i>
         <span>Materia Prima</span></a>
 </li>
 
-<li class="">
-    <a href="#">
-        <i class="fa fa-money-check"></i>
-        informe de ventas</a>
-</li>
+<li class=""><a href="#">
+                <i class="fa fa-percent"></i>
+                <span>Publicaciones con Descuento</span></a>
+        </li>
 
-<li class="">
-    <a href="#">
-        <i class="fa fa-percent"></i>
-        Promociones</a>
-</li>
-
+        <li class=""><a href="#">
+                        <i class="fa fa-money-check"></i>
+                        <span>Informes de Venta</span></a>
+                </li>
 <li class="treeview">
     <a href="#"><i class="fa fa-chart-bar"></i> <span>Estadísticas</span>
         <span class="pull-right-container">

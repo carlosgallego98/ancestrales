@@ -15,8 +15,11 @@ class AdminController extends Controller
             break;
 
             case 'produccion':
+            return redirect()->route('produccion');            
+            break;
+            
             case 'despacho':
-            return redirect()->route('produccion');
+            return redirect()->route('despacho');
             break;
 
             case 'relaciones':
@@ -33,21 +36,4 @@ class AdminController extends Controller
         }
       }
     }
-    
-    public function gerente(){
-      return view('admin.gerente');
-    }
-
-    public function produccion_despacho(){
-      return view('admin.produccion_despacho');
-    }
-
-    public function proveedor(){
-      return view('admin.proveedor');
-    }
-
-    public function relaciones(){
-      return view('admin.relacion');
-    }
-
 }
