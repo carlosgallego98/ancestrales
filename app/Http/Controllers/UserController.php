@@ -18,7 +18,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('perfil');
+        return view('perfil.detalles');
     }
 
     public function actualizar_avatar(Request $request)

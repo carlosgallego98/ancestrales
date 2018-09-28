@@ -1,9 +1,10 @@
 @extends('layouts.admin')
 
-@section('titulo','Gerente ')
+@section('titulo','Escritorio | Gerente')
 
 @section('contenido')
 <div class="conteiner">
+
     {{-- Cajas de Informacion --}}
     <div class="row">
         @component('admin.componentes.info-box')
@@ -36,4 +37,4 @@
 
     
     </div>
-    @endsection
+@endsection

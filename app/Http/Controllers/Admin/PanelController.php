@@ -8,23 +8,34 @@ use App\Http\Controllers\Controller;
 class PanelController extends Controller
 {
         
-      public function gerente(){
-        return view('admin.panel.gerente');
-      }
+      public function redireccion()
+      {
+        foreach (auth()->user()->rol() as $rol) {
+          switch ($rol) {
+            case 'gerente':
+              return redirect()->route('gerente');
+              break;
   
-      public function despacho(){
-        return view('admin.panel.despacho');
-      }
-
-      public function produccion(){
-        return view('admin.panel.produccion');
-      }
+              case 'produccion':
+              return redirect()->route('produccion');            
+              break;
+              
+              case 'despacho':
+              return redirect()->route('despacho');
+              break;
   
-      public function proveedor(){
-        return view('admin.panel.proveedor');
-      }
+              case 'relaciones':
+              return redirect()->route('relaciones');
+              break;
   
-      public function relaciones(){
-        return view('admin.panel.relacion');
+              case 'proveedor':
+              return redirect()->route('proveedor');
+              break;
+              
+              default:
+              return redirect()->route('inicio');
+              break;
+          }
+        }
       }
 }

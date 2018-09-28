@@ -12,7 +12,7 @@
 */
 
 Route::group(['namespace'=> 'Admin'] , function(){
-  Route::get('/panel','AdminController@panel')->name('panel');
+  Route::get('/panel','PanelController@redireccion')->name('panel');
 });
 
 Route::group(
@@ -20,33 +20,33 @@ Route::group(
    'prefix' => 'gerencia',
    'middleware' => 'role:gerente'
   ],function(){
-    Route::get('/','PanelController@gerente')->name('gerente');
+    Route::get('/','GerenteController@gerente')->name('gerente');
 });
 
 Route::group(
   ['namespace'=> 'Admin',
    'prefix' => 'area-despacho',
-   'middleware' => 'role:produccion|despacho'
+   'middleware' => 'role:produccion'
   ],function(){
-    Route::get('/','PanelController@produccion')->name('produccion');
+    Route::get('/','ProduccionController@produccion')->name('produccion');
 
 });
 
 Route::group(
   ['namespace'=> 'Admin',
    'prefix' => 'area-produccion',
-   'middleware' => 'role:produccion|despacho'
+   'middleware' => 'role:despacho'
   ],function(){
-    Route::get('/','PanelController@despacho')->name('despacho');
+    Route::get('/','DespachoController@despacho')->name('despacho');
 
 });
 
 Route::group(
   ['namespace'=> 'Admin',
-   'prefix' => 'proveedor',
+   'prefix' => 'proveedores',
    'middleware' => 'role:proveedor'
   ],function(){
-    Route::get('/','PanelController@proveedor')->name('proveedor');
+    Route::get('/','ProveedorController@proveedor')->name('proveedor');
 
 });
 
@@ -55,7 +55,7 @@ Route::group(
    'prefix' => 'relaciones-publicas',
    'middleware' => 'role:relaciones_publicas'
   ],function(){
-    Route::get('/','PanelController@relaciones')->name('relaciones');
+    Route::get('/','RelacionesController@relaciones')->name('relaciones');
 
 });
 
