@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
 use App\User;
 use Storage;
@@ -45,12 +46,16 @@ class UserController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
+     *select('name')->get()
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        $roles = Role::where('name','!=','gerente')
+                            ->where('name','!=','comprador')
+                            ->get();
+
+        return view('admin.gerente.empleados.nuevo',compact('roles'));
     }
 
     /**
@@ -61,7 +66,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return $request;
     }
 
     /**

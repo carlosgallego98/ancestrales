@@ -23,15 +23,26 @@ Route::group(
     Route::get('/','GerenteController@gerente')->name('gerente');
 
     Route::get('/empleados','GerenteController@empleados')->name('empleados');
+    
 
     Route::get('estadisticas/ventas','GerenteController@estadisticas_ventas')->name('estadisticas.ventas');
     
     Route::get('estadisticas/pedidos','GerenteController@estadisticas_pedidos')->name('estadisticas.pedidos');
 });
 
+Route::group(
+  ['middleware' => 'role:gerente'
+  ],function(){
+    Route::get('empleados/registar','UserController@create')->name('empleados.nuevo');
+    Route::post('empleados/registar/store','UserController@store')->name('empleados.store');
+  
+  });
+
 Route::group(['prefix'=> 'datatables'],function(){
   Route::get('users','UserController@datatable');
+
   Route::get('ventas',function(){});
+
   Route::get('pedidos',function(){});
 });
 

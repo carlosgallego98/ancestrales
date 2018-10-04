@@ -115,14 +115,16 @@
         <div class="content-wrapper">
             <section class="content-header">
                 <h1>
-                    @yield('titulo')
-                    <small class="text-capitalize">@yield('subtitulo')</small>
+                    @yield('subtitulo')
+                    <small class="text-capitalize"> 
+                    @yield('titulo')  
+                    </small>
                 </h1>
 
-                <ol class="breadcrumb">
+                {{-- <ol class="breadcrumb">
                     <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
                     <li class="active">Here</li>
-                </ol>
+                </ol> --}}
             </section>
             <section class="content container-fluid">
 

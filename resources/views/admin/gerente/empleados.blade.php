@@ -26,7 +26,7 @@
             </div>
         </div>
         <div class="pull-right">
-                <button class="btn btn-primary">Registrar Empleado</button>
+        <a class="btn btn-primary" href="{{route('empleados.nuevo')}}">Registrar Empleado</a>
         </div>
     </div>
 @endsection
