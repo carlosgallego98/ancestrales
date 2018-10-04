@@ -18,6 +18,7 @@ class User extends Authenticatable
         'correo',
         'cedula',
         'genero',
+        'nombre_usuario',
         'fecha_nacimiento',
         'direccion',
         'password',

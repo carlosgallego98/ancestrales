@@ -21,9 +21,20 @@ Route::group(
    'middleware' => 'role:gerente'
   ],function(){
     Route::get('/','GerenteController@gerente')->name('gerente');
+
+    Route::get('/empleados','GerenteController@empleados')->name('empleados');
+
     Route::get('estadisticas/ventas','GerenteController@estadisticas_ventas')->name('estadisticas.ventas');
+    
     Route::get('estadisticas/pedidos','GerenteController@estadisticas_pedidos')->name('estadisticas.pedidos');
 });
+
+Route::group(['prefix'=> 'datatables'],function(){
+  Route::get('users','UserController@datatable');
+  Route::get('ventas',function(){});
+  Route::get('pedidos',function(){});
+});
+
 
 Route::group(
   ['namespace'=> 'Admin',
@@ -64,8 +75,6 @@ Route::group(
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('inicio');
-
-Route::get('/productos','ApiController@productos');
 
 Route::middleware('auth')->group(function(){
   Route::get('/perfil','UserController@index')->name('perfil');

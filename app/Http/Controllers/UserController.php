@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
-Use Image;
-use Storage;
-use Auth;
 use Illuminate\Http\Request;
+use App\User;
+use Storage;
+Use Image;
+use Auth;
+use DB;
 
 class UserController extends Controller
 {
@@ -41,6 +42,7 @@ class UserController extends Controller
             return redirect()->back();
         }
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -112,5 +114,19 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         //
+    }
+
+    public function datatable()
+    {
+        $users = User::join('model_has_roles','model_has_roles.model_id','=','users.id')
+        ->join('roles','roles.id','=','model_has_roles.role_id')
+        ->select('nombres','apellidos','direccion','correo','cedula','users.created_at','roles.name')
+        ->role(['gerente','produccion','despacho','proveedor','relaciones_publicas'])
+        ->get();
+        
+        return datatables()->of($users)
+        ->editColumn('created_at',function($user){
+            return $user->created_at->format('Y-m-d');
+        })->toJson();
     }
 }

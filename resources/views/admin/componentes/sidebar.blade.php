@@ -6,7 +6,27 @@
 
 <li class=""><a href="{{route('gerente')}}">
         <i class="fa fa-desktop"></i>
-        <span>Centro de Control</span></a>
+        <span>Panel de Control</span></a>
+</li>
+
+<li class=""><a href="{{ route('empleados') }}">
+         <i class="fa fa-user"></i>
+         <span>Empleados</span></a>
+</li>
+
+<li class=""><a href="#">
+        <i class="fa fa-percent"></i>
+        <span>Descuentos</span></a>
+</li>
+
+<li class=""><a href="#">
+        <i class="fa fa-money-check"></i>
+        <span>Informe de Ventas</span></a>
+</li>
+
+<li class=""><a href="#">
+        <i class="fa fa-truck"></i>
+        <span>Proveedores</span></a>
 </li>
 
 <li class=""><a href="#">
@@ -14,15 +34,6 @@
         <span>Materia Prima</span></a>
 </li>
 
-<li class=""><a href="#">
-        <i class="fa fa-percent"></i>
-        <span>Publicaciones con Descuento</span></a>
-</li>
-
-<li class=""><a href="#">
-        <i class="fa fa-money-check"></i>
-        <span>Informes de Venta</span></a>
-</li>
 <li class="treeview">
     <a href="#"><i class="fa fa-chart-bar"></i> <span>Estadísticas</span>
         <span class="pull-right-container">

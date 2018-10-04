@@ -16,22 +16,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @for ($i = 0; $i < 9; $i++)
-                    <tr>
-                        <td><a href="#">Este es un producto con un nombre largo</a></td>
-                        <td class="text-blue">{{1500-$i}}</td>
-                        <td class="text-green">{{3+$i}}</td>
-                        <td class="text-red">{{2*$i}}</td>
-                        <td><a href="#">Detalles</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="#">Agua con Limón</a></td>
-                        <td class="text-red">{{200-$i}}</td>
-                        <td class="text-green">{{32+$i}}</td>
-                        <td class="text-blue">{{65+$i}}</td>
-                        <td><a href="#">Detalles</a></td>
-                    </tr>
-                        @endfor
+                    
                 </tbody>
             </table>
         </div>
@@ -41,7 +26,9 @@
 
 @push('scripts')
     <link rel="stylesheet" href="/adminlte/plugins/datatables/datatables.min.css"> 
-@endpush @push('scripts')
+@endpush
+
+@push('scripts')
     <script src="/adminlte/plugins/datatables/datatables.min.js"></script>
     
     <script>
@@ -52,6 +39,7 @@
         'ordering'    : true,
         'info'        : true,
         'autoWidth'   : true,
+        'ajax'        : ''
         'language'    : {
         "sProcessing":     "Procesando...",
         "sLengthMenu":     "Mostrar _MENU_ registros",
@@ -78,5 +66,4 @@
     }
         })
 </script>
-
 @endpush

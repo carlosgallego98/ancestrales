@@ -26,6 +26,7 @@ class EmpleadosSeed extends Seeder
                             'apellidos' => 'Mena Lozano',
                             'cedula' => '1111817546',
                             'correo' => 'anacris@bebidascl.com',
+                            'nombre_usuario' => 'gerenteCristina',
                             'genero' => 'f',
                             'fecha_nacimiento' => '1998-02-10',
                             'password' => Hash::make('gerentecl'),
