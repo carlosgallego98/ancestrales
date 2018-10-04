@@ -33,7 +33,7 @@ class User extends Authenticatable
         $foto_perfil = "storage/subidas/{$carpeta_personal}/foto_perfil/{$this->foto_perfil}";
 
         if (file_exists($foto_perfil)) {
-            return $foto_perfil;
+            return "/{$foto_perfil}";
         }
          else {
             return '/img/default_avatar.jpg';

@@ -21,6 +21,8 @@ Route::group(
    'middleware' => 'role:gerente'
   ],function(){
     Route::get('/','GerenteController@gerente')->name('gerente');
+    Route::get('estadisticas/ventas','GerenteController@estadisticas_ventas')->name('estadisticas.ventas');
+    Route::get('estadisticas/pedidos','GerenteController@estadisticas_pedidos')->name('estadisticas.pedidos');
 });
 
 Route::group(

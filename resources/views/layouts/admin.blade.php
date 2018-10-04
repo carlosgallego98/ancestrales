@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
     <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+    @stack('styles')
 </head>
 
 <body class="hold-transition skin-blue-light sidebar-mini">
@@ -51,7 +52,7 @@
 
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <img src="{{Auth::user()->avatar()}}" class="user-image" alt="User Image">
+                                <img src="{{Auth::user()->avatar()}}" class="user-image" alt="Avatar">
 
                                 <span class="hidden-xs">{{Auth::user()->nombres}}</span>
                                 <span class="hidden-xs">{{Auth::user()->apellidos}}</span>
@@ -115,9 +116,7 @@
             <section class="content-header">
                 <h1>
                     @yield('titulo')
-                    @foreach (Auth::user()->rol() as $rol)
-                    <small class="text-capitalize">{{$rol}}</small>
-                    @endforeach
+                    <small class="text-capitalize">@yield('subtitulo')</small>
                 </h1>
 
                 <ol class="breadcrumb">
@@ -147,7 +146,7 @@
     <script src="/adminlte/plugins/bootstrap/bootstrap.min.js"></script>
     <!-- AdminLTE App -->
     <script src="/adminlte/js/adminlte.min.js"></script>
-
+    @stack('scripts')
     <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. -->

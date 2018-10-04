@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 
-@section('titulo','Escritorio | Gerente')
+@section('titulo','Escritorio')
+@section('subtitulo','Gerente')
 
 @section('contenido')
 <div class="conteiner">

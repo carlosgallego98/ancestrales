@@ -11,4 +11,14 @@ class GerenteController extends Controller
     {
       return view('admin.gerente.panel');
     }
+
+    public function estadisticas_ventas()
+    {
+      return view('admin.gerente.estadisticas.ventas');
+    }
+
+    public function estadisticas_pedidos()
+    {
+      return view('admin.gerente.estadisticas.pedidos');
+    }
 }

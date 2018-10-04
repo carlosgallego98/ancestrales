@@ -4,7 +4,7 @@
 @case('gerente')
 <li class="header">Administracion / Gerencia</li>
 
-<li class=""><a href="#">
+<li class=""><a href="{{route('gerente')}}">
         <i class="fa fa-desktop"></i>
         <span>Centro de Control</span></a>
 </li>
@@ -15,14 +15,14 @@
 </li>
 
 <li class=""><a href="#">
-                <i class="fa fa-percent"></i>
-                <span>Publicaciones con Descuento</span></a>
-        </li>
+        <i class="fa fa-percent"></i>
+        <span>Publicaciones con Descuento</span></a>
+</li>
 
-        <li class=""><a href="#">
-                        <i class="fa fa-money-check"></i>
-                        <span>Informes de Venta</span></a>
-                </li>
+<li class=""><a href="#">
+        <i class="fa fa-money-check"></i>
+        <span>Informes de Venta</span></a>
+</li>
 <li class="treeview">
     <a href="#"><i class="fa fa-chart-bar"></i> <span>Estadísticas</span>
         <span class="pull-right-container">
@@ -30,8 +30,8 @@
         </span>
     </a>
     <ul class="treeview-menu">
-        <li><a href="#">Ventas</a></li>
-        <li><a href="#">Pedidos</a></li>
+        <li><a href="{{ route('estadisticas.ventas') }}">Ventas</a></li>
+        <li><a href="{{ route('estadisticas.pedidos') }}">Pedidos</a></li>
     </ul>
 </li>
 
