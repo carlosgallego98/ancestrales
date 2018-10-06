@@ -10,7 +10,7 @@ class PanelController extends Controller
         
       public function redireccion()
       {
-        foreach (auth()->user()->rol() as $rol) {
+        foreach (auth('empleado')->user()->rol() as $rol) {
           switch ($rol) {
             case 'gerente':
               return redirect()->route('gerente');

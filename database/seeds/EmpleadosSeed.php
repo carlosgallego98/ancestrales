@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\User;
+use App\Empleado;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
@@ -21,32 +21,45 @@ class EmpleadosSeed extends Seeder
                         // Reset cached roles and permissions
                         app()['cache']->forget('spatie.permission.cache');
 
-                        $gerente = User::create([
+                        $gerente = Empleado::create([
                             'nombres' => 'Ana Cristina',
                             'apellidos' => 'Mena Lozano',
-                            'cedula' => '1111817546',
+                            'cedula' => '1111-817-546',
                             'correo' => 'anacris@bebidascl.com',
-                            'nombre_usuario' => 'gerenteCristina',
+                            'nombre_usuario' => 'CristinaLozano',
                             'genero' => 'f',
                             'fecha_nacimiento' => '1998-02-10',
                             'password' => Hash::make('gerentecl'),
                         ]);
 
-                        // Roles
+                         // Roles
                         $role = Role::create(['name'=>'comprador']); 
 
-                        $role = Role::create(['name'=>'gerente']);
+                        $role = Role::create([
+                            'name'=>'gerente',
+                            'guard_name'=> 'empleado'
+                            ]);
                         $gerente->assignRole($role);
-                        
-                        $role = Role::create(['name'=>'produccion']);
 
-                        $role = Role::create(['name'=>'despacho']);
+                        $role = Role::create([
+                            'name'=>'produccion',
+                            'guard_name'=> 'empleado'
+                            ]);
 
-                        $role = Role::create(['name'=>'proveedor']);
+                        $role = Role::create([
+                            'name'=>'despacho',
+                            'guard_name'=> 'empleado'
+                            ]);
 
-                        $role = Role::create(['name'=>'relaciones_publicas']);
+                        $role = Role::create([
+                            'name'=>'proveedor',
+                            'guard_name'=> 'empleado'
+                            ]);
 
-                        $role = Role::create(['name'=>'trasnporte']);
+                        $role = Role::create(
+                            ['name'=>'relaciones_publicas',
+                            'guard_name'=> 'empleado'
+                            ]);                       
 
     }
 }

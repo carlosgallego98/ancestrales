@@ -73,13 +73,12 @@ class RegisterController extends Controller
             'apellidos' => $data['apellidos'],
             'cedula' => $data['cedula'],
             'correo' => $data['correo'],
-            'nombre_usuario' => $nombre_usuario,
+            'nombre_usuario' => $nombre_usuario[0],
             'genero' => $data['genero'],
             'fecha_nacimiento' => $data['fecha_nacimiento'],
             'password' => Hash::make($data['password']),
         ]);
-        $role = Role::findByName('comprador');
-        $usuario->assignRole($role);
+        $usuario->assignRole('comprador');
         return $usuario;
     }
 

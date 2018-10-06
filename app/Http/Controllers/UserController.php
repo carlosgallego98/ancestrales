@@ -44,49 +44,13 @@ class UserController extends Controller
         }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *select('name')->get()
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $roles = Role::where('name','!=','gerente')
-                            ->where('name','!=','comprador')
-                            ->get();
-
-        return view('admin.gerente.empleados.nuevo',compact('roles'));
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        return $request;
-    }
-
-    /**
+   /**
      * Display the specified resource.
      *
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
     public function show(User $user)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(User $user)
     {
         //
     }
@@ -126,7 +90,7 @@ class UserController extends Controller
         $users = User::join('model_has_roles','model_has_roles.model_id','=','users.id')
         ->join('roles','roles.id','=','model_has_roles.role_id')
         ->select('nombres','apellidos','direccion','correo','cedula','users.created_at','roles.name')
-        ->role(['gerente','produccion','despacho','proveedor','relaciones_publicas'])
+        ->role('comprador')
         ->get();
         
         return datatables()->of($users)

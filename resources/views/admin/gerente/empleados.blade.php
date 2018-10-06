@@ -11,16 +11,16 @@
                 <table class="table" id="users-table">
                     <thead>
                         <tr>
-                            <th>Area / Rol</th>
                             <th>Nombre</th>
                             <th>Apellido</th>
                             <th>Direccion</th>
                             <th>Correo</th>
                             <th>Cedula</th>
+                            <th>Area / Rol</th>
                             <th>Fecha de Registro</th>
                         </tr>
                     </thead>
-                    <tbody class="text-capitalize">
+                    <tbody>
                     </tbody>
                 </table>
             </div>
@@ -31,14 +31,13 @@
     </div>
 @endsection
 
-
 @push('scripts')
-    <link rel="stylesheet" href="/adminlte/plugins/datatables/datatables.min.css"> 
+    <link rel="stylesheet" href="/adminlte/plugins/datatables/datatables.min.css">
 @endpush
 
 @push('scripts')
     <script src="/adminlte/plugins/datatables/datatables.min.js"></script>
-    
+
     <script>
         $('#users-table').DataTable({
         serverSide: true,
@@ -46,16 +45,16 @@
         'paging'      : true,
         'searching'   : true,
         'ordering'    : true,
-        'info'        : true,
+        'info'        : false,
         'autoWidth'   : true,
-        'ajax'        : '{{url("datatables/users")}}',
+        'ajax'        : '{{url("datatables/empleados")}}',
         columns: [
-            { data: 'name', name: 'roles.name' },
             { data: 'nombres', name: 'nombres' },
             { data: 'apellidos', name: 'apellidos' },
             { data: 'direccion', name: 'direccion' },
             { data: 'correo', name: 'correo' },
             { data: 'cedula', name: 'cedula' },
+            { data: 'name', name: 'name' },
             { data: 'created_at', name: 'created_at' },
         ]
         })

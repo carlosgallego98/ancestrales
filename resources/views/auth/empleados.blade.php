@@ -1,10 +1,10 @@
 @extends('layouts.auth')
 
-@section('titulo','Iniciar Sesión')
+@section('titulo','Inicio Sesion | Empleados')
 
 @section('formulario')
 <div class="col-md-12 col-lg-6 col-sm-12">
-    <form class="card" method="POST" action="{{ route('login') }}">
+    <form class="card" method="POST" action="/login-empleados">
         @csrf
         <div class="text-center p-3">
             <div class="login-logo">
@@ -12,9 +12,9 @@
                     <img src="./img/logo.png" alt="Bebidas Típicas Cristina Lozano">
                 </a>
             </div>
-            <h3 class="h3-responsive font-weight-bold ">
-                Iniciar Sesión
-            </h3>
+            <h5 class="h5-responsive font-weight-bold ">
+                Login Empleados
+            </h5>
         </div>
         @if ($errors->any())
         <div class="alert alert-danger text-center">
@@ -27,7 +27,7 @@
 
             <div class="px-sm-5">
                 <div class="md-form">
-                    <label for="correo">Nombre de USuario</label>
+                    <label for="correo">Nombre de Usuario</label>
                     <input type="text" class="form-control" id="nombre_usuario" name="nombre_usuario" aria-describedby="emailHelp"
                         required autofocus>
                     <small class="text-muted float-right" id="emailHelp"></small>
@@ -45,10 +45,6 @@
                         {{ old('remember') ? 'checked' : '' }}>
                     <label class="custom-control-label" for="recordarCredenciales">Recuerda mis Credenciales</label>
                 </div>
-            </div>
-            <div class="d-flex justify-content-around text-center">
-                <div>¿No tienes cuenta? <a href="{{ route('register') }}">Regístrate</a></div>
-                <div><a href="{{ route('password.request') }}">Olvidé mi Contraseña</a></div>
             </div>
         </div>
     </form>
