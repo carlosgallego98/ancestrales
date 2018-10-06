@@ -23,7 +23,7 @@
             </div>
         </div>
         <div class="pull-right">
-        <a class="btn btn-primary" href="{{route('empleados.nuevo')}}">Registrar Empleado</a>
+        <a class="btn btn-primary" href="{{route('materia_prima.nuevo')}}">Registrar Materia</a>
         </div>
     </div>
     {{url("datatables/materia_prima")}}

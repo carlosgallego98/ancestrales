@@ -14,7 +14,7 @@ class MateriaPrimaController extends Controller
      */
     public function index()
     {
-        return View('admin.produccion.materia_prima.index');
+        return View('admin.produccion.materia_prima');
     }
 
     /**
@@ -24,7 +24,7 @@ class MateriaPrimaController extends Controller
      */
     public function create()
     {
-        //
+        return View('admin.produccion.materia_prima.create');
     }
 
     /**
@@ -35,7 +35,17 @@ class MateriaPrimaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->toArray();
+        MateriaPrima::create([
+            'nombre'=> $data['nombre'],
+            'cantidad'=> $data['cantidad'],
+            'nivel_minimo' => $data['nivel_minimo'],
+            'unidad' => $data['unidad'],
+            'valor'=> $data['valor'],
+        ]);
+        $request->session()->flash('alert-success',"Se han Registrado {$data['cantidad']} {$data['unidad']}(s) de {$data['nombre']}" );
+        
+        return redirect()->route('materia_prima');
     }
 
     /**

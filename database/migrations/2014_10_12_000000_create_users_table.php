@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('genero');
             $table->date('fecha_nacimiento');
             $table->string('direccion')->nullable();
-            $table->string('correo')->unique();
+            $table->string('email')->unique();
             $table->string('nombre_usuario')->unique();
             $table->string('cedula')->unique();
             $table->string('foto_perfil')->default('default_avatar.jpg');

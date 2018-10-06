@@ -15,10 +15,10 @@ use Faker\Generator as Faker;
 
 $factory->define(App\MateriaPrima::class, function (Faker $faker) {
     return [
-      'nombre'=>$faker->realText(10),
+      'nombre'=>$faker->company(),
       'cantidad'=>$faker->numberBetween(1,300),
       'nivel_minimo'=>$faker->numberBetween(1,100),
-      'unidad'=>$faker->realText(10),
-      'valor'=>$faker->randomNumber(7),
+      'unidad'=>$faker->word(),
+      'valor'=>$faker->randomFloat(3,1000,10000),
     ];
 });

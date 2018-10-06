@@ -23,28 +23,7 @@ Route::group(['namespace'=> 'Admin'] , function(){
   Route::get('/panel','PanelController@redireccion')->name('panel');
 });
 
-Route::get('/login-empleados', 'Auth\EmpleadosLoginController@showLoginForm');
-Route::post('/login-empleados', 'Auth\EmpleadosLoginController@login');
-
-Route::group(['prefix'=> 'datatables'],
-  function(){
-    Route::get('users','UserController@datatable');
-    Route::get('empleados','EmpleadoController@datatable');
-    Route::get('materia_prima','MateriaPrimaController@datatable');
-    Route::get('ventas',function(){});
-    Route::get('pedidos',function(){});
-  });
-
-  Route::group(
-    ['middleware' => ['auth:empleado','role:gerente'],
-    ],
-    function(){
-      Route::get('empleados','EmpleadoController@index')->name('empleados');
-      Route::get('empleados/registar','EmpleadoController@create')->name('empleados.nuevo');
-      Route::post('empleados/registar/store','EmpleadoController@store')->name('empleados.store');
-    });
-
-  Route::group(
+Route::group(
     ['prefix' => 'gerencia',
      'middleware' => ['auth:empleado','role:gerente'],
     ],function(){
@@ -53,19 +32,23 @@ Route::group(['prefix'=> 'datatables'],
          Route::get('estadisticas/ventas','GerenteController@estadisticas_ventas')->name('estadisticas.ventas');
          Route::get('estadisticas/pedidos','GerenteController@estadisticas_pedidos')->name('estadisticas.pedidos');
       });
-
+      
+      Route::get('empleados','EmpleadoController@index')->name('empleados');
+      Route::get('empleados/registar','EmpleadoController@create')->name('empleados.nuevo');
+      Route::post('empleados/registar/store','EmpleadoController@store')->name('empleados.store');
   });
 
-
 Route::group(
-  ['prefix' => 'area-produccion',
-   'middleware' => ['auth:empleado','role:produccion']
-  ],function(){
-     Route::group(['namespace'=> 'Admin'],function(){
-        Route::get('/','ProduccionController@produccion')->name('produccion');
-     });
-      Route::get('/materia-prima','MateriaPrimaController@index')->name('materia_prima');
-});
+    ['prefix' => 'area-produccion',
+     'middleware' => ['auth:empleado','role:produccion']
+    ],function(){
+       Route::group(['namespace'=> 'Admin'],function(){
+          Route::get('/','ProduccionController@produccion')->name('produccion');
+       });
+        Route::get('/materia-prima','MateriaPrimaController@index')->name('materia_prima');
+        Route::get('/materia-prima/registrar','MateriaPrimaController@create')->name('materia_prima.nuevo');
+        Route::post('/materia-prima/registrar','MateriaPrimaController@store')->name('materia_prima.store');
+   });
 
 Route::group(
   ['namespace'=> 'Admin',
@@ -97,4 +80,16 @@ Route::group(
 
 });
 
+Route::group(['prefix'=> 'datatables'],
+  function(){
+    Route::get('users','UserController@datatable');
+    Route::get('empleados','EmpleadoController@datatable');
+    Route::get('materia_prima','MateriaPrimaController@datatable');
+    Route::get('ventas',function(){});
+    Route::get('pedidos',function(){});
+  });
+
 Auth::routes(['verify' => true]);
+Route::get('/login-empleados', 'Auth\EmpleadosLoginController@showLoginForm');
+Route::post('/login-empleados', 'Auth\EmpleadosLoginController@login');
+
