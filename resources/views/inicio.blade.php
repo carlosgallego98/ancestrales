@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('conteinido')
+@section('contenido')
 <div class="container">
     <body>
         <div class="aviso">

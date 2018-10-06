@@ -81,7 +81,7 @@
     <nav class="navbar navbar-expand-lg bg-primary">
         <div class="container">
             <a class="navbar-brand mx-auto clearfix" href="{{ route('inicio') }}">
-                <img src="./img/logo.png" alt="Comidas Típicas Cristina Lozano">
+                <img src="/img/logo.png" alt="Comidas Típicas Cristina Lozano">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMain"
                 aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">

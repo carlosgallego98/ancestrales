@@ -31,7 +31,7 @@
                     <div class="form-group col-md-6">
                         <label for="correoInput">Correo Electrónico</label>
                         <input type="email" class="form-control" id="correoInput" placeholder="pedroperez@despacho.com"
-                            name="correo" required>
+                            name="email" required>
                     </div>
 
                     <div class="form-group col-md-6">
@@ -84,6 +84,6 @@
 
 <script>
     $('#fechaNacimientoInput').inputmask('yyyy-mm-dd')
-    $('#cedulaInput').inputmask('9999-999-999')
+    $('#cedulaInput').inputmask('9999999999',{ min: 8, max: 10, allowMinus: true })
 </script>
 @endpush

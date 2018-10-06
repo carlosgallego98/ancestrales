@@ -14,7 +14,7 @@ class MateriaPrimaController extends Controller
      */
     public function index()
     {
-        //
+        return View('admin.produccion.materia_prima.index');
     }
 
     /**
@@ -81,5 +81,20 @@ class MateriaPrimaController extends Controller
     public function destroy(MateriaPrima $materiaPrima)
     {
         //
+    }
+
+    public function datatable()
+    {
+        $materia_prima = MateriaPrima::select('nombre','cantidad','nivel_minimo','unidad','valor','created_at','updated_at')
+        ->get();
+
+        return datatables()->of($materia_prima)
+        ->editColumn('cantidad',function($materia_prima){
+            return "{$materia_prima->cantidad} {$materia_prima->unidad}(s)";
+        })
+        ->editColumn('valor',function($materia_prima){
+            return "$ {$materia_prima->valor}";
+        })
+      ->toJson();
     }
 }

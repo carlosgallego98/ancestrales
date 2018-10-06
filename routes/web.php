@@ -11,7 +11,13 @@
 |
 */
 
-Route::get('/', 'HomeController@index')->name('inicio');
+Route::middleware(['auth:empleado,web','verified'])->group(
+  function(){
+    Route::get('/', 'HomeController@index')->name('inicio');
+    Route::get('/perfil','UserController@index')->name('perfil');
+    Route::post('/actualizar-avatar','UserController@actualizar_avatar');
+    Route::post('/actualizar-perfil/{user}','UserController@update');
+  });
 
 Route::group(['namespace'=> 'Admin'] , function(){
   Route::get('/panel','PanelController@redireccion')->name('panel');
@@ -20,20 +26,11 @@ Route::group(['namespace'=> 'Admin'] , function(){
 Route::get('/login-empleados', 'Auth\EmpleadosLoginController@showLoginForm');
 Route::post('/login-empleados', 'Auth\EmpleadosLoginController@login');
 
-Auth::routes();
-
-
-Route::middleware('auth')->group(
-  function(){
-    Route::get('/perfil','UserController@index')->name('perfil');
-    Route::post('/actualizar-avatar','UserController@actualizar_avatar');
-    Route::post('/actualizar-perfil/{user}','UserController@update');
-  });
-
 Route::group(['prefix'=> 'datatables'],
   function(){
     Route::get('users','UserController@datatable');
     Route::get('empleados','EmpleadoController@datatable');
+    Route::get('materia_prima','MateriaPrimaController@datatable');
     Route::get('ventas',function(){});
     Route::get('pedidos',function(){});
   });
@@ -48,27 +45,26 @@ Route::group(['prefix'=> 'datatables'],
     });
 
   Route::group(
-    ['namespace'=> 'Admin',
-     'prefix' => 'gerencia',
+    ['prefix' => 'gerencia',
      'middleware' => ['auth:empleado','role:gerente'],
-    ],
-    function(){
-      Route::get('/','GerenteController@gerente')->name('gerente');
-      
-      Route::get('estadisticas/ventas','GerenteController@estadisticas_ventas')->name('estadisticas.ventas');
-      
-      Route::get('estadisticas/pedidos','GerenteController@estadisticas_pedidos')->name('estadisticas.pedidos');
+    ],function(){
+      Route::group(['namespace'=> 'Admin'],function(){
+         Route::get('/','GerenteController@gerente')->name('gerente');
+         Route::get('estadisticas/ventas','GerenteController@estadisticas_ventas')->name('estadisticas.ventas');
+         Route::get('estadisticas/pedidos','GerenteController@estadisticas_pedidos')->name('estadisticas.pedidos');
+      });
+
   });
 
-  
-Route::group(
-  ['namespace'=> 'Admin',
-   'prefix' => 'area-produccion',
-   'middleware' => ['auth:empleado','role:produccion']
-  ],
-  function(){
-    Route::get('/','ProduccionController@produccion')->name('produccion');
 
+Route::group(
+  ['prefix' => 'area-produccion',
+   'middleware' => ['auth:empleado','role:produccion']
+  ],function(){
+     Route::group(['namespace'=> 'Admin'],function(){
+        Route::get('/','ProduccionController@produccion')->name('produccion');
+     });
+      Route::get('/materia-prima','MateriaPrimaController@index')->name('materia_prima');
 });
 
 Route::group(
@@ -100,3 +96,5 @@ Route::group(
     Route::get('/','RelacionesController@relaciones')->name('relaciones');
 
 });
+
+Auth::routes(['verify' => true]);

@@ -63,11 +63,11 @@
 @case('produccion')
 <li class="header">Area de Produccion</li>
 <li class=""><a href="#">
-        <i class="fa fa-link"></i>
+        <i class="fa fa-shopping-cart"></i>
         <span>Productos</span></a>
 </li>
-<li class=""><a href="#">
-        <i class="fa fa-link"></i>
+<li class=""><a href="{{route('materia_prima')}}">
+        <i class="fa fa-cubes"></i>
         <span>Materia Prima</span></a>
 </li>
 @break

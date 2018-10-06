@@ -39,7 +39,7 @@
             <div class="form-row">
                 <div class="md-form col-md-8">
                     <label for="correo">Correo Electrónico</label>
-                    <input type="email" name="correo" id="correo" class="form-control" required value="{{ old('correo') }}">
+                    <input type="email" name="email" id="email" class="form-control" required value="{{ old('email') }}">
                 </div>
                 <div class="md-form col-md-4">
                     <label for="cedula" data-toggle="tooltip" data-placement="right" title="Cédula de Ciudadania o Extranjera">Cédula

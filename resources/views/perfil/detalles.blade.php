@@ -1,6 +1,6 @@
 @extends('layouts.app') 
 @section('titulo','Perfíl | ') 
-@section('conteinido')
+@section('contenido')
 <div class="container">
     @include('perfil.modals.editar_perfil')
     <div class="row mx-auto align-items-center">
@@ -22,9 +22,10 @@
                     {{Auth::user()->nombres." ".Auth::user()->apellidos}}
                 </h3>
 
-                <span>{{Auth::user()->correo}} </span> @isset(Auth::user()->direccion)
-                <span>{{Auth::user()->direccion}}</span> @else
-                <span>Sin direccion</span> @endif
+                <span>{{Auth::user()->email}}</span>
+                @isset(Auth::user()->direccion)
+                <span>{{Auth::user()->direccion}}</span>
+                @else @endif
 
             </div>
 

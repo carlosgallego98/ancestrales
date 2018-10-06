@@ -13,10 +13,11 @@ class MateriaPrima extends Model
      * @var array
      */
     protected $fillable = [
-        'nombres',
+        'nombre',
         'cantidad',
-        'descripcion',
         'nivel_minimo',
+        'unidad',
+        'valor',
     ];
 
     /**

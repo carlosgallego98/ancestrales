@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Empleado;
 use Storage;
 Use Image;
-use Auth;
+use Hash;
 use DB;
 
 
@@ -33,6 +33,7 @@ class EmpleadoController extends Controller
     {
         $roles = Role::where('name','!=','gerente')
         ->where('name','!=','comprador')
+        ->where('name','!=','proveedor')
         ->get();
 
         return view('admin.gerente.empleados.nuevo',compact('roles'));
@@ -45,8 +46,36 @@ class EmpleadoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        return $request;
+    {   
+        $data = $request->toArray();
+        
+        $nombre_spit = str_split($data['nombres']);
+        $apellido_split = str_split($data['apellidos']);
+        $correo_split = explode('@',$data['email']);
+
+        $contraseña = 
+        str_replace('-','',"{$nombre_spit[0]}{$data['cedula']}{$apellido_split[0]}");
+        
+        $nombre_usuario = $correo_split[0];
+        
+        $usuario = Empleado::create([
+            'nombres' => $data['nombres'],
+            'apellidos' => $data['apellidos'],
+            'cedula' => $data['cedula'],
+            'email' => $data['email'],
+            'nombre_usuario' => $nombre_usuario,
+            'genero' => $data['genero'],
+            'fecha_nacimiento' => $data['fecha_nacimiento'],
+            'password' => Hash::make($contraseña),
+            'email_verified_at' => date('yyyy-mm-dd'),
+        ]);
+
+        $role = Role::findById($data['rol']);
+        $usuario->assignRole($role);
+
+        $request->session()->flash('alert-success', $data["nombres"].' registrado Satisfactoriamente');
+        
+        return redirect()->route('empleados');
     }
 
     /**
@@ -82,7 +111,7 @@ class EmpleadoController extends Controller
     {
         $user->nombres = $request['nombres'];
         $user->apellidos = $request['apellidos'];
-        $user->correo = $request['correo'];
+        $user->email = $request['email'];
         $user->direccion = $request['direccion'];
         $user->save();
 
@@ -126,7 +155,7 @@ class EmpleadoController extends Controller
     {
         $users = Empleado::join('model_has_roles','model_has_roles.model_id','=','users.id')
         ->join('roles','roles.id','=','model_has_roles.role_id')
-        ->select('nombres','apellidos','direccion','correo','cedula','users.created_at','roles.name')
+        ->select('nombres','apellidos','direccion','email','cedula','users.created_at','roles.name')
         ->role(['produccion','despacho','proveedor','relaciones_publicas'])
         ->get();
         

@@ -19,7 +19,7 @@
     <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
 
     <!-- Custom Styles -->
-    <link rel="stylesheet" href="css/styles.min.css">
+    <link rel="stylesheet" href="/css/styles.min.css">
 
     @stack('styles')
 </head>
@@ -32,7 +32,7 @@
     <!-- Contenido de la pagina -->
     <div class="main">
         @include('componentes.alert')
-        @yield('conteinido')
+        @yield('contenido')
     </div>
     <!-- Contenido de la pagina -->
 

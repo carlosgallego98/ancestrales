@@ -29,8 +29,8 @@
                     </div>
                     <div class="form-row">
                         <div class="md-form col-md-8">
-                            <label for="correo">Correo Electrónico</label>
-                            <input type="email" value="{{Auth::user()->correo}}" class="form-control" name="correo" id="correo">
+                            <label for="email">Correo Electrónico</label>
+                            <input type="email" value="{{Auth::user()->email}}" class="form-control" name="email" id="email">
                         </div>
                         <div class="md-form col-md-4">
                             <label for="direccion">Direccion</label>

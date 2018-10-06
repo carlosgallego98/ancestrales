@@ -14,7 +14,7 @@ class EmpleadosSeed extends Seeder
      */
     public function run()
     {
-                        // Permission::create(['name' => 'permiso a asignar']);        
+                        // Permission::create(['name' => 'permiso a asignar']);
                         // $role = Role::create(['name' => 'nombre del rol']);
                         // $role->givePermissionTo('permiso a asignar al rol');
 
@@ -30,10 +30,11 @@ class EmpleadosSeed extends Seeder
                             'genero' => 'f',
                             'fecha_nacimiento' => '1998-02-10',
                             'password' => Hash::make('gerentecl'),
+                            'email_verified_at' => date('Y-m-d'),
                         ]);
 
                          // Roles
-                        $role = Role::create(['name'=>'comprador']); 
+                        $role = Role::create(['name'=>'comprador']);
 
                         $role = Role::create([
                             'name'=>'gerente',
@@ -59,7 +60,7 @@ class EmpleadosSeed extends Seeder
                         $role = Role::create(
                             ['name'=>'relaciones_publicas',
                             'guard_name'=> 'empleado'
-                            ]);                       
+                            ]);
 
     }
 }

@@ -66,7 +66,7 @@ class UserController extends Controller
     {
         $user->nombres = $request['nombres'];
         $user->apellidos = $request['apellidos'];
-        $user->correo = $request['correo'];
+        $user->email = $request['correo'];
         $user->direccion = $request['direccion'];
         $user->save();
 
@@ -89,7 +89,7 @@ class UserController extends Controller
     {
         $users = User::join('model_has_roles','model_has_roles.model_id','=','users.id')
         ->join('roles','roles.id','=','model_has_roles.role_id')
-        ->select('nombres','apellidos','direccion','correo','cedula','users.created_at','roles.name')
+        ->select('nombres','apellidos','direccion','email','cedula','users.created_at','roles.name')
         ->role('comprador')
         ->get();
         
