@@ -38,7 +38,7 @@ class MateriaPrima extends Model
 
    public function nivel_critico(){
       if ($this->nivel_minimo == $this->cantidad) {
-         return $this;
+         return true;
          }
       }
    }

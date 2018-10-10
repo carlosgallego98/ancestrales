@@ -47,6 +47,7 @@
                     </tr>
                     </thead>
                     <tbody>
+                    @forelse ($pedidos as $pedido)
                     <!--
                      Ejemplo de Fila de Producto
                     <tr>
@@ -55,6 +56,11 @@
                       <td><span class="label label-success">Shipped</span></td>
                     </tr>
                     -->
+                    @empty
+                      <tr style="text-align: center;">
+                       <td colspan="3" ><b>No se han realizado Pedidos</b></td>
+                      </tr>
+                    @endforelse
                     </tbody>
                  </table>
                </div>
@@ -69,6 +75,7 @@
          <div class="box box-primary">
             <div class="box-header with-border">
               <h3 class="box-title">Materiales en estado Crítico</h3>
+              <h5 class="box-subtitle">Listos para realizar una Orden de tipo <b>Reabastecimiento</b></h5>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -81,20 +88,26 @@
                      <li class="item">
                      <div class="product-info">
                        <a href="javascript:void(0)" class="product-title">{{$material->nombre}}
-                       <span class="product-description">
-                              {{$material->proveedor->nombre}}
-                           </span>
+                       <span class="product-description">de {{$material->proveedor->nombre}}</span>
+                       <span class="product-description text-red">Quedan {{$material->cantidad}} {{$material->unidad}}(s)</span>
                      </div>
                    </li>
                   @empty
-
+                  <li class="item">
+                    <div class="product-info">
+                      <a href="javascript:void(0)" class="product-title">Niveles normales
+                    </div>
+                  </li>
                   @endforelse
               </ul>
             </div>
             <!-- /.box-body -->
             <div class="box-footer text-center">
-              <a href="javascript:void(0)" class="uppercase">Ver todos los Productos</a>
+              <a href="javascript:void(0)" class="uppercase">Enviar Pedidos</a>
             </div>
+            <div class="box-footer text-center">
+                <a href="javascript:void(0)" class="uppercase">Ver todo</a>
+                </div>
             <!-- /.box-footer -->
           </div>
       </div>
