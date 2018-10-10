@@ -1,13 +1,14 @@
+<li class="header">Panel de Control</li>
+<li class=""><a href="{{route('panel')}}">
+        <i class="fa fa-desktop"></i>
+        <span>Inicio</span></a>
+</li>
+
 @foreach (Auth::user()->rol() as $rol)
 @switch($rol)
 
 @case('gerente')
 <li class="header">Administracion / Gerencia</li>
-
-<li class=""><a href="{{route('gerente')}}">
-        <i class="fa fa-desktop"></i>
-        <span>Panel de Control</span></a>
-</li>
 
 <li class=""><a href="{{ route('empleados') }}">
          <i class="fa fa-user"></i>
@@ -64,12 +65,20 @@
 <li class="header">Area de Produccion</li>
 <li class=""><a href="#">
         <i class="fa fa-shopping-cart"></i>
-        <span>Productos</span></a>
+        <span>Pedidos</span></a>
 </li>
-<li class=""><a href="{{route('materia_prima')}}">
-        <i class="fa fa-cubes"></i>
-        <span>Materia Prima</span></a>
-</li>
+<li class="treeview">
+        <a href="#"><i class="fa fa-cubes"></i> <span>Materia Prima</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+            </span>
+        </a>
+        <ul class="treeview-menu">
+            <li><a href="{{route('materia_prima','materiales')}}">Materiales</a></li>
+            <li><a href="{{route('materia_prima','componentes')}}">Componentes</a></li>
+        </ul>
+    </li>
+
 @break
 
 @case('despacho')

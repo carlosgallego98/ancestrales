@@ -1,5 +1,5 @@
-@extends('layouts.app') 
-@section('titulo','Perfíl | ') 
+@extends('layouts.app')
+@section('titulo','Perfíl | ')
 @section('contenido')
 <div class="container">
     @include('perfil.modals.editar_perfil')
@@ -60,7 +60,7 @@
 </div>
 @endsection
  @push('styles')
-<link rel="stylesheet" href="/css/profile.min.css"> 
+<link rel="stylesheet" href="/css/profile.min.css">
 @endpush @push('scripts')
 <script>
     $(document).ready(() => {});

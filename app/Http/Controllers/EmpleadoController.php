@@ -115,7 +115,7 @@ class EmpleadoController extends Controller
         $user->direccion = $request['direccion'];
         $user->save();
 
-        $request->session()->flash('alert-success', 'Has actualizado tu perfil!');
+        $request->session()->flash('alert-success', 'Datos Actualizados!');
         return redirect()->back();
     }
 

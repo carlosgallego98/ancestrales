@@ -17,9 +17,9 @@
         </div>
         <div class="card-footer">
                 <div class="text-center">
-                        Si no has si no te ha llegado el correo
+                        Si no ves el correo puedes
                         <a href="{{ route('verification.resend') }}">
-                                Solicita otro link de Activacion
+                                solicitar otro link de Activacion
                         </a>
                 </div>
         </div>

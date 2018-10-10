@@ -18,7 +18,9 @@ class CreateProductosTable extends Migration
             $table->string('nombre');
             $table->string('precio');
             $table->text('descripcion');
+            $table->unsignedInteger('id_proveedor');
             $table->timestamps();
+            $table->foreign('id_proveedor')->references('id')->on('proveedores');
         });
 
     }

@@ -7,8 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Pedido extends Model
 {
     protected $fillable = [
-        'id_usuario','id_producto','id_estado','id_tipo',
+        'id_usuario',
+        'id_producto',
+        'id_estado',
+        'id_tipo',
     ];
+    
     public function usuario(){
         return $this->hasOne(User::class,'id_usuario');
     }

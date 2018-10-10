@@ -15,21 +15,19 @@
                             <th>Valor</th>
                             <th>Fecha de Registro</th>
                             <th>Fecha de Actualizacion</th>
+                            <th>Proveedor</th>
                         </tr>
                     </thead>
-                    <tbody>
-                    </tbody>
                 </table>
             </div>
         </div>
         <div class="pull-right">
-        <a class="btn btn-primary" href="{{route('materia_prima.nuevo')}}">Registrar Materia</a>
+        <a class="btn btn-primary" href="{{route('materia_prima.nuevo')}}">Registrar Material</a>
         </div>
     </div>
-    {{url("datatables/materia_prima")}}
 @endsection
 
-@push('scripts')
+@push('styles')
     <link rel="stylesheet" href="/adminlte/plugins/datatables/datatables.min.css">
 @endpush
 
@@ -45,14 +43,15 @@
         'ordering'    : true,
         'info'        : false,
         'autoWidth'   : true,
-        'ajax'        : '{{url("datatables/materia_prima")}}',
+        'ajax'        : '{{url("datatables/materia_prima/$tipo")}}',
         columns: [
             { data: 'nombre', name: 'nombre' },
             { data: 'cantidad', name: 'cantidad' },
             { data: 'valor', name: 'valor' },
             { data: 'created_at', name: 'created_at' },
             { data: 'updated_at', name: 'updated_at' },
-        ]
+            { data: 'id_proveedor', name: 'id_proveedor' }
+            ],
         })
 </script>
 @endpush

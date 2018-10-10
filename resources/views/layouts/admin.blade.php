@@ -7,20 +7,24 @@
     <title>@yield('titulo','Panel de Administracion') </title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="stylesheet" href="/adminlte/plugins/bootstrap/bootstrap.min.css">
-        <!-- Font Awesome Icons -->
+
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="/vendor/font-awesome/css/fontawesome.min.css">
     <link rel="stylesheet" href="/vendor/font-awesome/css/regular.min.css">
     <link rel="stylesheet" href="/vendor/font-awesome/css/solid.min.css">
+
     <!-- Theme style -->
+    @stack('styles-important')
     <link rel="stylesheet" href="/adminlte/css/skins/skin-blue.min.css">
     <link rel="stylesheet" href="/adminlte/skins/skin-blue-light.min.css">
     <link rel="stylesheet" href="/adminlte/css/AdminLTE.min.css">
+    @stack('styles')
+
+    {{-- Favicon --}}
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
 
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-
-    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
-    @stack('styles')
 </head>
 
 <body class="hold-transition skin-blue-light sidebar-mini">
@@ -38,7 +42,7 @@
                             <i class="fa fa-bars"></i>
                         <span class="sr-only">Toggle navigation</span>
                           </a>
-                    
+
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
                         <li class="nav-item">
@@ -70,7 +74,15 @@
                                         <a href="{{ route('perfil') }}" class="btn btn-default btn-flat">Perfil</a>
                                     </div>
                                     <div class="pull-right">
-                                        <a href="#" class="btn btn-default btn-flat">Cerrar Sesión</a>
+                                        <a class="btn btn-default btn-flat" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                      document.getElementById('logout-form').submit();">
+                                         {{ __('Cerrar Sesión') }}
+                                     </a>
+
+                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                         @csrf
+                                     </form>
                                     </div>
                                 </li>
                             </ul>
@@ -103,7 +115,7 @@
               </button>
             </span>
         </div>
-      </form> 
+      </form>
       --}}
 
                 <ul class="sidebar-menu" data-widget="tree">
@@ -116,8 +128,8 @@
             <section class="content-header">
                 <h1>
                     @yield('subtitulo')
-                    <small class="text-capitalize"> 
-                    @yield('titulo')  
+                    <small class="text-capitalize">
+                    @yield('titulo')
                     </small>
                 </h1>
 
@@ -128,7 +140,9 @@
             </section>
             <section class="content container-fluid">
                 <div class="row">
-                @include('componentes.alert')
+                    <div class="col-xs-12">
+                        @include('componentes.alert')
+                    </div>
                 </div>
                 @yield('contenido')
 

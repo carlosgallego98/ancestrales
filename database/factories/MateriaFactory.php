@@ -20,5 +20,7 @@ $factory->define(App\MateriaPrima::class, function (Faker $faker) {
       'nivel_minimo'=>$faker->numberBetween(1,100),
       'unidad'=>$faker->word(),
       'valor'=>$faker->randomFloat(3,1000,10000),
+      'id_proveedor' => $faker->numberBetween(1,20),
+      'es_material' => $faker->numberBetween(0,1),
     ];
 });

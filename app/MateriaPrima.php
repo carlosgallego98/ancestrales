@@ -18,6 +18,8 @@ class MateriaPrima extends Model
         'nivel_minimo',
         'unidad',
         'valor',
+        'es_material',
+        'id_proveedor'
     ];
 
     /**
@@ -26,4 +28,17 @@ class MateriaPrima extends Model
      * @var array
      */
     protected $hidden = [];
-}
+
+    public function productos(){
+    }
+
+    public function proveedor(){
+      return $this->belongsTo(Proveedor::class,'id_proveedor');
+   }
+
+   public function nivel_critico(){
+      if ($this->nivel_minimo == $this->cantidad) {
+         return $this;
+         }
+      }
+   }

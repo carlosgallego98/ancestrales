@@ -17,11 +17,13 @@
         <div class="collapse navbar-collapse" id="userbar">
             <ul class="navbar-nav ml-auto text-align-center">
                 @if (Auth::check())
+                @if (Auth::user()->hasRole('comprador'))
                 <li class="nav-item"><a class="nav-link" href="{{ route('perfil') }}">
                     <span>@</span>{{Auth::user()->nombre_usuario}}</a></li>
-                @if (Auth::user()->hasRole('comprador'))
                 <li class="nav-item"><a class="nav-link" href="#">Mi Ordenes</a></li> 
                 @else
+                <li class="nav-item"><a class="nav-link" href="{{ route('admin.perfil') }}">
+                    <span>@</span>{{Auth::user()->nombre_usuario}}</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('panel') }}">Panel de Administracion</a></li>
                 @endif
                 <li class="nav-item">

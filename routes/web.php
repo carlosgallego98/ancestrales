@@ -21,6 +21,9 @@ Route::middleware(['auth:empleado,web','verified'])->group(
 
 Route::group(['namespace'=> 'Admin'] , function(){
   Route::get('/panel','PanelController@redireccion')->name('panel');
+  Route::get('/panel/perfil',function(){
+    return "Perfil de Este man}";
+  })->name('admin.perfil');
 });
 
 Route::group(
@@ -45,9 +48,9 @@ Route::group(
        Route::group(['namespace'=> 'Admin'],function(){
           Route::get('/','ProduccionController@produccion')->name('produccion');
        });
-        Route::get('/materia-prima','MateriaPrimaController@index')->name('materia_prima');
         Route::get('/materia-prima/registrar','MateriaPrimaController@create')->name('materia_prima.nuevo');
         Route::post('/materia-prima/registrar','MateriaPrimaController@store')->name('materia_prima.store');
+        Route::get('/materia-prima/{tipo}','MateriaPrimaController@index')->name('materia_prima');
    });
 
 Route::group(
@@ -84,7 +87,7 @@ Route::group(['prefix'=> 'datatables'],
   function(){
     Route::get('users','UserController@datatable');
     Route::get('empleados','EmpleadoController@datatable');
-    Route::get('materia_prima','MateriaPrimaController@datatable');
+    Route::get('materia_prima/{tipo}','MateriaPrimaController@datatable');
     Route::get('ventas',function(){});
     Route::get('pedidos',function(){});
   });
@@ -92,4 +95,3 @@ Route::group(['prefix'=> 'datatables'],
 Auth::routes(['verify' => true]);
 Route::get('/login-empleados', 'Auth\EmpleadosLoginController@showLoginForm');
 Route::post('/login-empleados', 'Auth\EmpleadosLoginController@login');
-
