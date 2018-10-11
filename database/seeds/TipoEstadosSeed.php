@@ -13,10 +13,42 @@ class TipoEstadosSeed extends Seeder
      */
     public function run()
     {
+        $estado_pedido = new EstadoPedido();
+
+        $estado_pedido->nombre = "sin confirmar";
+        $estado_pedido->save();
         
+        $estado_pedido = new EstadoPedido();
+        $estado_pedido->nombre = "confirmado";
+        $estado_pedido->save();
+        
+        $estado_pedido = new EstadoPedido();
+        $estado_pedido->nombre = "fabricando";
+        $estado_pedido->save();
+        
+        $estado_pedido = new EstadoPedido();
+        $estado_pedido->nombre = "fabricado";
+        $estado_pedido->save();
+        
+        $estado_pedido = new EstadoPedido();
+        $estado_pedido->nombre = "en bodega";
+        $estado_pedido->save();
+        
+        $estado_pedido = new EstadoPedido();
+        $estado_pedido->nombre = "enviado";
+        $estado_pedido->save();
+        
+        $estado_pedido = new EstadoPedido();
+        $estado_pedido->nombre = "entregado";
+        $estado_pedido->save();
+
+        $tipo_pedido = new TipoPedido();
+
+        $tipo_pedido->nombre = "regular";
+        $tipo_pedido->save();
+
+        $tipo_pedido = new TipoPedido();
+        $tipo_pedido->nombre = "materiales";
+        $tipo_pedido->save();
     }
 }
-// procesando
-// en espera
-// enviado
-// entregado

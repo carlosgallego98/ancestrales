@@ -36,9 +36,10 @@ class MateriaPrima extends Model
       return $this->belongsTo(Proveedor::class,'id_proveedor');
    }
 
-   public function nivel_critico(){
-      if ($this->nivel_minimo == $this->cantidad) {
-         return true;
-         }
-      }
+   public function reabastecido(){
+     if (this->hasOne(PedidoProvee::class,'id_material')) {
+       return true;
+     }
+     return false;
+   }
    }

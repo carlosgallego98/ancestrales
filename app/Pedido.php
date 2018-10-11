@@ -9,6 +9,7 @@ class Pedido extends Model
     protected $fillable = [
         'id_usuario',
         'id_producto',
+        'id_material',
         'id_estado',
         'id_tipo',
     ];
@@ -21,8 +22,5 @@ class Pedido extends Model
     }
     public function estado(){
         return $this->hasOne(EstadoPedido::class);
-    }
-    public function tipo(){
-        return $this->hasOne(TipoPedido::class);
     }
 }

@@ -75,8 +75,6 @@
          <div class="box box-primary">
             <div class="box-header with-border">
               <h3 class="box-title">Materiales en estado Crítico</h3>
-              <h5 class="box-subtitle">Listos para realizar una Orden de tipo <b>Reabastecimiento</b></h5>
-
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>
@@ -93,9 +91,9 @@
                      </div>
                    </li>
                   @empty
-                  <li class="item">
-                    <div class="product-info">
-                      <a href="javascript:void(0)" class="product-title">Niveles normales
+                  <li class="item text-center">
+                    <div class="box-footer text-center">
+                      <p class="uppercase">Niveles Normales</p>
                     </div>
                   </li>
                   @endforelse
@@ -103,7 +101,7 @@
             </div>
             <!-- /.box-body -->
             <div class="box-footer text-center">
-              <a href="javascript:void(0)" class="uppercase">Enviar Pedidos</a>
+              <a href="{{route('produccion.reabastecer')}}" class="uppercase">Enviar Pedidos</a>
             </div>
             <div class="box-footer text-center">
                 <a href="javascript:void(0)" class="uppercase">Ver todo</a>

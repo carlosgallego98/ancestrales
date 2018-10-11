@@ -47,6 +47,7 @@ Route::group(
     ],function(){
        Route::group(['namespace'=> 'Admin'],function(){
           Route::get('/','ProduccionController@produccion')->name('produccion');
+          Route::get('/pedido/proveedor','ProduccionController@pedidos_proveedor')->name('produccion.reabastecer');
        });
         Route::get('/materia-prima/registrar','MateriaPrimaController@create')->name('materia_prima.nuevo');
         Route::post('/materia-prima/registrar','MateriaPrimaController@store')->name('materia_prima.store');
