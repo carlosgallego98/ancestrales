@@ -4,7 +4,7 @@ use Illuminate\Database\Seeder;
 use App\EstadoPedido;
 use App\TipoPedido;
 
-class TipoEstadosSeed extends Seeder
+class EstadoPedidosSeed extends Seeder
 {
     /**
      * Run the database seeds.
@@ -41,14 +41,5 @@ class TipoEstadosSeed extends Seeder
         $estado_pedido = new EstadoPedido();
         $estado_pedido->nombre = "entregado";
         $estado_pedido->save();
-
-        $tipo_pedido = new TipoPedido();
-
-        $tipo_pedido->nombre = "regular";
-        $tipo_pedido->save();
-
-        $tipo_pedido = new TipoPedido();
-        $tipo_pedido->nombre = "materiales";
-        $tipo_pedido->save();
     }
 }

@@ -75,6 +75,9 @@
          <div class="box box-primary">
             <div class="box-header with-border">
               <h3 class="box-title">Materiales en estado Crítico</h3>
+              <h3 class="box-title">Materiales en estado Crítico</h3><br>
+                  <a href="{{route('produccion.reabastecer')}}" class="uppercase">Enviar Pedidos</a>
+                  <p>{{count($materiales_criticos)}} en Total</p>
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>
@@ -83,13 +86,12 @@
             <div class="box-body">
               <ul class="products-list product-list-in-box">
                   @forelse ($materiales_criticos as $material)
+                     @if(!$material->en_pedido)
                      <li class="item">
-                     <div class="product-info">
-                       <a href="javascript:void(0)" class="product-title">{{$material->nombre}}
-                       <span class="product-description">de {{$material->proveedor->nombre}}</span>
-                       <span class="product-description text-red">Quedan {{$material->cantidad}} {{$material->unidad}}(s)</span>
-                     </div>
-                   </li>
+                      <div class="product-info">
+                        <a href="javascript:void(0)" class="product-title">{{$material->nombre}}
+                        <span class="product-description">de {{$material->proveedor->nombre}}</span>
+                     @endif
                   @empty
                   <li class="item text-center">
                     <div class="box-footer text-center">
@@ -100,9 +102,6 @@
               </ul>
             </div>
             <!-- /.box-body -->
-            <div class="box-footer text-center">
-              <a href="{{route('produccion.reabastecer')}}" class="uppercase">Enviar Pedidos</a>
-            </div>
             <div class="box-footer text-center">
                 <a href="javascript:void(0)" class="uppercase">Ver todo</a>
                 </div>

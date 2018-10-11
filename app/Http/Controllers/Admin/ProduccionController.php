@@ -17,7 +17,10 @@ class ProduccionController extends Controller
       $count_materiales = count(MateriaPrima::all());
       $count_pedidos = count($pedidos);
 
-      $materiales_criticos = MateriaPrima::whereRaw('cantidad = nivel_minimo')->limit(5)->get();
+      $materiales_criticos = MateriaPrima::whereRaw('cantidad = nivel_minimo')
+      ->leftJoin('pedidos_proveedores','materias_primas.id','=','pedidos_proveedores.id_material')
+      ->whereNull('pedidos_proveedores.id')
+      ->get();
 
       return view('admin.produccion.panel',
       compact(
@@ -38,5 +41,6 @@ class ProduccionController extends Controller
           'id_estado' => 1,
         ]);
     }
+    return redirect()->route('panel');
    }
 }

@@ -13,9 +13,9 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(RolesSeed::class);
         $this->call(EmpleadosSeed::class);
-        $this->call(TipoEstadosSeed::class);
+        $this->call(EstadoPedidosSeed::class);
 
         factory('App\Proveedor',20)->create();
-        factory('App\MateriaPrima', 10)->create();
+        factory('App\MateriaPrima', 20)->create();
     }
 }

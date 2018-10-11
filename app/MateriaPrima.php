@@ -36,10 +36,8 @@ class MateriaPrima extends Model
       return $this->belongsTo(Proveedor::class,'id_proveedor');
    }
 
-   public function reabastecido(){
-     if (this->hasOne(PedidoProvee::class,'id_material')) {
-       return true;
-     }
-     return false;
+   public function en_pedido(){
+     return $this->hasOne(PedidoProveedor::class,'id_material');
    }
+   
    }
