@@ -12,7 +12,7 @@
           @slot('color','green')
           @slot('icono','shopping-cart')
           @slot('titulo','Pedidos')
-          @slot('numero',$count_pedidos)
+          @slot('numero',count($pedidos))
       @endcomponent
 
       @component('admin.componentes.info-box')
@@ -74,7 +74,6 @@
       <div class="col-md-4">
          <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Materiales en estado Crítico</h3>
               <h3 class="box-title">Materiales en estado Crítico</h3><br>
                   <a href="{{route('produccion.reabastecer')}}" class="uppercase">Enviar Pedidos</a>
                   <p>{{count($materiales_criticos)}} en Total</p>
@@ -91,6 +90,9 @@
                       <div class="product-info">
                         <a href="javascript:void(0)" class="product-title">{{$material->nombre}}
                         <span class="product-description">de {{$material->proveedor->nombre}}</span>
+                        <span class="product-description text-red">Quedan {{$material->cantidad}} {{$material->unidad}}(s)</span>
+                      </div>
+                    </li>
                      @endif
                   @empty
                   <li class="item text-center">
