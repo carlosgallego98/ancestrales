@@ -40,11 +40,12 @@ class User extends Authenticatable implements MustVerifyEmail
             return '/img/default_avatar.jpg';
         }
     }
-
     public function rol(){
         return $this->getRoleNames();
     }
-    
+    public function nombre_completo(){
+        return "{$this->nombres} {$this->apellidos}";
+    }
     public function comentarios(){
         return $this->hasMany(Comentario::class,'id_usuario');
     }

@@ -18,7 +18,6 @@ class MateriaPrima extends Model
         'nivel_minimo',
         'unidad',
         'valor',
-        'es_material',
         'id_proveedor'
     ];
 

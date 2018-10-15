@@ -54,8 +54,8 @@
         </span>
     </a>
     <ul class="treeview-menu">
-        <li><a href="#">Por Confirmar</a></li>
-        <li><a href="#">En Camino</a></li>
+        <li><a href="{{route('pedidos.confirmar')}}">Por Confirmar</a></li>
+        <li><a href="{{route('pedidos.camino')}}">En Camino</a></li>
     </ul>
 </li>
 

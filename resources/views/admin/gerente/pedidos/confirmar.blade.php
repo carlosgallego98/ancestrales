@@ -1,41 +1,39 @@
 @extends('layouts.admin')
 
-@section('titulo','Materia Prima')
-@section('subtitulo','Inventario')
+@section('titulo','Por Confirmar')
+@section('subtitulo','Pedidos')
 
 @section('contenido')
-<div class="col-xs-12">
+        <div class="col-xs-12">
         <div class="box">
             <div class="box-body table-responsive">
-                <table class="table text-center" id="materia-table">
+                <table class="table" id="pedidos-proveedor-table">
                     <thead>
                         <tr>
-                            <th>Nombre</th>
-                            <th>Cantidad</th>
+                            <th>Material / Componente</th>
                             <th>Proveedor</th>
-                            <th>Valor</th>
-                            <th>Fecha de Registro</th>
-                            <th>Fecha de Actualizacion</th>
+                            <th>Fecha de Pedido</th>
+                            <th>Ultima Actializacion</th>
+                            <th>Estado</th>
+                            <th></th>
                         </tr>
                     </thead>
+                    <tbody>
+                    </tbody>
                 </table>
             </div>
-        </div>
-        <div class="pull-right">
-        <a class="btn btn-primary" href="{{route('materia_prima.nuevo')}}">Registrar Material</a>
         </div>
     </div>
 @endsection
 
-@push('styles')
+@push('scripts')
     <link rel="stylesheet" href="/adminlte/plugins/datatables/datatables.min.css">
 @endpush
-
 @push('scripts')
     <script src="/adminlte/plugins/datatables/datatables.min.js"></script>
 
     <script>
-        $('#materia-table').DataTable({
+        $('#pedidos-proveedor-table').DataTable({
         serverSide: true,
         'lengthChange': false,
         'paging'      : true,
@@ -43,15 +41,15 @@
         'ordering'    : true,
         'info'        : false,
         'autoWidth'   : true,
-        'ajax'        : '{{url("datatables/materia_prima/$tipo")}}',
+        'ajax'        : '{{url("datatables/pedidos/materiales/confirmar")}}',
         columns: [
-            { data: 'nombre', name: 'nombre' },
-            { data: 'cantidad', name: 'cantidad' },
-            { data: 'id_proveedor', name: 'id_proveedor' },
-            { data: 'valor', name: 'valor' },
+            { data: 'material', name: 'material' },
+            { data: 'proveedor', name: 'proveedor' },
             { data: 'created_at', name: 'created_at' },
             { data: 'updated_at', name: 'updated_at' },
-            ],
+            { data: 'estado', name: 'estado' },
+            { data: 'confirmar_pedido', name: 'confirmar_pedido'},
+        ]
         })
 </script>
 @endpush

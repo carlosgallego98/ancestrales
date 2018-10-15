@@ -16,7 +16,7 @@ use Faker\Generator as Faker;
 $factory->define(App\MateriaPrima::class, function (Faker $faker) {
     return [
       'nombre'=>$faker->company(),
-      'cantidad'=>$faker->numberBetween(1,300),
+      'cantidad'=>$faker->numberBetween(120,300),
       'nivel_minimo'=>$faker->numberBetween(1,100),
       'unidad'=>$faker->word(),
       'valor'=>$faker->randomFloat(3,1000,10000),

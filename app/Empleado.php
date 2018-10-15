@@ -38,16 +38,18 @@ class Empleado extends Authenticatable
         }
          else {
             return '/img/default_avatar.jpg';
-        
+
         }
     }
 
     public function rol(){
         return $this->getRoleNames();
     }
-
+    public function nombre_completo(){
+        return "{$this->nombres} {$this->apellidos}";
+    }
     public function numeros(){
         return $this->hasMany(TelefonoUsuario::class,'id_usuario');
     }
-    
+
 }

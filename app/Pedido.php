@@ -7,13 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class Pedido extends Model
 {
     protected $fillable = [
+        'cantidad',
         'id_usuario',
         'id_producto',
         'id_material',
         'id_estado',
         'id_tipo',
     ];
-    
+
     public function usuario(){
         return $this->hasOne(User::class,'id_usuario');
     }

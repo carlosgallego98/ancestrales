@@ -27,26 +27,29 @@ Route::group(['namespace'=> 'Admin'] , function(){
 });
 
 Route::group(
-    ['prefix' => 'gerencia',
+    [
      'middleware' => ['auth:empleado','role:gerente'],
     ],function(){
       Route::group(['namespace'=> 'Admin'],function(){
-         Route::get('/','GerenteController@gerente')->name('gerente');
+         Route::get('/gerente','GerenteController@gerente')->name('gerente');
          Route::get('estadisticas/ventas','GerenteController@estadisticas_ventas')->name('estadisticas.ventas');
          Route::get('estadisticas/pedidos','GerenteController@estadisticas_pedidos')->name('estadisticas.pedidos');
       });
-      
+
       Route::get('empleados','EmpleadoController@index')->name('empleados');
+      Route::get('pedidos/autorizar/{pedido_proveedor}','PedidoController@autorizar')->name('pedido.autorizar');
+      Route::get('pedidos/en-camino','PedidoController@en_camino')->name('pedidos.camino');
+      Route::get('pedidos/por-confirmar','PedidoController@por_confirmar')->name('pedidos.confirmar');
       Route::get('empleados/registar','EmpleadoController@create')->name('empleados.nuevo');
       Route::post('empleados/registar/store','EmpleadoController@store')->name('empleados.store');
   });
 
 Route::group(
-    ['prefix' => 'area-produccion',
+    [
      'middleware' => ['auth:empleado','role:produccion']
     ],function(){
        Route::group(['namespace'=> 'Admin'],function(){
-          Route::get('/','ProduccionController@produccion')->name('produccion');
+          Route::get('/area-produccion','ProduccionController@produccion')->name('produccion');
           Route::get('/pedido/proveedor','ProduccionController@pedidos_proveedor')->name('produccion.reabastecer');
        });
         Route::get('/materia-prima/registrar','MateriaPrimaController@create')->name('materia_prima.nuevo');
@@ -56,31 +59,28 @@ Route::group(
 
 Route::group(
   ['namespace'=> 'Admin',
-   'prefix' => 'area-despacho',
    'middleware' => ['auth:empleado','role:despacho']
   ],
   function(){
-    Route::get('/','DespachoController@despacho')->name('despacho');
+    Route::get('/area-despacho','DespachoController@despacho')->name('despacho');
 
 });
 
 Route::group(
   ['namespace'=> 'Admin',
-   'prefix' => 'proveedores',
    'middleware' => ['auth:empleado','role:proveedor']
   ],
   function(){
-    Route::get('/','ProveedorController@proveedor')->name('proveedor');
+    Route::get('/proveedores','ProveedorController@proveedor')->name('proveedor');
 
 });
 
 Route::group(
   ['namespace'=> 'Admin',
-   'prefix' => 'relaciones-publicas',
    'middleware' => ['auth:empleado','role:relaciones_publicas']
   ],
   function(){
-    Route::get('/','RelacionesController@relaciones')->name('relaciones');
+    Route::get('/relaciones-publicas','RelacionesController@relaciones')->name('relaciones');
 
 });
 
@@ -88,9 +88,9 @@ Route::group(['prefix'=> 'datatables'],
   function(){
     Route::get('users','UserController@datatable');
     Route::get('empleados','EmpleadoController@datatable');
+    Route::get('pedidos/{tabla}/{tipo}','PedidoController@datatable');
     Route::get('materia_prima/{tipo}','MateriaPrimaController@datatable');
     Route::get('ventas',function(){});
-    Route::get('pedidos',function(){});
   });
 
 Auth::routes(['verify' => true]);

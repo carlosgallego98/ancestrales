@@ -15,31 +15,31 @@ class EstadoPedidosSeed extends Seeder
     {
         $estado_pedido = new EstadoPedido();
 
-        $estado_pedido->nombre = "sin confirmar";
+        $estado_pedido->nombre = "Sin Autorizar";
         $estado_pedido->save();
         
         $estado_pedido = new EstadoPedido();
-        $estado_pedido->nombre = "confirmado";
+        $estado_pedido->nombre = "Autorizado";
         $estado_pedido->save();
         
         $estado_pedido = new EstadoPedido();
-        $estado_pedido->nombre = "fabricando";
+        $estado_pedido->nombre = "Confirmado";
         $estado_pedido->save();
         
         $estado_pedido = new EstadoPedido();
-        $estado_pedido->nombre = "fabricado";
+        $estado_pedido->nombre = "Fabricando";
         $estado_pedido->save();
         
         $estado_pedido = new EstadoPedido();
-        $estado_pedido->nombre = "en bodega";
+        $estado_pedido->nombre = "Bodega";
         $estado_pedido->save();
         
         $estado_pedido = new EstadoPedido();
-        $estado_pedido->nombre = "enviado";
+        $estado_pedido->nombre = "Enviado";
         $estado_pedido->save();
         
         $estado_pedido = new EstadoPedido();
-        $estado_pedido->nombre = "entregado";
+        $estado_pedido->nombre = "Entregado";
         $estado_pedido->save();
     }
 }

@@ -15,8 +15,10 @@ class CreatePedidosProveedoresTable extends Migration
     {
         Schema::create('pedidos_proveedores', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('id_material')->nullable();
+            $table->unsignedInteger('id_material');
+            $table->unsignedInteger('id_proveedor');
             $table->unsignedInteger('id_estado');
+            $table->foreign('id_proveedor')->references('id')->on('proveedores');
             $table->foreign('id_material')->references('id')->on('materias_primas');
             $table->foreign('id_estado')->references('id')->on('estado_pedidos');
             $table->timestamps();
