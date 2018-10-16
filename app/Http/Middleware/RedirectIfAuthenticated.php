@@ -21,7 +21,10 @@ class RedirectIfAuthenticated
             case 'empleado':
                 return redirect()->route('panel');
                 break;
-            case 'empleado':
+            case 'proveedor':
+                return redirect('/proveedores');
+                break;
+            case 'web':
                 return redirect('/');
                 break;       
         }

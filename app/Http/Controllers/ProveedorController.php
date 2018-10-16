@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Proveedor;
+use App\PedidoProveedor;
 use Illuminate\Http\Request;
 
 class ProveedorController extends Controller
@@ -81,6 +82,39 @@ class ProveedorController extends Controller
     public function destroy(Proveedor $proveedor)
     {
         //
+    }
+
+    public function pedidos_datatable(){
+        $pedidos_proveedor = PedidoProveedor::select('id_material','created_at','updated_at','id_estado')
+        ->where('id_estado','2')
+        ->orderBy('created_at')
+        ->get();
+
+        return datatables()->of($pedidos_proveedor)
+        ->addColumn('material',function($pedido){
+            return "<a href='#'>{$pedido->material->nombre}</a>";
+        })
+        ->addColumn('estado',function($pedido){
+            return "<b>{$pedido->estado->nombre}</b>";
+        })
+        ->addColumn('accion',function($pedido){
+            return "<a href='#'> <i class='fa fa-check'></i> Confirmar Pedido</a>";
+        })
+        ->rawColumns(['material','estado','accion'])
+        ->toJson();
+    }
+
+    public function confirmar_pedido(PedidoProveedor $pedido){
+        $pedido->id_estado=3
+        $pedido->save();
+
+        \Session::flash('alert-success', "Pedido de {$pedido->material->nombre} confirmado.");
+        
+        return redirect()->back(); 
+    }
+
+    public function materiales(){
+
     }
 
     public function datatable()

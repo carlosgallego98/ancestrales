@@ -19,6 +19,16 @@ Route::middleware(['auth:empleado,web','verified'])->group(
     Route::post('/actualizar-perfil/{user}','UserController@update');
   });
 
+  Auth::routes(['verify' => true]);
+Route::group(['middleware'=>'guest','guard'=>'empleado,proveedor'],function(){
+  Route::get('/login/empleados', 'Auth\EmpleadosLoginController@showLoginForm');
+  Route::post('/login-empleados', 'Auth\EmpleadosLoginController@login');
+  
+  Route::get('/login/proveedores', 'Auth\ProveedoresLoginController@showLoginForm');
+  Route::post('/login-proveedores', 'Auth\ProveedoresLoginController@login');
+});
+
+
 Route::group(['namespace'=> 'Admin'] , function(){
   Route::get('/panel','PanelController@redireccion')->name('panel');
   Route::get('/panel/perfil',function(){
@@ -68,7 +78,7 @@ Route::group(
 
 Route::group(
   ['namespace'=> 'Admin',
-   'middleware' => ['auth:empleado','role:proveedor']
+   'middleware' => ['auth:proveedor','role:proveedor']
   ],
   function(){
     Route::get('/proveedores','ProveedorController@proveedor')->name('proveedor');
@@ -86,15 +96,11 @@ Route::group(
 
 Route::group(['prefix'=> 'datatables'],
   function(){
+
     Route::get('users','UserController@datatable');
     Route::get('empleados','EmpleadoController@datatable');
-    Route::get('pedidos/{tabla}/{tipo}','PedidoController@datatable');
+    Route::get('pedidos/proveedores','ProveedorController@pedidos_datatable');    
     Route::get('materia_prima/{tipo}','MateriaPrimaController@datatable');
-    Route::get('ventas',function(){});
+    Route::get('pedidos/{tabla}/{tipo}','PedidoController@datatable');    
+//     Route::get('ventas',function(){});
   });
-
-Auth::routes(['verify' => true]);
-Route::group(['middleware'=>'auth:empleado'],function(){
-  Route::get('/login-empleados', 'Auth\EmpleadosLoginController@showLoginForm');
-  Route::post('/login-empleados', 'Auth\EmpleadosLoginController@login');
-});

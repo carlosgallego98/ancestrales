@@ -49,14 +49,14 @@ class RolesSeed extends Seeder
          'guard_name'=> 'empleado'
          ]);
 
-      $proveedor = Role::create([
-         'name'=>'proveedor',
-         'guard_name'=> 'empleado'
-         ]);
-
       $relaciones = Role::create(
          ['name'=>'relaciones_publicas',
          'guard_name'=> 'empleado'
+         ]);
+
+      $proveedor = Role::create([
+         'name'=>'proveedor',
+         'guard_name'=> 'proveedor'
          ]);
     }
 }

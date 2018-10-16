@@ -23,12 +23,12 @@
     </div>
 
 
-    <script src="./vendor/jquery/jquery.min.js"></script>
-    <script src="./vendor/popper/popper.min.js"></script>
-    <script type="text/javascript" src="./vendor/bootstrap/bootstrap.bundle.js"></script>
-    <script type="text/javascript" src="./vendor/bootstrap/mdb.min.js"></script>
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/popper/popper.min.js"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/bootstrap.bundle.js"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/mdb.min.js"></script>
 
-    <script src="./js/auth.js"></script>
+    <script src="/js/auth.js"></script>
 
     @stack('scripts')
 </body>

@@ -133,21 +133,18 @@ class PedidoController extends Controller
 
     public function autorizar(PedidoProveedor $pedido_proveedor){
 
-
-        // Se obtienen los datos del proveedor y el material de la orden
         $proveedor = $pedido_proveedor->proveedor;
         $material  = $pedido_proveedor->material;
 
-        // Se envia un correo con el pedido al proveedor
         $correo = new PedidoProveedorMail( $proveedor , $material );
         Mail::to($proveedor->email)->send( $correo );
 
         $pedido_proveedor->id_estado = 2;
         $pedido_proveedor->save();
-           
 
-        // Se regresa a la pagina principal
-
+        \Session::flash('alert-success', "Pedido enviado a {$proveedor->nombre}({$proveedor->email}).");
+        
+        return redirect()->back();
     }
 
     public function por_confirmar(){

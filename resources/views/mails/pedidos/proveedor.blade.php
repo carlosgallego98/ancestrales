@@ -1,7 +1,7 @@
-<div style="text-align: center;padding-top: 20px;">
-<img src="/img/logo.png" style="height: 100px">
-</div>
 @component('mail::message')
+<div style="text-align: center;padding-top: 20px;">
+          <img src="ancestrales.me/img/logo.png" style="height: 100px">
+</div>
 # Nuevo Pedido de <b>"{{$nombre_material}}"</b>
 Saludos <b>{{ $nombre_proveedor }}</b> tienes un nuevo pedido de <b>{{$nombre_material}}</b> sin confirmar,
 por favor ingresa a nuestra plataforma y confirmalo.
@@ -10,7 +10,7 @@ por favor ingresa a nuestra plataforma y confirmalo.
 Ver Pedidos
 @endcomponent
 
-@if ($numero_pedidos>1)
+@if ($numero_pedidos>2)
   @component('mail::panel')
     Tienes <b>{{$numero_pedidos-1}}</b> pedidos mas sin confirmar
   @endcomponent

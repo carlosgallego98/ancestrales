@@ -41,5 +41,11 @@ public function run()
        $empleado->assignRole(Role::find($faker->numberBetween(3,5)));
    }
 
+      for ($e=0; $e < 20; $e++) {
+       $empleado = factory('App\Proveedor')->make();
+       $empleado->save();
+       $empleado->assignRole(Role::find(6));
+   }
+
 }
 }

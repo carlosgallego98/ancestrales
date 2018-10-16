@@ -16,9 +16,12 @@ class CreateProveedoresTable extends Migration
         Schema::create('proveedores', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre');
-            $table->string('email');
             $table->string('direccion');
+            $table->string('nit')->unique();
+            $table->string('email')->unique();
+            $table->string('password');
             $table->string('img-proveedor')->default('default-proveedor.jpg');
+            $table->rememberToken();
             $table->timestamps();
         });
     }

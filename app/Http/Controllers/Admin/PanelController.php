@@ -27,11 +27,7 @@ class PanelController extends Controller
               case 'relaciones':
               return redirect()->route('relaciones');
               break;
-  
-              case 'proveedor':
-              return redirect()->route('proveedor');
-              break;
-              
+               
               default:
               return redirect()->route('inicio');
               break;
