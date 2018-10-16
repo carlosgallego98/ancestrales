@@ -2,9 +2,9 @@
 <img src="/img/logo.png" style="height: 100px">
 </div>
 @component('mail::message')
-# Nuevo Pedido
+# Nuevo Pedido de <b>"{{$nombre_material}}"</b>
 Saludos <b>{{ $nombre_proveedor }}</b> tienes un nuevo pedido de <b>{{$nombre_material}}</b> sin confirmar,
-por favor ingresa y confirmalo.
+por favor ingresa a nuestra plataforma y confirmalo.
 
 @component('mail::button', ['url' => '/login-empleados'])
 Ver Pedidos

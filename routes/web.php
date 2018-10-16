@@ -94,5 +94,7 @@ Route::group(['prefix'=> 'datatables'],
   });
 
 Auth::routes(['verify' => true]);
-Route::get('/login-empleados', 'Auth\EmpleadosLoginController@showLoginForm');
-Route::post('/login-empleados', 'Auth\EmpleadosLoginController@login');
+Route::group(['middleware'=>'auth:empleado'],function(){
+  Route::get('/login-empleados', 'Auth\EmpleadosLoginController@showLoginForm');
+  Route::post('/login-empleados', 'Auth\EmpleadosLoginController@login');
+});

@@ -7,6 +7,7 @@ use App\Proveedor;
 use App\PedidoProveedor;
 use Illuminate\Http\Request;
 use App\Mail\PedidoProveedorMail;
+use Illuminate\Support\Facades\Mail;
 
 class PedidoController extends Controller
 {
@@ -127,6 +128,7 @@ class PedidoController extends Controller
         ->editColumn('created_at',function($pedido){
             return $pedido->created_at->format('Y-m-d');
         })->toJson();
+
     }
 
     public function autorizar(PedidoProveedor $pedido_proveedor){
@@ -137,12 +139,12 @@ class PedidoController extends Controller
         $material  = $pedido_proveedor->material;
 
         // Se envia un correo con el pedido al proveedor
-        return new PedidoProveedorMail($proveedor,$material);
+        $correo = new PedidoProveedorMail( $proveedor , $material );
+        Mail::to($proveedor->email)->send( $correo );
 
-        // Se cambia el estado del pedido a confirmado
         $pedido_proveedor->id_estado = 2;
-
-        return $pedido_proveedor;
+        $pedido_proveedor->save();
+           
 
         // Se regresa a la pagina principal
 
