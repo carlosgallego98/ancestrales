@@ -11,7 +11,7 @@ class ProveedoresLoginController extends Controller
 {
     use AuthenticatesUsers;
 
-    protected $redirectTo = '/proveedores';
+    protected $redirectTo = '/proveedor';
 
     public function __construct(){
         $this->middleware('guest');
@@ -46,7 +46,7 @@ class ProveedoresLoginController extends Controller
         $request->session()->regenerate();
 
         return $this->authenticated($request, $this->guard()->user())
-                ?: redirect()->intended(route('/proveedores'));
+                ?: redirect()->route('proveedor');
     }
 
         public function logout(Request $request)
