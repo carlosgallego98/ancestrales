@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\MateriaPrima;
 use App\Proveedor;
+use App\PedidoProveedor;
+use App\MateriaPrima;
 use Illuminate\Http\Request;
 
 class MateriaPrimaController extends Controller
@@ -99,6 +100,7 @@ class MateriaPrimaController extends Controller
 
    public function datatable($tipo)
    {
+
       $filtro = ($tipo == 'materiales') ? '1' : '0';
       $materia_prima = MateriaPrima::where('es_material','=',$filtro)
       ->select('nombre','cantidad','nivel_minimo','unidad','valor','id_proveedor','es_material','created_at','updated_at')
@@ -114,5 +116,38 @@ class MateriaPrimaController extends Controller
       ->editColumn('valor',function($materia_prima){
          return "$ {$materia_prima->valor}";
       })->toJson();
+   }
+
+   public function datatable_proveedor(Proveedor $proveedor)
+   {
+
+      $materia_prima = MateriaPrima::select('nombre','cantidad','nivel_minimo','unidad','valor','es_material','created_at','updated_at','id')->whereIdProveedor(auth('proveedor')->user()->id)
+      ->get();
+
+
+      return datatables()->of($materia_prima)
+      ->editColumn('cantidad',function($materia_prima){
+         return "{$materia_prima->cantidad} {$materia_prima->unidad}(s)";
+      })
+      ->editColumn('valor',function($materia_prima){
+         return "$ {$materia_prima->valor}";
+      })
+      ->editColumn('nivel_minimo',function($materia_prima){
+         if ($materia_prima->nivel_minimo>=$materia_prima->cantidad-10) {
+            return "<span class='text-red'>$materia_prima->nivel_minimo</span>";
+         }
+         return $materia_prima->nivel_minimo;
+      })
+      ->addColumn('tipo',function($materia_prima){
+         if ($materia_prima->es_material == 1) {
+            return "<b><i class='fas fa-cubes'></i> Material</b>";
+         }
+            return "<b><i class='fas fa-cubes'></i> Componente</b>";
+      })
+      ->addColumn('en_pedido',function($materia_prima){
+         $pedido = PedidoProveedor::whereIdMaterial($materia_prima->id)->get();
+         return ($pedido->toArray()) ? "<i class='fa fa-check text-green'></i>" : '' ;
+      })
+      ->rawColumns(['tipo','nivel_minimo','en_pedido'])->toJson();
    }
 }

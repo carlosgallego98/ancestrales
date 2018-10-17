@@ -3,25 +3,25 @@
 <head>
           <meta charset="utf-8">
           <meta http-equiv="X-UA-Compatible" content="IE=edge">
-          <title>@yield('titulo','Panel de Administracion') | Proveedor</title>
+          <title>@yield('titulo','Panel de Administracion') | {{auth()->user()->nombre}}</title>
           <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
           <link rel="stylesheet" href="/adminlte/plugins/bootstrap/bootstrap.min.css">
-      
+
           <!-- Font Awesome Icons -->
           <link rel="stylesheet" href="/vendor/font-awesome/css/fontawesome.min.css">
           <link rel="stylesheet" href="/vendor/font-awesome/css/regular.min.css">
           <link rel="stylesheet" href="/vendor/font-awesome/css/solid.min.css">
-      
+
           <!-- Theme style -->
           @stack('styles-important')
           <link rel="stylesheet" href="/adminlte/css/skins/skin-blue.min.css">
           <link rel="stylesheet" href="/adminlte/skins/skin-blue-light.min.css">
           <link rel="stylesheet" href="/adminlte/css/AdminLTE.min.css">
           @stack('styles')
-      
+
           {{-- Favicon --}}
           <link rel="shortcut icon" href="/favicon.png" type="image/x-icon">
-      
+
           <!-- Google Font -->
           <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
@@ -34,11 +34,12 @@
   </header>
 
   <div class="content-wrapper">
+    @include('componentes.alert')
     <div class="container">
 
       <section class="content-header">
         <h1>
-          @yield('pagina')
+          @yield('titulo')
           <small>{{auth('proveedor')->user()->nombre}}</small>
         </h1>
       </section>

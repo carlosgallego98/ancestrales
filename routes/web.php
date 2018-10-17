@@ -77,11 +77,13 @@ Route::group(
 });
 
 Route::group(
-  ['namespace'=> 'Admin',
-   'middleware' => ['auth:proveedor','role:proveedor']
-  ],
+  ['middleware' => ['auth:proveedor','role:proveedor']],
   function(){
-    Route::get('/proveedores','ProveedorController@proveedor')->name('proveedor');
+    Route::group(['namespace'=> 'Admin',],function(){
+      Route::get('/proveedores','ProveedorController@proveedor')->name('proveedor');
+    });
+    Route::get('/proveedores/pedidos','ProveedorController@pedidos')->name('proveedor.pedidos');
+    Route::get('/proveedores/pedido/confirmar/{pedido}','ProveedorController@confirmar_pedido');
 
 });
 
@@ -99,7 +101,8 @@ Route::group(['prefix'=> 'datatables'],
 
     Route::get('users','UserController@datatable');
     Route::get('empleados','EmpleadoController@datatable');
-    Route::get('pedidos/proveedores','ProveedorController@pedidos_datatable');    
+    Route::get('pedidos/proveedores','ProveedorController@pedidos_datatable');
+    Route::get('materia_prima/{proveedor}','MateriaPrimaController@datatable_proveedor');   
     Route::get('materia_prima/{tipo}','MateriaPrimaController@datatable');
     Route::get('pedidos/{tabla}/{tipo}','PedidoController@datatable');    
 //     Route::get('ventas',function(){});

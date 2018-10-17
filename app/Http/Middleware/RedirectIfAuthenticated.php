@@ -22,7 +22,7 @@ class RedirectIfAuthenticated
                 return redirect()->route('panel');
                 break;
             case 'proveedor':
-                return redirect('/proveedores');
+                return redirect()->url('/proveedores');
                 break;
             case 'web':
                 return redirect('/');

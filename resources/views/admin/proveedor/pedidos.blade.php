@@ -1,6 +1,6 @@
 @extends('layouts.proveedor')
 
-@section('titulo','Materia Prima ')
+@section('titulo','Pedidos ')
 
 @section('contenido')
 <div class="box box-default">
@@ -10,13 +10,11 @@
 
 			<thead>
 				<tr>
-					<th>Tipo</th>
-					<th>Nombre</th>
-					<th>Cantidad</th>
-					<th>Minimo Permitido</th>
-					<th>Fecha de Registro</th>
-					<th>Ultima Actualizacion</th>
-					<th>Pedido</th>
+					<th>Materia Prima / Componente</th>
+					<th>Fecha de pedido</th>
+					<th>Fecha de Actualizacion</th>
+					<th>Estado</th>
+					<th></th>
 				</tr>
 			</thead>
 
@@ -25,6 +23,9 @@
 		</table>
 	</div>
 
+</div>
+<div class="pull-right">
+	<a class="btn btn-primary" href="#">Confirmar Todos</a>
 </div>
 @endsection
 
@@ -44,16 +45,15 @@
         'ordering'    : true,
         'info'        : false,
         'autoWidth'   : true,
-        'ajax'        : "{{url('datatables/materia_prima/'.auth()->user()->id)}}",
+        'ajax'        : '{{url("datatables/pedidos/proveedores")}}',
         columns: [
-        { data: 'tipo', name: 'tipo' },
-        { data: 'nombre', name: 'nombre' },
-        { data: 'cantidad', name: 'cantidad' },
-        { data: 'nivel_minimo', name: 'nivel_minimo' },
+        { data: 'material', name: 'material' },
         { data: 'created_at', name: 'created_at' },
         { data: 'updated_at', name: 'updated_at' },
-        { data: 'en_pedido', name: 'en_pedido' },
+        { data: 'estado', name: 'estado' },
+        { data: 'accion', name: 'accion' },
         ]
     })
 </script>
 @endpush
+

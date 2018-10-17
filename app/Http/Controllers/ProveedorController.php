@@ -85,7 +85,8 @@ class ProveedorController extends Controller
     }
 
     public function pedidos_datatable(){
-        $pedidos_proveedor = PedidoProveedor::select('id_material','created_at','updated_at','id_estado')
+
+        $pedidos_proveedor = PedidoProveedor::select('id','id_material','created_at','updated_at','id_estado')
         ->where('id_estado','2')
         ->orderBy('created_at')
         ->get();
@@ -98,23 +99,27 @@ class ProveedorController extends Controller
             return "<b>{$pedido->estado->nombre}</b>";
         })
         ->addColumn('accion',function($pedido){
-            return "<a href='#'> <i class='fa fa-check'></i> Confirmar Pedido</a>";
+            return "<a href='proveedores/pedido/confirmar/{$pedido->id}'> <i class='fa fa-check'></i> Confirmar Pedido</a>";
         })
         ->rawColumns(['material','estado','accion'])
         ->toJson();
+        
     }
 
     public function confirmar_pedido(PedidoProveedor $pedido){
-        $pedido->id_estado=3
-        $pedido->save();
+          $pedido->id_estado = 3;
+          $pedido->save();
 
-        \Session::flash('alert-success', "Pedido de {$pedido->material->nombre} confirmado.");
-        
-        return redirect()->back(); 
+          \Session::flash('alert-success', "Pedido de: {$pedido->material->nombre} confirmado.");
+
+        return redirect()->back();
+
     }
 
-    public function materiales(){
-
+    public function pedidos(){
+        $pedidos_proveedor = PedidoProveedor::whereidProveedor(auth('proveedor')->user()->id)
+                                                    ->whereIdEstado(2,1,3)->get();
+        return view('admin.proveedor.pedidos',compact('pedidos_proveedor'));
     }
 
     public function datatable()
