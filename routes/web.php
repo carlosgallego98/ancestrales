@@ -61,6 +61,7 @@ Route::group(
     ],function(){
        Route::group(['namespace'=> 'Admin'],function(){
           Route::get('/area-produccion','ProduccionController@produccion')->name('produccion');
+          Route::get('/actualizar/inventario','ProduccionController@actualizar_inventario')->name('produccion.actualizar');
           Route::get('/pedido/proveedor','ProduccionController@pedidos_proveedor')->name('produccion.reabastecer');
        });
         Route::get('/materia-prima/registrar','MateriaPrimaController@create')->name('materia_prima.nuevo');

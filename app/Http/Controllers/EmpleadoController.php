@@ -156,7 +156,7 @@ class EmpleadoController extends Controller
         $users = Empleado::join('model_has_roles','model_has_roles.model_id','=','users.id')
         ->join('roles','roles.id','=','model_has_roles.role_id')
         ->select('nombres','apellidos','direccion','email','cedula','users.created_at','roles.name')
-        ->role(['produccion','despacho','proveedor','relaciones_publicas'])
+        ->role(['produccion','despacho','relaciones_publicas'])
         ->get();
         
         return datatables()->of($users)

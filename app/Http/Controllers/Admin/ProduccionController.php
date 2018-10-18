@@ -48,4 +48,8 @@ class ProduccionController extends Controller
     }
     return redirect()->route('panel');
    }
+
+   public function actualizar_inventario(){
+             return view('admin.produccion.actualizar_material');
+   }
 }

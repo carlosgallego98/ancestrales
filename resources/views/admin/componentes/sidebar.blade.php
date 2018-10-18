@@ -63,6 +63,10 @@
 
 @case('produccion')
 <li class="header">Area de Produccion</li>
+<li class=""><a href="{{route('produccion.actualizar')}}">
+          <i class="fa fa-plus"></i>
+          <span>Actualizar Inventario</span></a>
+  </li>
 <li class=""><a href="#">
         <i class="fa fa-shopping-cart"></i>
         <span>Pedidos</span></a>

@@ -87,6 +87,7 @@ class ProveedorController extends Controller
     public function pedidos_datatable(){
 
         $pedidos_proveedor = PedidoProveedor::select('id','id_material','created_at','updated_at','id_estado')
+        ->whereIdProveedor(auth('proveedor')->user()->id)
         ->where('id_estado','2')
         ->orderBy('created_at')
         ->get();
@@ -119,6 +120,7 @@ class ProveedorController extends Controller
     public function pedidos(){
         $pedidos_proveedor = PedidoProveedor::whereidProveedor(auth('proveedor')->user()->id)
                                                     ->whereIdEstado(2,1,3)->get();
+
         return view('admin.proveedor.pedidos',compact('pedidos_proveedor'));
     }
 
