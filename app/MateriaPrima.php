@@ -28,15 +28,24 @@ class MateriaPrima extends Model
      */
     protected $hidden = [];
 
-    public function productos(){
+    /**
+     * Productos que tienen este material.
+     *
+     * @var array
+     * @return App\Producto::class
+     */
+    public function productos()
+    {
+        return null;
     }
 
-    public function proveedor(){
-      return $this->belongsTo(Proveedor::class,'id_proveedor');
-   }
+    public function proveedor()
+    {
+        return $this->belongsTo(Proveedor::class, 'id_proveedor');
+    }
 
-   public function en_pedido(){
-     return $this->hasOne(PedidoProveedor::class,'id_material');
-   }
-   
-   }
+    public function en_pedido()
+    {
+        return $this->hasOne(PedidoProveedor::class, 'id_material');
+    }
+}

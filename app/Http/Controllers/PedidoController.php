@@ -101,11 +101,8 @@ class PedidoController extends Controller
             ->addColumn('material',function($pedido){
                 return "<a href='#' ><b>{$pedido->material->nombre}</b></a>";
             })
-            ->addColumn('estado',function($pedido){
-                return $pedido->getEstado();
-            })
             ->addcolumn('confirmar_pedido',function($pedido){
-                return "<a href='autorizar/{$pedido->id}'><i class='fa fa-check'></i> Autorizar Pedido</a>";
+                return "<a href='autorizar/{$pedido->id}'><i class='fa fa-check'></i> Autorizar</a>";
             })
             ->removeColumn('id_estado','id_proveedor','id_material')
             ->rawColumns(['proveedor','material','confirmar_pedido'])
@@ -143,7 +140,7 @@ class PedidoController extends Controller
         $pedido_proveedor->save();
 
         \Session::flash('alert-success', "Pedido enviado a {$proveedor->nombre}({$proveedor->email}).");
-        
+
         return redirect()->back();
     }
 

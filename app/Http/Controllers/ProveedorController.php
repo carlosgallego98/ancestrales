@@ -100,11 +100,11 @@ class ProveedorController extends Controller
             return "<b>{$pedido->estado->nombre}</b>";
         })
         ->addColumn('accion',function($pedido){
-            return "<a href='proveedores/pedido/confirmar/{$pedido->id}'> <i class='fa fa-check'></i> Confirmar Pedido</a>";
+            return "<a href='/proveedores/pedido/confirmar/{$pedido->id}'> <i class='fa fa-check'></i> Confirmar Pedido</a>";
         })
         ->rawColumns(['material','estado','accion'])
         ->toJson();
-        
+
     }
 
     public function confirmar_pedido(PedidoProveedor $pedido){

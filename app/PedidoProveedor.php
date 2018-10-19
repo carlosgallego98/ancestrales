@@ -9,10 +9,20 @@ class PedidoProveedor extends Model
     protected $table = "pedidos_proveedores";
 
     protected $fillable = [
+        'codigo',
         'cantidad',
         'id_material',
         'id_proveedor',
         'id_estado',
+    ];
+
+    /**
+     * The attributes that should be casted to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'id' => 'integer'
     ];
 
     public function material(){

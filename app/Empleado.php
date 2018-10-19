@@ -29,27 +29,28 @@ class Empleado extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function avatar(){
+    public function avatar()
+    {
         $carpeta_personal = "usuario_{$this->id}_{$this->created_at->format('dmy')}";
         $foto_perfil = "storage/subidas/{$carpeta_personal}/foto_perfil/{$this->foto_perfil}";
 
         if (file_exists($foto_perfil)) {
             return "/{$foto_perfil}";
-        }
-         else {
+        } else {
             return '/img/default_avatar.jpg';
-
         }
     }
 
-    public function rol(){
+    public function rol()
+    {
         return $this->getRoleNames();
     }
-    public function nombre_completo(){
+    public function nombre_completo()
+    {
         return "{$this->nombres} {$this->apellidos}";
     }
-    public function numeros(){
-        return $this->hasMany(TelefonoUsuario::class,'id_usuario');
+    public function numeros()
+    {
+        return $this->hasMany(TelefonoUsuario::class, 'id_usuario');
     }
-
 }

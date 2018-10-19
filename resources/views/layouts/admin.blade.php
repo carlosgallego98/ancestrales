@@ -17,7 +17,7 @@
     @stack('styles-important')
     <link rel="stylesheet" href="/adminlte/css/skins/skin-blue.min.css">
     <link rel="stylesheet" href="/adminlte/skins/skin-blue-light.min.css">
-    <link rel="stylesheet" href="/adminlte/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="/adminlte/css/adminlte.min.css">
     @stack('styles')
 
     {{-- Favicon --}}

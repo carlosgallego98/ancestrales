@@ -10,11 +10,11 @@
                 <table class="table" id="pedidos-proveedor-table">
                     <thead>
                         <tr>
+                            <th>Codigo de Pedido</th>
                             <th>Material / Componente</th>
                             <th>Proveedor</th>
                             <th>Fecha de Pedido</th>
                             <th>Ultima Actializacion</th>
-                            <th>Estado</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -43,11 +43,11 @@
         'autoWidth'   : true,
         'ajax'        : '{{url("datatables/pedidos/materiales/confirmar")}}',
         columns: [
+            { data: 'codigo', name: 'codigo' },
             { data: 'material', name: 'material' },
             { data: 'proveedor', name: 'proveedor' },
             { data: 'created_at', name: 'created_at' },
             { data: 'updated_at', name: 'updated_at' },
-            { data: 'estado', name: 'estado' },
             { data: 'confirmar_pedido', name: 'confirmar_pedido'},
         ]
         })

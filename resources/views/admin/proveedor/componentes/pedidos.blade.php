@@ -4,7 +4,7 @@
                       <i class="fas fa-truck"></i>
                       <span class="label label-success">{{count($pedidos_proveedor)}}</span>
                     </a>
-                    
+
                     <ul class="dropdown-menu">
                       <li class="header">Tienes <b>{{count($pedidos_proveedor)}}</b> pedido(s).</li>
                       <li>
@@ -15,9 +15,8 @@
                                         <h4>
                                           <i class="fas fa-cubes"></i>
                                           {{$pedido->material->nombre}}
-                                          <small><i class="fa fa-clock-o"></i>{{$pedido->created_at->diffForHumans()}}</small>
                                         </h4>
-                                        <p><b>{{$pedido->estado->nombre}}</b></p>
+                                        <p>{{$pedido->estado->nombre}}, {{$pedido->updated_at->diffForHumans()}}</p>
                                       </a>
                             @endforeach
                           </li>
