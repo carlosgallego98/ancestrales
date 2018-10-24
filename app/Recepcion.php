@@ -13,7 +13,8 @@ class Recepcion extends Model
       'id_receptor',
       'cantidad',
       'firmado_por',
-      'observacion']
+      'observacion'
+    ];
 
     public function material()
     {

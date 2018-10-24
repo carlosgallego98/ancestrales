@@ -86,7 +86,7 @@ class ProveedorController extends Controller
 
     public function pedidos_datatable(){
 
-        $pedidos_proveedor = PedidoProveedor::select('id','id_material','created_at','updated_at','id_estado')
+        $pedidos_proveedor = PedidoProveedor::select('id','codigo','id_material','created_at','updated_at','id_estado')
         ->whereIdProveedor(auth('proveedor')->user()->id)
         ->where('id_estado','2')
         ->orderBy('created_at')
@@ -100,7 +100,7 @@ class ProveedorController extends Controller
             return "<b>{$pedido->estado->nombre}</b>";
         })
         ->addColumn('accion',function($pedido){
-            return "<a href='/proveedores/pedido/confirmar/{$pedido->id}'> <i class='fa fa-check'></i> Confirmar Pedido</a>";
+            return "<a href='/proveedores/pedido/confirmar/{$pedido->codigo}'> <i class='fa fa-check'></i> Confirmar Pedido</a>";
         })
         ->rawColumns(['material','estado','accion'])
         ->toJson();

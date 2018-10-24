@@ -125,6 +125,15 @@
         </aside>
 
         <div class="content-wrapper">
+          @foreach (Auth::user()->rol() as $rol)
+          @switch($rol)
+            @case('almacenamiento')
+              @include('admin.almacenamiento.modals.registrar')
+            @break
+
+
+          @endswitch
+          @endforeach
             <section class="content-header">
                 <h1>
                     @yield('titulo')

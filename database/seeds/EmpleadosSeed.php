@@ -38,13 +38,13 @@ public function run()
       for ($e=0; $e < 20; $e++) {
        $empleado = factory('App\Empleado')->make();
        $empleado->save();
-       $empleado->assignRole(Role::find($faker->numberBetween(3,5)));
+       $empleado->assignRole(Role::find($faker->numberBetween(3,6)));
    }
 
       for ($e=0; $e < 20; $e++) {
        $empleado = factory('App\Proveedor')->make();
        $empleado->save();
-       $empleado->assignRole(Role::find(6));
+       $empleado->assignRole(Role::find(7));
    }
 
 }

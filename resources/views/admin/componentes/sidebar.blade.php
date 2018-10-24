@@ -63,25 +63,6 @@
 
 @case('produccion')
 <li class="header">Area de Produccion</li>
-<li class=""><a href="{{route('produccion.actualizar')}}">
-          <i class="fa fa-plus"></i>
-          <span>Actualizar Inventario</span></a>
-  </li>
-<li class=""><a href="#">
-        <i class="fa fa-shopping-cart"></i>
-        <span>Pedidos</span></a>
-</li>
-<li class="treeview">
-        <a href="#"><i class="fa fa-cubes"></i> <span>Materia Prima</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-            </span>
-        </a>
-        <ul class="treeview-menu">
-            <li><a href="{{route('materia_prima','materiales')}}">Materiales</a></li>
-            <li><a href="{{route('materia_prima','componentes')}}">Componentes</a></li>
-        </ul>
-    </li>
 
 @break
 
@@ -95,6 +76,35 @@
         <i class="fa fa-link"></i>
         <span>Envios</span></a>
 </li>
+@break
+
+
+@case('almacenamiento')
+<li class="header">Bodega y Almacenamiento</li>
+<li class="#" data-toggle="modal" data-target="#modalRegistrar"><a href="#">
+          <i class="fa fa-plus"></i>
+          <span>Actualizar Inventario</span></a>
+  </li>
+<li class=""><a href="#">
+        <i class="fa fa-shopping-cart"></i>
+        <span>Pedidos <small class="text-muted">(Proveedor)</small></span></a>
+</li>
+<li class="header">Inventario</li>
+<li class=""><a href="#">
+        <i class="fa fa-cocktail"></i>
+        <span>Productos</span></a>
+</li>
+<li class="treeview">
+        <a href="#"><i class="fa fa-cubes"></i> <span>Materia Prima</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+            </span>
+        </a>
+        <ul class="treeview-menu">
+            <li><a href="{{route('materia_prima','materiales')}}">Materiales</a></li>
+            <li><a href="{{route('materia_prima','componentes')}}">Componentes</a></li>
+        </ul>
+    </li>
 @break
 
 @case('proveedor')

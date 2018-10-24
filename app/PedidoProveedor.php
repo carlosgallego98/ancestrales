@@ -24,7 +24,9 @@ class PedidoProveedor extends Model
     protected $casts = [
         'id' => 'integer'
     ];
-
+    public function getRouteKeyName(){
+      return "codigo";
+    }
     public function material(){
         return $this->belongsTo(MateriaPrima::class,'id_material','id');
     }

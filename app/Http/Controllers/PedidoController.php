@@ -102,7 +102,7 @@ class PedidoController extends Controller
                 return "<a href='#' ><b>{$pedido->material->nombre}</b></a>";
             })
             ->addcolumn('confirmar_pedido',function($pedido){
-                return "<a href='autorizar/{$pedido->id}'><i class='fa fa-check'></i> Autorizar</a>";
+                return "<a href='autorizar/{$pedido->codigo}'><i class='fa fa-check'></i> Autorizar</a>";
             })
             ->removeColumn('id_estado','id_proveedor','id_material')
             ->rawColumns(['proveedor','material','confirmar_pedido'])

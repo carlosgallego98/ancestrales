@@ -27,13 +27,13 @@ class RolesSeed extends Seeder
       $comprador = Role::create([
          'name'=>'comprador'
          ]);
-    
+
       $comprador->givePermissionTo(
         $ordenar_producto,
         $modificar_perfil,
         $comentar_prodicto
       );
-         
+
       $gerente = Role::create([
          'name'=>'gerente',
          'guard_name'=> 'empleado'
@@ -43,6 +43,11 @@ class RolesSeed extends Seeder
          'name'=>'produccion',
          'guard_name'=> 'empleado'
          ]);
+
+      $almacenamiento = Role::create([
+          'name'=>'almacenamiento',
+          'guard_name'=> 'empleado'
+          ]);
 
       $despacho = Role::create([
          'name'=>'despacho',

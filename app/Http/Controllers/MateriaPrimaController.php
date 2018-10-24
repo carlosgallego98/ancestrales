@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Empleado;
 use App\Proveedor;
-use App\PedidoProveedor;
+use App\Recepcion;
 use App\MateriaPrima;
+use App\PedidoProveedor;
 use Illuminate\Http\Request;
 
 class MateriaPrimaController extends Controller
@@ -84,7 +86,37 @@ class MateriaPrimaController extends Controller
     */
     public function update(Request $request, MateriaPrima $materiaPrima)
     {
-        return null;
+        $data = $request->toArray();
+        $pedido = PedidoProveedor::find($data['id_pedido_proveedor']);
+        $receptor = Empleado::find($data['id_receptor']);
+        $material = MateriaPrima::find($data['id_material']);
+
+        $fecha = date('d-m-Y');
+        $hora = date('h:i:s');
+
+        $observacion = "El <b>{$fecha}</b> a las <b>{$hora}</b> ingresó un cargamento de <b>{$data['cantidad']} {$material->unidad}(s)</b> de <i>{$material->nombre}</i> a la bodega.
+        <br />
+        {$data['observaciones']}
+        <br />
+        Firmado por <i>{$data['firmado_por']}</i> CC ( {$receptor->cedula} ).
+        ";
+
+        $pedido->id_estado = 7;
+        $material->increment('cantidad',$data['cantidad']);
+
+        if ($pedido->save()) {
+          Recepcion::create([
+            'id_material'=>$data['id_material'],
+            'id_receptor'=>$data['id_receptor'],
+            'cantidad'=>$data['cantidad'],
+            'firmado_por'=>$data['firmado_por'],
+            'observacion'=>$observacion
+          ]);
+          \Session::flash('success','Inventario Actualizado');
+
+          return redirect()->route('panel');
+        }
+
     }
 
     /**

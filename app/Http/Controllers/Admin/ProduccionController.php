@@ -46,18 +46,12 @@ class ProduccionController extends Controller
           strtoupper($codigo);
 
             PedidoProveedor::create([
-              'code'=> $codigo,
-          'id_material'=> $material->id,
-          'id_proveedor'=> $material->proveedor->id,
-          'id_estado' => 1,
+              'codigo'=> $codigo,
+              'id_material'=> $material->id,
+              'id_proveedor'=> $material->proveedor->id,
+              'id_estado' => 1,
           ]);
         }
         return redirect()->route('panel');
-    }
-
-    public function actualizar_inventario()
-    {
-        $materiales = MateriaPrima::all();
-        return view('admin.produccion.actualizar_material', compact('materiales'));
     }
 }

@@ -20,9 +20,9 @@
                 @if (Auth::user()->hasRole('comprador'))
                 <li class="nav-item"><a class="nav-link" href="{{ route('perfil') }}">
                     <span>@</span>{{Auth::user()->nombre_usuario}}</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Mi Ordenes</a></li> 
+                <li class="nav-item"><a class="nav-link" href="#">Mi Ordenes</a></li>
                 @else
-                <li class="nav-item"><a class="nav-link" href="{{ route('admin.perfil') }}">
+                <li class="nav-item"><a class="nav-link" href="{{ route('perfil') }}">
                     <span>@</span>{{Auth::user()->nombre_usuario}}</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('panel') }}">Panel de Administracion</a></li>
                 @endif
@@ -45,7 +45,7 @@
                     <a class="nav-link" href="{{ route('register') }}">Regístrate</a>
                 </li>
                 @endif
-        
+
             </ul>
         </div>
     </div>
@@ -76,7 +76,7 @@
             </a>
         </div>
     @else
-        
+
     @endif
 
     <!-- Barra de Navegacion Principal -->

@@ -11,13 +11,13 @@
 |
 */
 
-Route::get('/', 'HomeController@index')->name('inicio');
 
-Route::middleware(['auth:empleado,web','verified'])->group(
+Route::middleware(['auth:empleado,web','verified','guest'])->group(
   function () {
       Route::get('/perfil', 'UserController@index')->name('perfil');
       Route::post('/actualizar-avatar', 'UserController@actualizar_avatar');
       Route::post('/actualizar-perfil/{user}', 'UserController@update');
+      Route::get('/', 'HomeController@index')->name('inicio');
   }
 );
 
@@ -40,7 +40,7 @@ Route::group(['namespace'=> 'Admin'], function () {
 
 Route::group(
     [
-     'middleware' => ['auth:empleado','role:gerente'],
+     'middleware' => ['auth:empleado,web','role:gerente'],
     ],
     function () {
         Route::group(['namespace'=> 'Admin'], function () {
@@ -60,24 +60,34 @@ Route::group(
 
 Route::group(
     [
-     'middleware' => ['auth:empleado','role:produccion']
+     'middleware' => ['auth:empleado,web','role:produccion']
     ],
     function () {
         Route::group(['namespace'=> 'Admin'], function () {
             Route::get('/area-produccion', 'ProduccionController@produccion')->name('produccion');
-            Route::get('/actualizar/inventario', 'ProduccionController@actualizar_inventario')->name('produccion.actualizar');
-            Route::get('/pedido/proveedor', 'ProduccionController@pedidos_proveedor')->name('produccion.reabastecer');
         });
-        Route::get('/materia-prima/registrar', 'MateriaPrimaController@create')->name('materia_prima.nuevo');
-        Route::post('/materia-prima/registrar', 'MateriaPrimaController@store')->name('materia_prima.store');
-        Route::post('/materia-prima/actualizar', 'MateriaPrimaController@update')->name('materia_prima.update');
-        Route::get('/materia-prima/{tipo}', 'MateriaPrimaController@index')->name('materia_prima');
     }
 );
 
+Route::group(['middleware'=> 'auth:empleado,web','role:almacenamiento'],function(){
+  Route::group(['namespace'=> 'Admin'],function(){
+    Route::get('/bodega-almacenamiento', 'AlmacenamientoController@almacenamiento')->name('almacenamiento');
+    Route::post('actualizar/inventario/modal',
+    'AlmacenamientoController@modal_actualizar_inventario');
+
+    Route::get('/actualizar/inventario/{pedido_proveedor}', 'AlmacenamientoController@actualizar_inventario')->name('almacenamiento.actualizar');
+    Route::get('/pedido/proveedor', 'ProduccionController@pedidos_proveedor')->name('produccion.reabastecer');
+
+  });
+  Route::get('/materia-prima/registrar', 'MateriaPrimaController@create')->name('materia_prima.nuevo');
+  Route::post('/materia-prima/registrar', 'MateriaPrimaController@store')->name('materia_prima.store');
+  Route::post('/materia-prima/actualizar', 'MateriaPrimaController@update')->name('materia_prima.update');
+  Route::get('/materia-prima/{tipo}', 'MateriaPrimaController@index')->name('materia_prima');
+});
+
 Route::group(
   ['namespace'=> 'Admin',
-   'middleware' => ['auth:empleado','role:despacho']
+   'middleware' => ['auth:empleado,web','role:despacho']
   ],
   function () {
       Route::get('/area-despacho', 'DespachoController@despacho')->name('despacho');
@@ -97,7 +107,7 @@ Route::group(
 
 Route::group(
   ['namespace'=> 'Admin',
-   'middleware' => ['auth:empleado','role:relaciones_publicas']
+   'middleware' => ['auth:empleado,web','role:relaciones_publicas']
   ],
   function () {
       Route::get('/relaciones-publicas', 'RelacionesController@relaciones')->name('relaciones');
