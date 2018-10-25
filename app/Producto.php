@@ -8,16 +8,18 @@ class Producto extends Model
 {
    
     protected $fillable = [
-        'nombre','precio','descripcion'
+        'url','nombre','precio','descripcion'
     ];
 
     protected $hidden = [];
 
+    public function getRouteKeyName(){
+        return "url";
+    }
 
     public function comentarios(){
         return $this->hasMany(Comentario::class);
     }
-
     public function pedidos(){
         return $this->hasMany(Pedido::class);
     }

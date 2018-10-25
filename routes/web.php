@@ -1,17 +1,4 @@
 <?php
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-
 Route::middleware(['auth:empleado,web','verified','guest'])->group(
   function () {
       Route::get('/perfil', 'UserController@index')->name('perfil');
@@ -21,7 +8,8 @@ Route::middleware(['auth:empleado,web','verified','guest'])->group(
   }
 );
 
-  Auth::routes(['verify' => true]);
+Auth::routes(['verify' => true]);
+
 Route::group(['middleware'=>'guest','guard'=>'empleado,proveedor'], function () {
     Route::get('/login/empresa', 'Auth\EmpleadosLoginController@showLoginForm');
     Route::post('/login-empleados', 'Auth\EmpleadosLoginController@login');
@@ -30,17 +18,13 @@ Route::group(['middleware'=>'guest','guard'=>'empleado,proveedor'], function () 
     Route::post('/login-proveedores', 'Auth\ProveedoresLoginController@login');
 });
 
-
 Route::group(['namespace'=> 'Admin'], function () {
     Route::get('/panel', 'PanelController@redireccion')->name('panel');
-    Route::get('/panel/perfil', function () {
-        return "Perfil de Este man}";
-    })->name('admin.perfil');
 });
 
 Route::group(
     [
-     'middleware' => ['auth:empleado,web','role:gerente'],
+     'middleware' => ['auth:empleado','role:gerente'],
     ],
     function () {
         Route::group(['namespace'=> 'Admin'], function () {
@@ -60,7 +44,7 @@ Route::group(
 
 Route::group(
     [
-     'middleware' => ['auth:empleado,web','role:produccion']
+     'middleware' => ['auth:empleado','role:produccion']
     ],
     function () {
         Route::group(['namespace'=> 'Admin'], function () {
@@ -69,16 +53,20 @@ Route::group(
     }
 );
 
-Route::group(['middleware'=> 'auth:empleado,web','role:almacenamiento'],function(){
+Route::group(['middleware'=> 'auth:empleado','role:almacenamiento'],function(){
   Route::group(['namespace'=> 'Admin'],function(){
-    Route::get('/bodega-almacenamiento', 'AlmacenamientoController@almacenamiento')->name('almacenamiento');
+    Route::get('/bodega-almacenamiento',
+     'AlmacenamientoController@almacenamiento')->name('almacenamiento');
+    
     Route::post('actualizar/inventario/modal',
     'AlmacenamientoController@modal_actualizar_inventario');
-
+    
     Route::get('/actualizar/inventario/{pedido_proveedor}', 'AlmacenamientoController@actualizar_inventario')->name('almacenamiento.actualizar');
-    Route::get('/pedido/proveedor', 'ProduccionController@pedidos_proveedor')->name('produccion.reabastecer');
-
+    
+    Route::get('/pedido/proveedor', 
+      'AlmacenamientoController@pedidos_proveedor')->name('produccion.reabastecer');
   });
+
   Route::get('/materia-prima/registrar', 'MateriaPrimaController@create')->name('materia_prima.nuevo');
   Route::post('/materia-prima/registrar', 'MateriaPrimaController@store')->name('materia_prima.store');
   Route::post('/materia-prima/actualizar', 'MateriaPrimaController@update')->name('materia_prima.update');
@@ -87,7 +75,7 @@ Route::group(['middleware'=> 'auth:empleado,web','role:almacenamiento'],function
 
 Route::group(
   ['namespace'=> 'Admin',
-   'middleware' => ['auth:empleado,web','role:despacho']
+   'middleware' => ['auth:empleado','role:despacho']
   ],
   function () {
       Route::get('/area-despacho', 'DespachoController@despacho')->name('despacho');
@@ -107,21 +95,29 @@ Route::group(
 
 Route::group(
   ['namespace'=> 'Admin',
-   'middleware' => ['auth:empleado,web','role:relaciones_publicas']
+   'middleware' => ['auth:empleado','role:relaciones_publicas']
   ],
   function () {
       Route::get('/relaciones-publicas', 'RelacionesController@relaciones')->name('relaciones');
   }
 );
 
+Route::group(['middleware'=> 'auth:empleado',],function(){
+  Route::get('/inventario/productos','ProductoController@index')->name('inventario.productos');
+  Route::get('/inventario/productos/registrar','ProductoController@create')->name('inventario.productos.registrar');
+  Route::get('/inventario/productos/{producto}/detalles','ProductoController@show')->name('inventario.productos.detalles');
+  Route::post('/inventario/productos/registrar','ProductoController@store');
+  Route::get('/pedidos-provedor','PedidoProveedorController@index')->name('pedidos.proveedores');
+});
+
 Route::group(
     ['prefix'=> 'datatables'],
   function () {
       Route::get('users', 'UserController@datatable');
       Route::get('empleados', 'EmpleadoController@datatable');
-      Route::get('pedidos/proveedores', 'ProveedorController@pedidos_datatable');
-      Route::get('materia_prima/{proveedor}', 'MateriaPrimaController@datatable_proveedor');
+      Route::get('pedidos/proveedores', 'PedidoProveedorController@datatable');
       Route::get('materia_prima/{tipo}', 'MateriaPrimaController@datatable');
+      Route::get('materia_prima/{proveedor}', 'MateriaPrimaController@datatable_proveedor');
       Route::get('pedidos/{tabla}/{tipo}', 'PedidoController@datatable');
 //     Route::get('ventas',function(){});
   }

@@ -24,6 +24,8 @@ class Proveedor extends Authenticatable
         'img-proveedor',
     ];
 
+    protected $hidden = ['password','img-proveedor','remember_token'];
+
     public function avatar(){
           $carpeta_personal = "usuario_{$this->id}_{$this->created_at->format('dmy')}";
           $foto_perfil = "storage/subidas/{$carpeta_personal}/foto_perfil/{$this->foto_perfil}";

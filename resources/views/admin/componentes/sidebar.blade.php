@@ -85,12 +85,12 @@
           <i class="fa fa-plus"></i>
           <span>Actualizar Inventario</span></a>
   </li>
-<li class=""><a href="#">
+<li class=""><a href="{{route('pedidos.proveedores')}}">
         <i class="fa fa-shopping-cart"></i>
-        <span>Pedidos <small class="text-muted">(Proveedor)</small></span></a>
+        <span>Pedidos <small class="text-muted">(Materiales)</small></span></a>
 </li>
 <li class="header">Inventario</li>
-<li class=""><a href="#">
+<li class=""><a href="{{route('inventario.productos')}}">
         <i class="fa fa-cocktail"></i>
         <span>Productos</span></a>
 </li>

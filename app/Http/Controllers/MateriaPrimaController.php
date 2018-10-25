@@ -18,7 +18,7 @@ class MateriaPrimaController extends Controller
     */
     public function index($tipo)
     {
-        return View('admin.produccion.materia_prima', compact('tipo'));
+        return View('admin.materia_prima.index', compact('tipo'));
     }
 
     /**
@@ -29,7 +29,7 @@ class MateriaPrimaController extends Controller
     public function create()
     {
         $proveedores = Proveedor::all();
-        return View('admin.produccion.materia_prima.create', compact('proveedores'));
+        return View('admin.materia_prima.create', compact('proveedores'));
     }
 
     /**
@@ -153,7 +153,6 @@ class MateriaPrimaController extends Controller
     {
         $materia_prima = MateriaPrima::select('nombre', 'cantidad', 'nivel_minimo', 'unidad', 'valor', 'es_material', 'created_at', 'updated_at', 'id')->whereIdProveedor(auth('proveedor')->user()->id)
       ->get();
-
 
         return datatables()->of($materia_prima)
       ->editColumn('cantidad', function ($materia_prima) {

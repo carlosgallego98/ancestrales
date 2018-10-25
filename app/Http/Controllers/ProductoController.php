@@ -14,7 +14,7 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.productos.index');
     }
 
     /**
@@ -24,7 +24,9 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        //
+        $proveedores = \App\Proveedor::all();
+        $materiales = \App\MateriaPrima::all();
+        return view('admin.productos.create',compact('proveedores','materiales'));
     }
 
     /**
@@ -35,7 +37,7 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return $request;
     }
 
     /**
@@ -46,7 +48,7 @@ class ProductoController extends Controller
      */
     public function show(Producto $producto)
     {
-        //
+        return view('admin.productos.show',compact('producto'));
     }
 
     /**
