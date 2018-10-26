@@ -173,11 +173,10 @@
     <script src="/adminlte/plugins/bootstrap/bootstrap.min.js"></script>
     <!-- AdminLTE App -->
     <script src="/adminlte/js/adminlte.min.js"></script>
-    
+    <!-- SweetAlert 2 JS-->
+    <script src="/js/sweetalert2.all.min.js"></script>
+    @include('sweet::alert')
     @stack('scripts')
-    <!-- Optionally, you can add Slimscroll and FastClick plugins.
-     Both of these plugins are recommended to enhance the
-     user experience. -->
 </body>
 
 </html>

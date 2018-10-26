@@ -19,17 +19,22 @@
                 @if (Auth::check())
                 @if (Auth::user()->hasRole('comprador'))
                 <li class="nav-item"><a class="nav-link" href="{{ route('perfil') }}">
-                    <span>@</span>{{Auth::user()->nombre_usuario}}</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Mi Ordenes</a></li>
+                    {{Auth::user()->nombre_completo()}}</a></li>
+                <li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-shop-cart">
+                </i>Mi Ordenes</a></li>
                 @else
                 <li class="nav-item"><a class="nav-link" href="{{ route('perfil') }}">
-                    <span>@</span>{{Auth::user()->nombre_usuario}}</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ route('panel') }}">Panel de Administracion</a></li>
+                  <i class="fa fa-user"></i>
+                    {{Auth::user()->nombre_completo()}}</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('panel') }}">
+                  <i class="fa fa-chart-line"></i>
+                Panel de Administracion</a></li>
                 @endif
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">
+                                <i class="fa fa-sign-out-alt"></i>
                                 {{ __('Cerrar Sesión') }}
                             </a>
 
@@ -39,10 +44,14 @@
                     </li>
                 @else
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('login') }}">Inicia Sesion</a>
+                    <a class="nav-link" href="{{ route('login') }}">
+                      <i class="fa fa-sign-in"></i>
+                      Inicia Sesion</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('register') }}">Regístrate</a>
+                    <a class="nav-link" href="{{ route('register') }}">
+                      <i class="fa fa-send"></i>
+                      Regístrate</a>
                 </li>
                 @endif
 
@@ -82,7 +91,7 @@
     <!-- Barra de Navegacion Principal -->
     <nav class="navbar navbar-expand-lg bg-primary">
         <div class="container">
-            <a class="navbar-brand mx-auto clearfix" href="{{ route('inicio') }}">
+            <a class="navbar-brand mx-auto" href="{{ route('inicio') }}">
                 <img src="/img/logo.png" alt="Comidas Típicas Cristina Lozano">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMain"
@@ -93,16 +102,22 @@
             <div class="collapse navbar-collapse" id="navbarMain">
                 <ul class="navbar-nav mr-auto text-align-center">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Productos</span></a>
+                        <a class="nav-link" href="{{route('productos')}}">
+                          <i class="fa fa-cocktail"></i>
+                          Productos</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Populares</a>
+                        <a class="nav-link" href="#">
+                          <i class="fa fa-star"></i>
+                          Populares</a>
                     </li>
                 </ul>
                 <hr class="sm-only">
-                <ul class="navbar-nav ml-auto text-align-center">
+                <ul class="navbar-nav ml-auto   text-align-center">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contactanos</a>
+                        <a class="nav-link" href="#">
+                          <i class="fa fa-envelope"></i>
+                          Contactanos</a>
                     </li>
                 </ul>
             </div>

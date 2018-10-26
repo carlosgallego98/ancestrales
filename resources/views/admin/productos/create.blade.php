@@ -31,15 +31,6 @@
 		<div class="col-md-4">
 			<div class="box box-body">
 				<div class="form-group">
-					<label for="proveedor">Proveedor</label>
-					<select class="select2 form-control" name="proveedor" id="proveedor">
-						<option value=""></option>
-						@foreach($proveedores as $proveedor)
-							<option value="{{$proveedor->id}}">{{$proveedor->nombre}}</option>
-						@endforeach
-					</select>
-				</div>
-				<div class="form-group">
 					<label for="ingredientes">Ingredientes</label>
 					<select name="ingredientes[]" id="ingredientes" class="select2 form-control" multiple="multiple">
 						@foreach($materiales as $material)

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Alert;
 use App\Producto;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,8 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        return view('admin.productos.index');
+        $productos = Producto::paginate(10);
+        return view('admin.productos.index',compact('productos'));
     }
 
     /**
@@ -37,7 +39,18 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
-        return $request;
+      $data = $request->toArray();
+      $producto = Producto::create([
+        'nombre'=> $data["nombre"],
+        'precio'=> $data["precio"],
+        'descripcion'=> $data["descripcion"],
+        'url'=> str_slug($data["nombre"],'-'),
+      ]);
+
+      $producto->materiales()->sync($data['ingredientes']);
+
+      alert()->success('Exito', "{$data["nombre"]} registrado satisfactoriamente");
+      return redirect()->route('inventario.productos');
     }
 
     /**

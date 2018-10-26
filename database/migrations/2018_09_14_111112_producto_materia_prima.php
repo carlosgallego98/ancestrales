@@ -13,7 +13,7 @@ class ProductoMateriaPrima extends Migration
      */
     public function up()
     {
-      Schema::create('producto_materia_prima', function (Blueprint $table) {
+      Schema::create('materia_prima_producto', function (Blueprint $table) {
       $table->increments('id');
       $table->unsignedInteger('producto_id');
       $table->unsignedInteger('materia_prima_id');

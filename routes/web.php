@@ -5,6 +5,7 @@ Route::middleware(['auth:empleado,web','verified','guest'])->group(
       Route::post('/actualizar-avatar', 'UserController@actualizar_avatar');
       Route::post('/actualizar-perfil/{user}', 'UserController@update');
       Route::get('/', 'HomeController@index')->name('inicio');
+      Route::get('/productos','HomeController@productos')->name('productos');
   }
 );
 
@@ -23,9 +24,7 @@ Route::group(['namespace'=> 'Admin'], function () {
 });
 
 Route::group(
-    [
-     'middleware' => ['auth:empleado','role:gerente'],
-    ],
+    ['middleware' => ['auth:empleado','role:gerente']],
     function () {
         Route::group(['namespace'=> 'Admin'], function () {
             Route::get('/gerente', 'GerenteController@gerente')->name('gerente');
@@ -43,9 +42,7 @@ Route::group(
 );
 
 Route::group(
-    [
-     'middleware' => ['auth:empleado','role:produccion']
-    ],
+    ['middleware' => ['auth:empleado','role:produccion']],
     function () {
         Route::group(['namespace'=> 'Admin'], function () {
             Route::get('/area-produccion', 'ProduccionController@produccion')->name('produccion');
@@ -53,17 +50,18 @@ Route::group(
     }
 );
 
-Route::group(['middleware'=> 'auth:empleado','role:almacenamiento'],function(){
+Route::group(['middleware'=> 'auth:empleado','role:almacenamiento'],
+  function(){
   Route::group(['namespace'=> 'Admin'],function(){
     Route::get('/bodega-almacenamiento',
      'AlmacenamientoController@almacenamiento')->name('almacenamiento');
-    
+
     Route::post('actualizar/inventario/modal',
     'AlmacenamientoController@modal_actualizar_inventario');
-    
+
     Route::get('/actualizar/inventario/{pedido_proveedor}', 'AlmacenamientoController@actualizar_inventario')->name('almacenamiento.actualizar');
-    
-    Route::get('/pedido/proveedor', 
+
+    Route::get('/pedido/proveedor',
       'AlmacenamientoController@pedidos_proveedor')->name('produccion.reabastecer');
   });
 
@@ -75,8 +73,7 @@ Route::group(['middleware'=> 'auth:empleado','role:almacenamiento'],function(){
 
 Route::group(
   ['namespace'=> 'Admin',
-   'middleware' => ['auth:empleado','role:despacho']
-  ],
+   'middleware' => ['auth:empleado','role:despacho']],
   function () {
       Route::get('/area-despacho', 'DespachoController@despacho')->name('despacho');
   }
@@ -95,8 +92,7 @@ Route::group(
 
 Route::group(
   ['namespace'=> 'Admin',
-   'middleware' => ['auth:empleado','role:relaciones_publicas']
-  ],
+   'middleware' => ['auth:empleado','role:relaciones_publicas']],
   function () {
       Route::get('/relaciones-publicas', 'RelacionesController@relaciones')->name('relaciones');
   }
