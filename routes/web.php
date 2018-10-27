@@ -5,7 +5,7 @@ Route::middleware(['auth:empleado,web','verified','guest'])->group(
       Route::post('/actualizar-avatar', 'UserController@actualizar_avatar');
       Route::post('/actualizar-perfil/{user}', 'UserController@update');
       Route::get('/', 'HomeController@index')->name('inicio');
-      Route::get('/productos','HomeController@productos')->name('productos');
+      Route::get('/bebidas','HomeController@productos')->name('productos');
   }
 );
 

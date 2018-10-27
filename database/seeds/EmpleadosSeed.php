@@ -32,7 +32,7 @@ public function run()
        'password' => '$2y$12$pIoh14cDGoGLQQXiHie2vex642lw/e1kMR3mc.VyWPY4pemOcZeOS',//gerentecl
        'email_verified_at' => date('Y-m-d'),
    ]);
-   $gerente->assignRole(Role::find(2));
+   $gerente->syncRoles('gerente','produccion','almacenamiento');
 
    $faker = \Faker\Factory::create('es_MX');
       for ($e=0; $e < 20; $e++) {

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Producto;
 
 class HomeController extends Controller
 {
@@ -28,6 +29,7 @@ class HomeController extends Controller
 
     public function productos()
     {
-      return view('productos');
+      $bebidas = Producto::paginate(10);
+      return view('productos',compact('bebidas'));
     }
 }
