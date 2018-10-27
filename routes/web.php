@@ -6,6 +6,7 @@ Route::middleware(['auth:empleado,web','verified','guest'])->group(
       Route::post('/actualizar-perfil/{user}', 'UserController@update');
       Route::get('/', 'HomeController@index')->name('inicio');
       Route::get('/bebidas','HomeController@productos')->name('productos');
+      Route::get('/{producto}','HomeController@ver_bebida')->name('productos.detalles');
   }
 );
 

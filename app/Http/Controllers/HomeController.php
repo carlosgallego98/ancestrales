@@ -32,4 +32,9 @@ class HomeController extends Controller
       $bebidas = Producto::paginate(10);
       return view('productos',compact('bebidas'));
     }
+
+    public function ver_bebida(Producto $producto)
+    {
+      return $producto;
+    }
 }

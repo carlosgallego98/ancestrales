@@ -12,21 +12,33 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-8 mx-auto">
+    <div class="col-md-10 mx-auto">
       @forelse ($bebidas as $bebida)
         <div class="card my-2">
           <div class="card-body row py-4">
-            <div class="col-md-4 my-6">
+            <div class="col-md-4 my-3">
               {{-- <span class="card-tag .z-depth-4 badge bg-secondary">Nueva</span> --}}
               <img class="card-img-top z-depth-2" src="https://images-gmi-pmc.edge-generalmills.com/3c2132ca-a86b-4c78-9e37-df6000f9d0c3.jpg"
                   alt="Card image cap">
             </div>
             <div class="col-md-8">
-              <a href="#">
-                  <h3 class="card-title h3-responsive">{{$bebida->nombre}}</h3>
-                  <h6 class="card-text h6-responsive">${{$bebida->precio}}</h6>
+                  <h4 class="card-title h4-responsive">{{$bebida->nombre}}</h4>
+                  <h4 class="h4-responsive">$<b>{{$bebida->precio}}</b></h4>
                   <small class="text-muted">Agregada {{$bebida->created_at->diffforHumans()}}</small>
-              </a>
+                  <ul class="nav pt-4">
+                    <li class="nav-item">
+                      <a href="{{route('productos.detalles',$bebida)}}" target="_blank" class="nav-link">
+                        <i class="fa fa-plus"></i>
+                        Detalles
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="#" class="nav-link">
+                        <i class="fa fa-heart"></i>
+                        Guardar
+                      </a>
+                    </li>
+                  </ul>
             </div>
           </div>
         </div>
