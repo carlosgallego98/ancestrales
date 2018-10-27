@@ -1,14 +1,5 @@
 <?php
-Route::middleware(['auth:empleado,web','verified','guest'])->group(
-  function () {
-      Route::get('/perfil', 'UserController@index')->name('perfil');
-      Route::post('/actualizar-avatar', 'UserController@actualizar_avatar');
-      Route::post('/actualizar-perfil/{user}', 'UserController@update');
-      Route::get('/', 'HomeController@index')->name('inicio');
-      Route::get('/bebidas','HomeController@productos')->name('productos');
-      Route::get('/{producto}','HomeController@ver_bebida')->name('productos.detalles');
-  }
-);
+Route::get('/', 'HomeController@index')->name('inicio');
 
 Auth::routes(['verify' => true]);
 
@@ -106,6 +97,16 @@ Route::group(['middleware'=> 'auth:empleado',],function(){
   Route::post('/inventario/productos/registrar','ProductoController@store');
   Route::get('/pedidos-provedor','PedidoProveedorController@index')->name('pedidos.proveedores');
 });
+
+Route::middleware(['auth:empleado,web','verified'])->group(
+  function () {
+      Route::get('/perfil', 'UserController@index')->name('perfil');
+      Route::post('/actualizar-avatar', 'UserController@actualizar_avatar');
+      Route::post('/actualizar-perfil/{user}', 'UserController@update');
+      Route::get('/bebidas','HomeController@productos')->name('productos');
+      Route::get('/{producto}','HomeController@ver_bebida')->name('productos.detalles');
+  }
+);
 
 Route::group(
     ['prefix'=> 'datatables'],

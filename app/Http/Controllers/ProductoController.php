@@ -40,7 +40,16 @@ class ProductoController extends Controller
     public function store(Request $request)
     {
       $data = $request->toArray();
+
+      if($request->hasFile('img_producto')) {
+                  $extension = $request->file('img_producto')->getClientOriginalExtension();
+                  $fileNameToStore = str_slug($data["nombre"]).'_'.time().'.'.$extension;
+                  $img = \Image::make($request->file('img_producto'))->fit(300);
+                  \Storage::disk('imagen_productos')->put($fileNameToStore, $img->stream('jpg',100));
+        } else { $fileNameToStore = 'default.jpg';}
+
       $producto = Producto::create([
+        'img_producto' => $fileNameToStore,
         'nombre'=> $data["nombre"],
         'precio'=> $data["precio"],
         'descripcion'=> $data["descripcion"],

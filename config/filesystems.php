@@ -62,6 +62,13 @@ return [
             'visibility' => 'public',
         ],
 
+        'imagen_productos' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/subidas/imagen_producto'),
+            'url' => env('APP_URL').'/subidas/imagen_producto',
+            'visibility' => 'public',
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),

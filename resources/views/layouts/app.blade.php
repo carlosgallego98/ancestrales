@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('titulo')Bebidas Critina Lozano</title>
     <meta name="theme-color" content="#1049A9" />
-    
+
     <link rel="stylesheet" href="/vendor/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="/vendor/bootstrap/mdb.min.css">
     <!-- Font Awesome Icons -->
@@ -62,8 +62,8 @@
     </footer>
 
     <script src="/vendor/jquery/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-        crossorigin="anonymous"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script> -->
     <script type="text/javascript" src="/vendor/bootstrap/bootstrap.bundle.js"></script>
     <script type="text/javascript" src="/vendor/bootstrap/mdb.min.js"></script>
     @stack('scripts')
