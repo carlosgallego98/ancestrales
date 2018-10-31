@@ -17,7 +17,7 @@
 					</div>
 					<div class="form-group col-md-6">
 						<label for="precio">Precio</label>
-						<input type="text" name="precio" class="form-control" required="">
+						<input type="text" id="precio" name="precio" class="form-control" required="">
 					</div>
 				</div>
 				<div class="form-row">
@@ -29,7 +29,7 @@
 				<div class="form-row">
 					<div class="form-group col-md-12">
 						<label for="ingredientes">Ingredientes</label>
-						<select name="ingredientes[]" id="ingredientes" class="select2 form-control" multiple="multiple">
+						<select name="ingredientes[]" id="ingredientes" class="select2 form-control" multiple="multiple" required>
 							@foreach($materiales as $material)
 								<option value="{{$material->id}}">{{$material->nombre}}</option>
 							@endforeach
@@ -46,7 +46,7 @@
 					</div>
 			</div>
 			<div class="box box-body box-widget text-right">
-				<input type="submit" value="Registrar" class="btn btn-primary">
+				<input type="submit" value="Registrar" class="btn btn-primary" required>
 			</div>
 		</div>
 	</div>
@@ -60,8 +60,9 @@
 
 @push('scripts')
 <script src="/adminlte/plugins/select2/js/select2.full.min.js"></script>
-
+<script src="/vendor/imask.js"></script>
 <script>
+
 function readURL(input) {
   if (input.files && input.files[0]) {
     var reader = new FileReader();
@@ -70,6 +71,22 @@ function readURL(input) {
       .attr('src', e.target.result);};
       reader.readAsDataURL(input.files[0]);
     }}
+
+		var element = document.getElementById('precio');
+	var maskOptions =
+  {
+    mask: '$num',
+    blocks: {
+      num: {
+        // nested masks are available!
+        mask: Number,
+        thousandsSeparator: ','
+      }
+    }
+  };
+
+	var mask = new IMask(element, maskOptions);
+
 	$("#inputImagen").change(function(e){
 		readURL(this)
 	});

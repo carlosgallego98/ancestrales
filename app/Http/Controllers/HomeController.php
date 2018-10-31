@@ -14,7 +14,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     /**
@@ -29,12 +29,12 @@ class HomeController extends Controller
 
     public function productos()
     {
-      $bebidas = Producto::paginate(10);
+      $bebidas = Producto::latest()->paginate(4);
       return view('productos',compact('bebidas'));
     }
 
-    public function ver_bebida(Producto $producto)
+    public function ver_bebida(Producto $bebida)
     {
-      return $producto;
+      return view('bebidas.detalles',compact('bebida'));
     }
 }

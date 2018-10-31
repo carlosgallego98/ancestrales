@@ -6,8 +6,9 @@ use App\Producto;
 $factory->define(Producto::class, function (Faker $faker) {
     return [
         'nombre' => $faker->sentence(3,true),
-        'precio' => $faker->randomNumber(6),
-        'descripcion' => $faker->text(70),
-        'id_proveedor' => $faker->numberBetween(1,20),
+        'url'=> str_slug($faker->sentence(3,true),'-'),
+        'precio' => $faker->randomNumber(5),
+        'descripcion' => $faker->realText(300),
+        'img_producto'=> 'bebidas-default.png',
     ];
 });

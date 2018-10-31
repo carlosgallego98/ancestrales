@@ -24,15 +24,9 @@ class RolesSeed extends Seeder
       $modificar_perfil = Permission::create(['name' => 'modificar perfil']);
       $comentar_prodicto = Permission::create(['name' => 'comentar en producto']);
 
-      $comprador = Role::create([
-         'name'=>'comprador'
-         ]);
+      $comprador = Role::create(['name'=>'comprador']);
 
-      $comprador->givePermissionTo(
-        $ordenar_producto,
-        $modificar_perfil,
-        $comentar_prodicto
-      );
+      $comprador->syncPermissions(['realizar ordenes','modificar perfil','comentar en producto']);
 
       $gerente = Role::create([
          'name'=>'gerente',

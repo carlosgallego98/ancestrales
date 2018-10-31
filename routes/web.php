@@ -104,7 +104,7 @@ Route::middleware(['auth:empleado,web','verified'])->group(
       Route::post('/actualizar-avatar', 'UserController@actualizar_avatar');
       Route::post('/actualizar-perfil/{user}', 'UserController@update');
       Route::get('/bebidas','HomeController@productos')->name('productos');
-      Route::get('/{producto}','HomeController@ver_bebida')->name('productos.detalles');
+      Route::get('/{bebida}','HomeController@ver_bebida')->name('productos.detalles');
   }
 );
 

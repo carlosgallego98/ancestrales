@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
         $this->call(RolesSeed::class);
         $this->call(EmpleadosSeed::class);
         $this->call(EstadoPedidosSeed::class);
-
         factory('App\MateriaPrima', 50)->create();
+        $this->call(ProductosSeed::class);
     }
 }

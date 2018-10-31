@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Storage;
+use Image;
 use Alert;
 use App\Producto;
 use Illuminate\Http\Request;
@@ -39,13 +40,19 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
+
       $data = $request->toArray();
+      $dir = str_slug($data["nombre"])."/";
 
       if($request->hasFile('img_producto')) {
                   $extension = $request->file('img_producto')->getClientOriginalExtension();
-                  $fileNameToStore = str_slug($data["nombre"]).'_'.time().'.'.$extension;
-                  $img = \Image::make($request->file('img_producto'))->fit(300);
-                  \Storage::disk('imagen_productos')->put($fileNameToStore, $img->stream('jpg',100));
+                  $fileNameToStore = time().'.'.$extension;
+                  $img_mini = Image::make($request->file('img_producto'))->fit(300);
+                  $img_full = Image::make($request->file('img_producto'))->resize(500,300);
+                  Storage::disk('imagen_productos')->put("{$dir}/mini_{$fileNameToStore}", $img_mini->stream('jpg',100));
+                  Storage::disk('imagen_productos')->put("{$dir}/full_{$fileNameToStore}", $img_full->stream('jpg',100));
+
+
         } else { $fileNameToStore = 'default.jpg';}
 
       $producto = Producto::create([

@@ -30,7 +30,7 @@
     @include('componentes.header')
 
     <!-- Contenido de la pagina -->
-    <div class="main">
+    <div class="main vh-100">
         @include('componentes.alert')
         @yield('contenido')
     </div>

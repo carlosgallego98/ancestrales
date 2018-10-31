@@ -84,6 +84,6 @@
 
 <script>
     $('#fechaNacimientoInput').inputmask('yyyy-mm-dd')
-    $('#cedulaInput').inputmask('9999999999',{ min: 8, max: 10, allowMinus: true })
+    $('#cedulaInput').inputmask('99999999[99]')
 </script>
 @endpush

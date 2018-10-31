@@ -58,9 +58,8 @@
             </ul>
         </div>
     </div>
-
+<!--
     @if (Request::is('*/*'))
-        <!-- Carrusel de Imagenes publicitarias y Anuncios de la página principal-->
     <div class="header-carrousel carousel slide" data-ride="carousel" id="header-carrousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
@@ -87,7 +86,7 @@
     @else
 
     @endif
-
+   --!>
     <!-- Barra de Navegacion Principal -->
     <nav class="navbar navbar-expand-lg bg-primary">
         <div class="container">
@@ -104,7 +103,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('productos')}}">
                           <i class="fa fa-cocktail"></i>
-                          Productos</span></a>
+                          Bebidas</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">

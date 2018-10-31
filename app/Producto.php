@@ -16,9 +16,16 @@ class Producto extends Model
     public function getRouteKeyName(){
         return "url";
     }
-    public function getImagenProducto(){
-      $directorio = \Storage::disk('imagen_productos')->getAdapter()->getPathPrefix();
-      return "{$directorio}{$this->img_producto}";
+    public function getImagenProducto($full = false){
+      $carpeta = "storage/subidas/imagen_producto";
+      $tamaño = ($full) ? "full_" : "mini_" ;
+      $existe = \Storage::disk('imagen_productos')->exists("{$this->url}/{$tamaño}{$this->img_producto}");
+      if ($existe) {
+        return "{$carpeta}/{$this->url}/{$tamaño}{$this->img_producto}";
+      }else{
+        return "{$carpeta}/{$this->img_producto}";
+      }
+
     }
     public function comentarios(){
         return $this->hasMany(Comentario::class);
