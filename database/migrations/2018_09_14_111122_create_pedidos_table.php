@@ -15,15 +15,16 @@ class CreatePedidosTable extends Migration
     {
         Schema::create('pedidos', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('codigo',6);
             $table->unsignedInteger('cantidad');
             $table->unsignedInteger('id_usuario');
-            $table->unsignedInteger('id_producto')->nullable();
             $table->unsignedInteger('id_estado');
-            $table->unsignedInteger('id_tipo');
+            $table->unsignedInteger('id_producto');
             $table->foreign('id_usuario')->references('id')->on('users');
-            $table->foreign('id_producto')->references('id')->on('productos');
             $table->foreign('id_estado')->references('id')->on('estado_pedidos');
+            $table->foreign('id_producto')->references('id')->on('productos');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

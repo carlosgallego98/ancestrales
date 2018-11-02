@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Auth;
 use Illuminate\Database\Eloquent\Model;
 
 class Producto extends Model
@@ -38,5 +39,11 @@ class Producto extends Model
     }
     public function materiales(){
       return $this->belongsToMany(MateriaPrima::class);
+    }
+    public function enPedido(){
+        return Pedido::
+        where('id_usuario','=',Auth::user()->id)
+      ->where('id_estado','!=',8)
+      ->where('id_producto','=',$this->id)->exists();
     }
 }

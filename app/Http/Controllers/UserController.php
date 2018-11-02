@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
 use App\User;
+use App\Pedido;
 use Storage;
 Use Image;
 use Auth;
@@ -20,7 +21,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('perfil.detalles');
+        $pedidos = Pedido::whereIdUsuario(Auth::user()->id)
+        ->limit(5)
+        ->get();
+        return view('perfil.detalles',compact("pedidos"));
     }
 
     public function actualizar_avatar(Request $request)

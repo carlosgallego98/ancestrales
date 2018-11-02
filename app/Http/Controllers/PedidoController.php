@@ -1,12 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Auth;
 use App\Pedido;
-use App\Proveedor;
-use App\PedidoProveedor;
+use App\EstadoPedido;
+use App\Producto;
 use Illuminate\Http\Request;
-use App\Mail\PedidoProveedorMail;
+use App\Mail\ConfirmacionPedido;
 use Illuminate\Support\Facades\Mail;
 
 class PedidoController extends Controller
@@ -26,8 +26,8 @@ class PedidoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(){
-        //
+    public function create(Producto $bebida){
+        return view('bebidas.realizar_pedido',compact("bebida"));
     }
 
     /**
@@ -37,7 +37,24 @@ class PedidoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request){
-        //
+        $data = $request->toArray();
+        
+        $codigo = str_random(6);
+        
+        if(Producto::find($data['id_bebida'])->enPedido()){
+            return "ALTO";
+        }else{         
+            $pedido = Pedido::create([
+                'codigo'      => $codigo,
+                'cantidad'    => $data['cantidad'],
+                'id_usuario'  => $data['id_comprador'],
+                'id_producto' => $data['id_bebida'],
+                'id_estado'   => 2,
+            ]);
+            $correo = new ConfirmacionPedido($pedido);
+            Mail::to(Auth::user()->email)->send( $correo );
+            return $correo; 
+        }
     }
 
     /**
@@ -47,16 +64,6 @@ class PedidoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Pedido $pedido){
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Pedido  $pedido
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Pedido $pedido){
         //
     }
 
@@ -81,56 +88,20 @@ class PedidoController extends Controller
         //
     }
 
-    public function datatable($tabla,$tipo = null){
-
-        switch ($tabla) {
-            case 'bebidas':
-
-            //Pedidos de Bebidas
-
-            break;
-
-            case 'materiales':
-            break;
-
-            default:
-                # code...
-                break;
+    public function confirmar(Pedido $pedido){
+        if(\Hash::check("h7pki2", '$2y$10$RGvtf/Y/7oR3BfBDvk4Vxuy6D.Y./bPJ/DhaG2pcJa7MT/dlpGQtK')){
+            return "SI";
+        }else{
+            return "No";
         }
+    }
 
-
-        return datatables()->of($pedidos)
-        ->editColumn('created_at',function($pedido){
-            return $pedido->created_at->format('Y-m-d');
-        })->toJson();
+    public function cancelar(Pedido $pedido){
 
     }
 
-    public function autorizar(PedidoProveedor $pedido_proveedor){
+    public function datatable(){
 
-        $proveedor = $pedido_proveedor->proveedor;
-        $material  = $pedido_proveedor->material;
-
-        $correo = new PedidoProveedorMail( $proveedor , $material );
-        Mail::to($proveedor->email)->send( $correo );
-
-        $pedido_proveedor->id_estado = 2;
-        $pedido_proveedor->save();
-
-        \Session::flash('alert-success', "Pedido enviado a {$proveedor->nombre}({$proveedor->email}).");
-
-        return redirect()->back();
-    }
-
-    public function por_confirmar(){
-
-        return view('admin.pedidos.confirmar');
-
-    }
-
-    public function en_camino(){
-
-        return view('admin.pedidos.camino');
 
     }
 }

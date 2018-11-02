@@ -14,10 +14,13 @@ class EstadoPedidosSeed extends Seeder
     public function run()
     {
         $estado_pedido = new EstadoPedido();
-
         $estado_pedido->nombre = "Sin Autorizar";
         $estado_pedido->save();
-        
+    
+        $estado_pedido = new EstadoPedido();
+        $estado_pedido->nombre = "Sin Confirmar";
+        $estado_pedido->save();
+
         $estado_pedido = new EstadoPedido();
         $estado_pedido->nombre = "Autorizado";
         $estado_pedido->save();

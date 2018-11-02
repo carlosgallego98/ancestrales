@@ -83,14 +83,32 @@ class PedidoProveedorController extends Controller
         //
     }
 
-    public function autorizar()
-    {
+    public function autorizar(PedidoProveedor $pedido_proveedor){
 
+        $proveedor = $pedido_proveedor->proveedor;
+        $material  = $pedido_proveedor->material;
+
+        $correo = new PedidoProveedorMail( $proveedor , $material );
+        Mail::to($proveedor->email)->send( $correo );
+
+        $pedido_proveedor->id_estado = 2;
+        $pedido_proveedor->save();
+
+        \Session::flash('alert-success', "Pedido enviado a {$proveedor->nombre}({$proveedor->email}).");
+
+        return redirect()->back();
     }
 
-    public function confirmar()
+    public function por_confirmar()
     {
-        
+
+        return view('admin.pedidos.confirmar');
+    }
+
+    public function en_camino()
+    {
+
+        return view('admin.pedidos.camino');
     }
 
     public function datatable()
