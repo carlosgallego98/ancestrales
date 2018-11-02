@@ -84,12 +84,6 @@ Route::group(['middleware'=> 'auth:empleado',],function(){
   Route::get('/pedidos-provedor','PedidoProveedorController@index')->name('pedidos.proveedores');
 });
 
-
-Route::get('/{hash}', function ($hash) {
-    $hash_link = 'h7pki2_$2y$10$RGvtf/Y/7oR3BfBDvk4Vxuy6D.Y./bPJ/DhaG2pcJa7MT/dlpGQtK';
-    return  $hash_split;
-});
-
 Route::middleware(['auth:empleado,web','verified'])->group(
   function () {
       Route::get('/perfil', 'UserController@index')->name('perfil');
