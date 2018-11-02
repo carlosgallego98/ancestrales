@@ -88,11 +88,22 @@ class PedidoController extends Controller
         //
     }
 
-    public function confirmar(Pedido $pedido){
-        if(\Hash::check("h7pki2", '$2y$10$RGvtf/Y/7oR3BfBDvk4Vxuy6D.Y./bPJ/DhaG2pcJa7MT/dlpGQtK')){
-            return "SI";
+    public function confirmar($pedido){
+        $hash_link = explode('%',$pedido);
+        $pedido = Pedido::whereCodigo($hash_link[1])->first();
+
+        $url_hash =base64_decode(strtr($hash_link[0], '-_', '+/'));
+        if(\Hash::check($hash_link[1],$url_hash) && $pedido->id_estado == 2){
+            $pedido->id_estado = 4;
+            $pedido->save();
+
+            \Session::flash('message', 'This is a message!'); 
+            \Session::flash('alert-class', 'alert-danger'); 
+            return route('inicio');
         }else{
-            return "No";
+            
+            return "Nada de Nada";
+        
         }
     }
 

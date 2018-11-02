@@ -29,7 +29,9 @@ class ConfirmacionPedido extends Mailable
      * @return $this
      */
     public function build()
-    {
+    {  
+        $hash_link = rtrim(strtr(base64_encode(\Hash::make($this->pedido->codigo)), '+/', '-_'), '=');
+
         return $this
         ->markdown('mails.pedidos.confirmacion_pedido')
         ->subject("Has realizado un nuevo Pedido")
@@ -37,7 +39,7 @@ class ConfirmacionPedido extends Mailable
         ->with([
             'nombre_producto'=> $this->pedido->producto->nombre,
             'nombre_comprador' => $this->pedido->comprador->nombre_completo(),
-            'codigo_pedido' => $this->pedido->codigo,
+            'codigo_pedido' => "{$hash_link}%{$this->pedido->codigo}",
             'candidad_producto' => $this->pedido->cantidad,
         ]);
     }
