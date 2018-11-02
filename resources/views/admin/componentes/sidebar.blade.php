@@ -63,7 +63,10 @@
 
 @case('produccion')
 <li class="header">Area de Produccion</li>
-
+<li class=""><a href="#">
+                <i class="fa fa-link"></i>
+                <span>Elaboracion de Producto</span></a>
+        </li>
 @break
 
 @case('despacho')

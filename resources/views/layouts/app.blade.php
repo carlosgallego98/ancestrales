@@ -31,7 +31,13 @@
 
     <!-- Contenido de la pagina -->
     <div class="main vh-100">
-        @include('componentes.alert')
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 mx-auto">
+                    @include('componentes.alert')
+                </div>
+            </div>
+        </div>
         @yield('contenido')
     </div>
     <!-- Contenido de la pagina -->

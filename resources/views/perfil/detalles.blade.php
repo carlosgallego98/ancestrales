@@ -56,19 +56,19 @@
                 <table class="table table-sm table-hover text-center">
                     <thead>
                         <tr>
-                            <th>Codigo</th>
                             <th>Bebida</th>
                             <th>Estado</th>
                             <th>Fecha</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($pedidos as $pedido)
                         <tr>
-                            <td><a href="#" title="Detalles del Pedido">{{$pedido->codigo}}</a></td>
                             <td><a href="{{route('productos.detalles',$pedido->producto)}}" title="Detalles de la bebida">{{$pedido->producto->nombre}}</a></td>
                             <td>{{$pedido->estado->nombre}}</td>
                             <td>{{$pedido->created_at}}</td>
+                            <td><a href="#" title="Detalles del Pedido">Detalles</a></td>
                         </tr>
                         @endforeach
                     </tbody>

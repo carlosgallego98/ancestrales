@@ -53,7 +53,10 @@ class PedidoController extends Controller
             ]);
             $correo = new ConfirmacionPedido($pedido);
             Mail::to(Auth::user()->email)->send( $correo );
-            return $correo; 
+
+            \Session::flash('message', 'Pedido Ralizado, mira tu correo electrónico'); 
+            \Session::flash('alert-class', 'alert-success'); 
+            return redirect()->route('inicio'); 
         }
     }
 
@@ -93,16 +96,23 @@ class PedidoController extends Controller
         $pedido = Pedido::whereCodigo($hash_link[1])->first();
 
         $url_hash =base64_decode(strtr($hash_link[0], '-_', '+/'));
-        if(\Hash::check($hash_link[1],$url_hash) && $pedido->id_estado == 2){
-            $pedido->id_estado = 4;
-            $pedido->save();
-
-            \Session::flash('message', 'This is a message!'); 
-            \Session::flash('alert-class', 'alert-danger'); 
-            return route('inicio');
+        if(\Hash::check($hash_link[1],$url_hash)){
+            if($pedido->id_estado == 2){
+                $pedido->id_estado = 4;
+                $pedido->save();
+    
+                \Session::flash('message', 'Pedido Confirmado!'); 
+                \Session::flash('alert-class', 'alert-success'); 
+                return redirect()->route('inicio');
+            }else{
+                \Session::flash('message', 'Este pedido ya se encuentra confirmado'); 
+                \Session::flash('alert-class', 'alert-error'); 
+                return redirect()->route('inicio');
+            }
         }else{
-            
-            return "Nada de Nada";
+            \Session::flash('message', 'URL No válida'); 
+            \Session::flash('alert-class', 'alert-error'); 
+            return redirect()->route('inicio');
         
         }
     }
