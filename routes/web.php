@@ -87,7 +87,6 @@ Route::group(['middleware'=> 'auth:empleado',],function(){
 
 Route::get('/{hash}', function ($hash) {
     $hash_link = 'h7pki2_$2y$10$RGvtf/Y/7oR3BfBDvk4Vxuy6D.Y./bPJ/DhaG2pcJa7MT/dlpGQtK';
-    $hash_split = str_strip($hash_link);
     return  $hash_split;
 });
 
