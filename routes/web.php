@@ -15,7 +15,7 @@ Route::group(['namespace'=> 'Admin'], function () {
 });
 
 Route::group(['middleware' => ['auth:empleado','role:gerente']], function () {
-       
+
     Route::group(['namespace'=> 'Admin'], function () {
             Route::get('/gerente', 'GerenteController@gerente')->name('gerente');
             Route::get('estadisticas/ventas', 'GerenteController@estadisticas_ventas')->name('estadisticas.ventas');
@@ -77,11 +77,12 @@ Route::group(
 );
 
 Route::group(['middleware'=> 'auth:empleado',],function(){
+  Route::get('/pedidos-provedor','PedidoProveedorController@index')->name('pedidos.proveedores');
+  Route::get('/pedidos-bebidas','PedidoController@index')->name('pedidos.bebidas');
   Route::get('/inventario/productos','ProductoController@index')->name('inventario.productos');
   Route::get('/inventario/productos/registrar','ProductoController@create')->name('inventario.productos.registrar');
   Route::get('/inventario/productos/{producto}/detalles','ProductoController@show')->name('inventario.productos.detalles');
   Route::post('/inventario/productos/registrar','ProductoController@store');
-  Route::get('/pedidos-provedor','PedidoProveedorController@index')->name('pedidos.proveedores');
 });
 
 Route::middleware(['auth:empleado,web','verified'])->group(

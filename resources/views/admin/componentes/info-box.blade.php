@@ -1,5 +1,4 @@
     @if (@$t == 1)
-    <div class="col-sm-6 col-md-{{@$tamaño ? $tamaño : '3'}} {{@$class}}">
       <div class="small-box bg-{{$color}}">
               <div class="inner">
                 <h3>{{$numero}}</h3>
@@ -12,9 +11,7 @@
                 Ver más <i class="fa fa-arrow-circle-right"></i>
               </a>
             </div>
-    </div>
     @else
-    <div class="col-sm-6 col-md-{{@$tamaño ? $tamaño : '3'}} {{@$class}}">
     <div class="info-box">
         <span class="info-box-icon bg-{{$color}}"><i class="fa fa-{{$icono}}"></i></span>
 
@@ -24,5 +21,4 @@
         </div>
         <!-- /.info-box-content -->
       </div>
-    </div>
     @endif

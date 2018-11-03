@@ -18,7 +18,7 @@ class PedidoController extends Controller
      */
 
     public function index(){
-        //
+        return View('admin.pedidos.bebidas');
     }
 
     /**
@@ -38,12 +38,12 @@ class PedidoController extends Controller
      */
     public function store(Request $request){
         $data = $request->toArray();
-        
+
         $codigo = str_random(6);
-        
+
         if(Producto::find($data['id_bebida'])->enPedido()){
             return "ALTO";
-        }else{         
+        }else{
             $pedido = Pedido::create([
                 'codigo'      => $codigo,
                 'cantidad'    => $data['cantidad'],
@@ -54,9 +54,9 @@ class PedidoController extends Controller
             $correo = new ConfirmacionPedido($pedido);
             Mail::to(Auth::user()->email)->send( $correo );
 
-            \Session::flash('message', 'Pedido Ralizado, mira tu correo electrónico'); 
-            \Session::flash('alert-class', 'alert-success'); 
-            return redirect()->route('inicio'); 
+            \Session::flash('message', 'Pedido Ralizado, mira tu correo electrónico');
+            \Session::flash('alert-class', 'alert-success');
+            return redirect()->route('inicio');
         }
     }
 
@@ -100,20 +100,20 @@ class PedidoController extends Controller
             if($pedido->id_estado == 2){
                 $pedido->id_estado = 4;
                 $pedido->save();
-    
-                \Session::flash('message', 'Pedido Confirmado!'); 
-                \Session::flash('alert-class', 'alert-success'); 
+
+                \Session::flash('message', 'Pedido Confirmado!');
+                \Session::flash('alert-class', 'alert-success');
                 return redirect()->route('inicio');
             }else{
-                \Session::flash('message', 'Este pedido ya se encuentra confirmado'); 
-                \Session::flash('alert-class', 'alert-error'); 
+                \Session::flash('message', 'Este pedido ya se encuentra confirmado');
+                \Session::flash('alert-class', 'alert-error');
                 return redirect()->route('inicio');
             }
         }else{
-            \Session::flash('message', 'URL No válida'); 
-            \Session::flash('alert-class', 'alert-error'); 
+            \Session::flash('message', 'URL No válida');
+            \Session::flash('alert-class', 'alert-error');
             return redirect()->route('inicio');
-        
+
         }
     }
 
