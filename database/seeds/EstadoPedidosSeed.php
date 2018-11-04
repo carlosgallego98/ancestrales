@@ -30,7 +30,7 @@ class EstadoPedidosSeed extends Seeder
         $estado_pedido->save();
         
         $estado_pedido = new EstadoPedido();
-        $estado_pedido->nombre = "Fabricando";
+        $estado_pedido->nombre = "Fabricado";
         $estado_pedido->save();
         
         $estado_pedido = new EstadoPedido();

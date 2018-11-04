@@ -1,13 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Auth;
 use App\Pedido;
-use App\EstadoPedido;
 use App\Producto;
+use App\Empleado;
+use App\EstadoPedido;
 use Illuminate\Http\Request;
 use App\Mail\ConfirmacionPedido;
 use Illuminate\Support\Facades\Mail;
+use App\Notifications\ElaboracionBebida;
 
 class PedidoController extends Controller
 {
@@ -67,7 +70,7 @@ class PedidoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Pedido $pedido){
-        //
+        return view('admin.pedidos.detalles',compact('pedido'));
     }
 
     /**
@@ -100,6 +103,11 @@ class PedidoController extends Controller
             if($pedido->id_estado == 2){
                 $pedido->id_estado = 4;
                 $pedido->save();
+
+                $empleados_produccion = Empleado::role("produccion")->get();
+                  foreach ($empleados_produccion as $user) {
+                    $user->notify(new ElaboracionBebida($pedido));
+                }
 
                 \Session::flash('message', 'Pedido Confirmado!');
                 \Session::flash('alert-class', 'alert-success');

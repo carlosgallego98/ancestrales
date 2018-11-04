@@ -42,6 +42,7 @@ public function run()
     'email' => 'gallegomosquerajeancarlos@gmail.com',
     'nombre_usuario' => 'gallegomosquerajeancarlos',
     'genero' => 'f',
+    'direccion' => 'KRA 65 #11a 89',
     'fecha_nacimiento' => '1998-02-10',
     'password' => '$2y$12$pIoh14cDGoGLQQXiHie2vex642lw/e1kMR3mc.VyWPY4pemOcZeOS',//gerentecl
     'email_verified_at' => date('Y-m-d'),

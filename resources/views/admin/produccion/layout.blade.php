@@ -53,8 +53,7 @@
             <div class="navbar-custom-menu">
 
               <ul class="nav navbar-nav">
-
-                <!-- Barra de notificaciones -->
+                @include('admin.produccion.componentes.notificaciones')
 
                 <li>
                   <a href="#">

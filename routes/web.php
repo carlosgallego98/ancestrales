@@ -34,6 +34,9 @@ Route::group(['middleware' => ['auth:empleado','role:gerente']], function () {
 Route::group(['middleware' => ['auth:empleado','role:produccion']], function () {
         Route::group(['namespace'=> 'Admin'], function () {
             Route::get('/area-produccion', 'ProduccionController@produccion')->name('produccion');
+            Route::get('{pedido}/elaboracion','ProduccionController@FormElaboracion')->name('pedido.elaboracion');
+            Route::post('{pedido}/elaboracion','ProduccionController@ProductoElaborado')->name('pedido.elaborado');
+            Route::post('/registrar-elaboracion','ProduccionController@RedirectElaboracion');
         });
     }
 );
@@ -57,9 +60,7 @@ Route::group(['namespace'=> 'Admin','middleware' => ['auth:empleado','role:despa
   }
 );
 
-Route::group(
-  ['middleware' => ['auth:proveedor','role:proveedor']],
-  function () {
+Route::group(['middleware' => ['auth:proveedor','role:proveedor']],function () {
       Route::group(['namespace'=> 'Admin',], function () {
           Route::get('/proveedores', 'ProveedorController@proveedor')->name('proveedor');
       });
@@ -68,21 +69,25 @@ Route::group(
   }
 );
 
-Route::group(
-  ['namespace'=> 'Admin',
-   'middleware' => ['auth:empleado','role:relaciones_publicas']],
-  function () {
+Route::group(['namespace'=> 'Admin', 'middleware' => ['auth:empleado','role:relaciones_publicas']],function () {
       Route::get('/relaciones-publicas', 'RelacionesController@relaciones')->name('relaciones');
   }
 );
 
 Route::group(['middleware'=> 'auth:empleado',],function(){
+  Route::get('/notificaciones','NotificacionController@notificaciones')->name('user.notificaciones');
+  Route::post('/notificaciones/marcar-todo','NotificacionController@marcarLedido');
+
   Route::get('/pedidos-provedor','PedidoProveedorController@index')->name('pedidos.proveedores');
   Route::get('/pedidos-bebidas','PedidoController@index')->name('pedidos.bebidas');
+  Route::get('/pedidos-bebidas/{pedido}/detalles','PedidoController@show')->name('pedidos.bebidas.detalles');
+
   Route::get('/inventario/productos','ProductoController@index')->name('inventario.productos');
   Route::get('/inventario/productos/registrar','ProductoController@create')->name('inventario.productos.registrar');
   Route::get('/inventario/productos/{producto}/detalles','ProductoController@show')->name('inventario.productos.detalles');
   Route::post('/inventario/productos/registrar','ProductoController@store');
+
+
 });
 
 Route::middleware(['auth:empleado,web','verified'])->group(
@@ -99,9 +104,7 @@ Route::middleware(['auth:empleado,web','verified'])->group(
     }
 );
 
-Route::group(
-    ['prefix'=> 'datatables'],
-  function () {
+Route::group(['prefix'=> 'datatables'],function () {
       Route::get('users', 'UserController@datatable');
       Route::get('empleados', 'EmpleadoController@datatable');
       Route::get('pedidos/proveedores', 'PedidoProveedorController@datatable');

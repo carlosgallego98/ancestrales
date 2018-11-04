@@ -8,11 +8,31 @@
     {{-- Cajas de Informacion --}}
 
     <div class="col-md-4">
+      <div class="box box-info">
+        <div class="box-body text-center">
+          <label>Registrar Elaboracion de Bebida</label>
+          <form action="{{url('/registrar-elaboracion')}}" method="post">
+             @csrf
+            <div class="form-group">
+              <input class="form-control"
+                     type="text"
+                     name="codigo_pedido"
+                     placeholder="Codigo del Pedido">
+            </div>
+            <div class="form-group">
+              <input type="submit"
+                     value="Continuar"
+                     class="btn btn-success btn-block">
+            </div>
+          </form>
+        </div>
+      </div>
+
             @component('admin.componentes.info-box')
                 @slot('color','green')
                 @slot('icono','shopping-cart')
                 @slot('titulo','Pedidos')
-                @slot('numero',count($pedidos))
+                @slot('numero',$count_pedidos)
             @endcomponent
 
             @component('admin.componentes.info-box')
@@ -49,7 +69,17 @@
                       <tr>
                         <td><a href="#" class="text-uppercase">{{$pedido->codigo}}</a></td>
                       <td>{{$pedido->producto->nombre}}</td>
-                        <td><span class="label label-success">{{$pedido->estado->nombre}}</span></td>
+                        <td>
+                          @switch($pedido->estado->nombre)
+                            @case('Confirmado')
+                              <span class="label label-success">Confirmado</span>
+                            @break
+
+                            @case('Sin Confirmar')
+                              <span class="label label-warning">Sin Confirmar</span>
+                            @break
+                          @endswitch
+                        </td>
                       </tr>
                       @empty
                         <tr style="text-align: center;">

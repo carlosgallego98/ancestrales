@@ -8,7 +8,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 class Empleado extends Authenticatable
 {
-    use Notifiable;
+  use Notifiable;
     use HasRoles;
 
     protected $guard_name = "empleado";
