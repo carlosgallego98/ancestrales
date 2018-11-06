@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\OrdenEntrega;
 use App\MateriaPrima;
 use App\PedidoProveedor;
 use Illuminate\Http\Request;
@@ -12,7 +13,7 @@ class AlmacenamientoController extends Controller
     public function almacenamiento()
     {
         $pedidos = PedidoProveedor::paginate(10);
-
+        $ordenes_entrega = OrdenEntrega::all();
         $count_materiales = count(MateriaPrima::all());
         $count_pedidos = count($pedidos);
 
@@ -29,7 +30,8 @@ class AlmacenamientoController extends Controller
             'pedidos',
             'count_materiales',
             'count_pedidos',
-            'materiales_criticos'
+            'materiales_criticos',
+            'ordenes_entrega'
         )
       );
     }

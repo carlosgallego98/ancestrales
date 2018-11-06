@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Session;
+use App\OrdenEntrega;
 use App\Pedido;
 use App\Proveedor;
 use App\PedidoProveedor;
@@ -21,7 +22,7 @@ class ProduccionController extends Controller
 
     $count_materiales = count(MateriaPrima::all());
     $count_pedidos = count(Pedido::all());
-    
+
     return view('admin.produccion.panel', compact('pedidos','count_materiales','count_pedidos'));
   }
 
@@ -42,17 +43,18 @@ class ProduccionController extends Controller
     $pedido->id_estado = 5;
 
     if($pedido->save()){
-
       foreach($pedido->producto->materiales as $material){
-
         $material->decrement('cantidad',$data[$material->id]);
-        $material->save();      
-      }
+        $material->save();
+      };
+
+      OrdenEntrega::create([
+        'id_pedido'=> $pedido->id,
+      ]);
 
       Session::flash('message', 'Elaboracion registrada, Orden de entrega enviada.');
       Session::flash('alert-class', 'alert-success');
       return redirect()->route('produccion');
-
     }
 
   }

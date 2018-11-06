@@ -33,7 +33,7 @@ public function run()
        'password' => '$2y$12$pIoh14cDGoGLQQXiHie2vex642lw/e1kMR3mc.VyWPY4pemOcZeOS',//gerentecl
        'email_verified_at' => date('Y-m-d'),
    ]);
-   $gerente->syncRoles('gerente','produccion','almacenamiento');
+   $gerente->syncRoles('gerente','produccion','almacenamiento','despacho');
 
    $comprador = User::create([
     'nombres' => 'Jean Carlos',
@@ -47,7 +47,7 @@ public function run()
     'password' => '$2y$12$pIoh14cDGoGLQQXiHie2vex642lw/e1kMR3mc.VyWPY4pemOcZeOS',//gerentecl
     'email_verified_at' => date('Y-m-d'),
     ]);
-    
+
     $comprador->assignRole(Role::find(1));
 
    $faker = \Faker\Factory::create('es_MX');

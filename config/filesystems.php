@@ -62,6 +62,13 @@ return [
             'visibility' => 'public',
         ],
 
+        'empresas_trasnporte' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/subidas/empresas_trasnporte'),
+            'url' => env('APP_URL').'/subidas/empresas_trasnporte',
+            'visibility' => 'public',
+        ],
+
         'imagen_productos' => [
             'driver' => 'local',
             'root' => storage_path('app/public/subidas/imagen_producto'),
