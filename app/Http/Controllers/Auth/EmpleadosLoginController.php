@@ -22,13 +22,13 @@ class EmpleadosLoginController extends Controller
     public function login(Request $request)
     {
     	$this->validate($request,[
-    		'nombre_usuario' =>'required',
+    		'cedula' =>'required',
     		'password' => 'required|min:5'
         ]);
         
-    	if (Auth::guard('empleado')->attempt(['nombre_usuario' => $request->nombre_usuario,'password' => $request->password])){
+    	if (Auth::guard('empleado')->attempt(['cedula' => $request->cedula,'password' => $request->password])){
     		return redirect()->intended(route('panel'));
         }
-    	return redirect()->back()->withInput($request->only('nombre_usuario','remember'));
+    	return redirect()->back()->withInput($request->only('cedula','remember'));
     }
 }

@@ -6,15 +6,19 @@
 <div class="col-md-12 col-lg-6 col-sm-12">
     <form class="card" method="POST" action="{{ route('login') }}">
         @csrf
-        <div class="text-center p-3">
-            <div class="login-logo">
-                <a href="{{ route('inicio') }}" title="Ir al Inicio">
-                    <img src="./img/logo.png" alt="Bebidas Típicas Cristina Lozano">
-                </a>
+        <div class="text-center p-3 px-5 row">
+            <div class="col-md-6">
+                <div class="login-logo">
+                    <a href="{{ route('inicio') }}" title="Ir al Inicio">
+                        <img src="./img/logo.png" alt="Bebidas Típicas Cristina Lozano">
+                    </a>
+                </div>
             </div>
-            <h3 class="h3-responsive font-weight-bold ">
-                Iniciar Sesión
-            </h3>
+            <div class="col-md-6 pt-5">
+                <h3 class="h3-responsive font-weight-bold ">
+                    Iniciar Sesión
+                </h3>
+            </div>
         </div>
         @if ($errors->any())
         <div class="alert alert-danger text-center">
@@ -27,7 +31,7 @@
 
             <div class="px-sm-5">
                 <div class="md-form">
-                    <label for="correo">Nombre de USuario</label>
+                    <label for="correo">Nombre de Usuario</label>
                     <input type="text" class="form-control" id="nombre_usuario" name="nombre_usuario" aria-describedby="emailHelp"
                         required autofocus>
                     <small class="text-muted float-right" id="emailHelp"></small>

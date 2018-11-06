@@ -4,14 +4,19 @@
 <div class="col-md-6">
     <form method="POST" class="card" action="{{ route('register') }}">
         @csrf
-        <div class="text-center">
-            <div class="login-logo">
-                <a href="{{ route('inicio') }}" title="Ir al Inicio">
-                    <img src="./img/logo.png" alt="Bebidas Típicas Cristina Lozano">
-                </a> </div>
-            <h3 class="h3-responsive font-weight-bold">
-                Registro
-            </h3>
+        <div class="text-center p-3 px-5 row">
+            <div class="col-md-6">
+                <div class="login-logo">
+                    <a href="{{ route('inicio') }}" title="Ir al Inicio">
+                        <img src="./img/logo.png" alt="Bebidas Típicas Cristina Lozano">
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-6 pt-5">
+                <h3 class="h3-responsive font-weight-bold ">
+                    Registro
+                </h3>
+            </div>
         </div>
         @if ($errors->any())
         <div class="alert alert-danger text-center">
@@ -37,17 +42,26 @@
                 </div>
             </div>
             <div class="form-row">
-                <div class="md-form col-md-8">
+                <div class="md-form col-md-6">
                     <label for="correo">Correo Electrónico</label>
                     <input type="email" name="email" id="email" class="form-control" required value="{{ old('email') }}">
                 </div>
-                <div class="md-form col-md-4">
+                <div class="md-form col-md-6">
                     <label for="cedula" data-toggle="tooltip" data-placement="right" title="Cédula de Ciudadania o Extranjera">Cédula
                         (CC o CE)</label>
                     <input type="text" class="form-control" name="cedula" id="cedula">
                 </div>
             </div>
-
+            <div class="form-row">
+                <div class="md-form col-md-6">
+                    <label for="no_teléfono">Número de Teléfono</label>
+                    <input type="text" name="no_teléfono" id="no_teléfono" class="form-control" required value="{{ old('no_teléfono') }}">
+                </div>
+                <div class="md-form col-md-6">
+                    <label for="direccion">Direccion</label>
+                    <input type="text" class="form-control" name="direccion" id="direccion">
+                </div>
+            </div>
             <div class="form-row">
                 <div class="md-form col-md-6">
                     <label for="password">Contraseña</label>
@@ -60,7 +74,7 @@
                 </div>
             </div>
             <div class="form-row">
-                <div class="col-md-7 py-md-4 text-center">
+                <div class="col-md-6 py-md-4 text-center">
                     <div class="custom-control custom-radio custom-control-inline">
                         <input type="radio" class="custom-control-input" id="hombre" name="genero" value="m">
                         <label class="custom-control-label" for="hombre">Hombre</label>
@@ -70,7 +84,7 @@
                         <label class="custom-control-label" for="mmujer">Mujer</label>
                     </div>
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-6">
                     <div class="md-form">
                         <label for="fecha_nacimiento">Fecha Nacimiento</label>
                         <input data-date-format="yyyy-mm-dd" type="text" name="fecha_nacimiento" id="fecha_nacimiento"
@@ -87,14 +101,10 @@
 </div>
 @endsection
 @push('styles')
-<link rel="stylesheet" href="./vendor/bootstrap-datepicker/css/bootstrap-datepicker3.min.css">
 @endpush @push('scripts')
-<script src="./vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
-<script src="./vendor/bootstrap-datepicker/locales/bootstrap-datepicker.es.min.js"></script>
-<script>
-    $('#fecha_nacimiento').datepicker({});
-    $('[data-toggle="tooltip"]').tooltip()
 
+<script>
+    $('[data-toggle="tooltip"]').tooltip()
 </script>
 
 
