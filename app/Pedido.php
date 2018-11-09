@@ -19,17 +19,21 @@ class Pedido extends Model
 
     protected $dates = ['deleted_at'];
 
-    public function getRouteKeyName(){
-      return "codigo";
+    public function getRouteKeyName()
+    {
+        return "codigo";
     }
 
-    public function comprador(){
-        return $this->belongsTo(User::class,'id_usuario');
+    public function comprador()
+    {
+        return $this->belongsTo(User::class, 'id_usuario');
     }
-    public function producto(){
-        return $this->belongsTo(Producto::class,'id_producto');
+    public function producto()
+    {
+        return $this->belongsTo(Producto::class, 'id_producto');
     }
-    public function estado(){
-        return $this->hasOne(EstadoPedido::class,'id','id_estado');
+    public function estado()
+    {
+        return $this->hasOne(EstadoPedido::class, 'id', 'id_estado');
     }
 }

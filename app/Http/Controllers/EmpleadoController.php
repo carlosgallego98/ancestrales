@@ -109,11 +109,11 @@ class EmpleadoController extends Controller
      */
     public function update(Request $request, Empleado $empleado)
     {
-        $user->nombres = $request['nombres'];
-        $user->apellidos = $request['apellidos'];
-        $user->email = $request['email'];
-        $user->direccion = $request['direccion'];
-        $user->save();
+        $empleado->nombres = $request['nombres'];
+        $empleado->apellidos = $request['apellidos'];
+        $empleado->email = $request['email'];
+        $empleado->direccion = $request['direccion'];
+        $empleado->save();
 
         $request->session()->flash('alert-success', 'Datos Actualizados!');
         return redirect()->back();

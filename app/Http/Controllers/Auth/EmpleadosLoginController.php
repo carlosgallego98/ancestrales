@@ -13,7 +13,7 @@ class EmpleadosLoginController extends Controller
     {
         $this->middleware('guest');
     }
-    
+
     public function showLoginForm()
     {
         return view('auth.empleados');
@@ -25,7 +25,7 @@ class EmpleadosLoginController extends Controller
     		'cedula' =>'required',
     		'password' => 'required|min:5'
         ]);
-        
+
     	if (Auth::guard('empleado')->attempt(['cedula' => $request->cedula,'password' => $request->password])){
     		return redirect()->intended(route('panel'));
         }
