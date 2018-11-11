@@ -7,5 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class EmpresaTransporte extends Model
 {
     protected $table = "empresas_transporte";
-    protected $fillable = ['nombre','correo','numero_teléfono','img_empresa'];
+    protected $fillable = [
+        'nombre',
+        'direccion',
+        'correo',
+        'numero_teléfono',
+        'img_empresa'
+    ];
 }

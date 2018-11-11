@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
+use App\EmpresaTransporte;
 
 class PanelController extends Controller
 {
@@ -46,5 +47,9 @@ class PanelController extends Controller
         }else{
           return redirect("/login/empresa");
         }
+      }
+
+      public function empresasTransporte(EmpresaTransporte $empresa){
+        return $empresa->toJson();
       }
 }

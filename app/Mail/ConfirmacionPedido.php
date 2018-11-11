@@ -39,7 +39,7 @@ class ConfirmacionPedido extends Mailable
         ->with([
             'nombre_producto'=> $this->pedido->producto->nombre,
             'nombre_comprador' => $this->pedido->comprador->nombre_completo(),
-            'codigo_pedido' => "{$hash_link}%{$this->pedido->codigo}",
+            'codigo_pedido' => "{$hash_link}_{$this->pedido->codigo}",
             'candidad_producto' => $this->pedido->cantidad,
         ]);
     }

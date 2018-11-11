@@ -17,6 +17,7 @@ class CreateEmpresasTransporteTable extends Migration
             $table->increments('id');
             $table->string('nombre');
             $table->string('correo');
+            $table->string('direccion');
             $table->string('numero_teléfono');
             $table->string('img_empresa');
             $table->timestamps();

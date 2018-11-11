@@ -95,7 +95,7 @@ class PedidoController extends Controller
     }
 
     public function confirmar($pedido){
-        $hash_link = explode('%',$pedido);
+        $hash_link = explode('_',$pedido);
         $pedido = Pedido::whereCodigo($hash_link[1])->first();
 
         $url_hash =base64_decode(strtr($hash_link[0], '-_', '+/'));
@@ -127,6 +127,12 @@ class PedidoController extends Controller
 
     public function cancelar(Pedido $pedido){
 
+    }
+
+    public function enviar(Pedido $pedido, Request $request)
+    {
+      $data = $request->toArray();
+      return $data;
     }
 
     public function datatable(){

@@ -53,9 +53,12 @@ Route::group(['middleware' => 'auth:empleado', 'role:almacenamiento'], function 
     Route::get('/materia-prima/{tipo}', 'MateriaPrimaController@index')->name('materia_prima');
 });
 
-Route::group(['namespace' => 'Admin', 'middleware' => ['auth:empleado', 'role:despacho']], function () {
-    Route::get('/area-despacho', 'DespachoController@despacho')->name('despacho');
-    Route::get('/preparar-envio/{pedido}', 'DespachoController@prepararEnvio')->name('preparar.envio');
+Route::group(['middleware' => ['auth:empleado', 'role:despacho']], function () {
+    Route::group(['namespace' => 'Admin'],function(){
+        Route::get('/area-despacho', 'DespachoController@despacho')->name('despacho');
+        Route::get('/preparar-envio/{pedido}', 'DespachoController@prepararEnvio')->name('preparar.envio');
+    });
+    Route::post('/enviar-pedido/{pedido}','PedidoController@enviar')->name('pedido.enviar');
 });
 
 Route::group(['middleware' => ['auth:proveedor', 'role:proveedor']], function () {
@@ -86,7 +89,7 @@ Route::group(['middleware' => 'auth:empleado', ], function () {
 
 });
 
-Route::middleware(['auth:empleado,web', 'verified'])->group(function () {
+Route::middleware(['auth:empleado', 'verified'])->group(function () {
         Route::get('/perfil', 'UserController@index')->name('perfil');
         Route::post('/actualizar-avatar', 'UserController@actualizar_avatar');
         Route::post('/actualizar-perfil/{user}', 'UserController@update');
@@ -95,6 +98,7 @@ Route::middleware(['auth:empleado,web', 'verified'])->group(function () {
         Route::get('/bebida/{bebida}/pedido', 'PedidoController@create')->name('productos.pedido');
         Route::get('/bebida/{pedido}/confirmar', 'PedidoController@confirmar');
         Route::get('/bebida/{pedido}/cancelar', 'PedidoController@destroy');
+        Route::get('/empresa-transporte/{empresa}','Admin\PanelController@empresasTransporte');
         Route::post('/bebida/pedido', 'PedidoController@store')->name('productos.pedido.realizar');
     }
 );

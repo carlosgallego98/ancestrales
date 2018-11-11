@@ -53,8 +53,6 @@
             <div class="navbar-custom-menu">
 
               <ul class="nav navbar-nav">
-                @include('admin.produccion.componentes.notificaciones')
-
                 <li>
                   <a href="#">
                     <img src="{{auth()->user()->avatar()}}" class="user-image" alt="User Image"
