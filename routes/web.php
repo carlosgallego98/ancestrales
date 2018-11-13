@@ -89,20 +89,21 @@ Route::group(['middleware' => 'auth:empleado', ], function () {
 
 });
 
-Route::middleware(['auth:empleado', 'verified'])->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/perfil', 'UserController@index')->name('perfil');
-        Route::post('/actualizar-avatar', 'UserController@actualizar_avatar');
-        Route::post('/actualizar-perfil/{user}', 'UserController@update');
         Route::get('/bebidas', 'HomeController@productos')->name('productos');
         Route::get('/{bebida}', 'HomeController@ver_bebida')->name('productos.detalles');
+        Route::get('/pedidos/{pedido}/detalles','PedidoController@show')->name('pedidos.detalles');
         Route::get('/bebida/{bebida}/pedido', 'PedidoController@create')->name('productos.pedido');
         Route::get('/bebida/{pedido}/confirmar', 'PedidoController@confirmar');
         Route::get('/bebida/{pedido}/cancelar', 'PedidoController@destroy');
-        Route::get('/empresa-transporte/{empresa}','Admin\PanelController@empresasTransporte');
+        Route::post('/actualizar-avatar', 'UserController@actualizar_avatar');
+        Route::post('/actualizar-perfil/{user}', 'UserController@update');
         Route::post('/bebida/pedido', 'PedidoController@store')->name('productos.pedido.realizar');
     }
 );
 
+Route::get('/empresa-transporte/{empresa}','Admin\PanelController@empresasTransporte');
 Route::group(['prefix' => 'datatables'], function () {
     Route::get('users', 'UserController@datatable');
     Route::get('empleados', 'EmpleadoController@datatable');

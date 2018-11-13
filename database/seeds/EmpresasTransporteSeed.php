@@ -34,20 +34,20 @@ class EmpresasTransporteSeed extends Seeder
           'direccion' => 'AV. 20 DE NOVIEMBRE NO 1540',
           'correo' => 'contacto.transporte@servientrega.org',
           'numero_teléfono' => '+57 2445894',
-          'img_empresa' => 'servientrega_logo.jpg']);
+          'img_empresa' => '/img/empresas_transporte/servientrega_logo.jpg']);
 
         EmpresaTransporte::create(
           ['nombre' => 'Envia',
           'direccion' => ' 	CALLE MATAMOROS NO. 127',
           'correo' => 'envia_contacto@enviatrasportes.com',
           'numero_teléfono' => '+57 2446873',
-          'img_empresa' => 'envia_entrega_logo.jpg']);
+          'img_empresa' => '/img/empresas_transporte/envia_entrega_logo.jpg']);
 
         EmpresaTransporte::create(
           ['nombre' => 'Deprisa',
           'direccion' => ' 	CAMINO LOMA ALTA NO. 1000',
           'correo' => 'deprisa@contactodeprisa.com',
           'numero_teléfono' => '+57 2446398',
-          'img_empresa' => 'deprisa_logo.jpg']);
+          'img_empresa' => '/img/empresas_transporte/deprisa_logo.jpg']);
     }
 }

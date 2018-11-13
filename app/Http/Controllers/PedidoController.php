@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use App\Mail\ConfirmacionPedido;
 use Illuminate\Support\Facades\Mail;
 use App\Notifications\ElaboracionBebida;
+use App\Envio;
+use App\Notifications\PedidoEnviado;
 
 class PedidoController extends Controller
 {
@@ -20,7 +22,8 @@ class PedidoController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function index(){
+    public function index()
+    {
         return View('admin.pedidos.bebidas');
     }
 
@@ -29,8 +32,9 @@ class PedidoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Producto $bebida){
-        return view('bebidas.realizar_pedido',compact("bebida"));
+    public function create(Producto $bebida)
+    {
+        return view('bebidas.realizar_pedido', compact("bebida"));
     }
 
     /**
@@ -39,23 +43,24 @@ class PedidoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $data = $request->toArray();
 
         $codigo = str_random(6);
 
-        if(Producto::find($data['id_bebida'])->enPedido()){
+        if (Producto::find($data['id_bebida'])->enPedido()) {
             return "ALTO";
-        }else{
+        } else {
             $pedido = Pedido::create([
-                'codigo'      => $codigo,
-                'cantidad'    => $data['cantidad'],
-                'id_usuario'  => $data['id_comprador'],
+                'codigo' => $codigo,
+                'cantidad' => $data['cantidad'],
+                'id_usuario' => $data['id_comprador'],
                 'id_producto' => $data['id_bebida'],
-                'id_estado'   => 2,
+                'id_estado' => 2,
             ]);
             $correo = new ConfirmacionPedido($pedido);
-            Mail::to(Auth::user()->email)->send( $correo );
+            Mail::to(Auth::user()->email)->send($correo);
 
             \Session::flash('message', 'Pedido Ralizado, mira tu correo electrónico');
             \Session::flash('alert-class', 'alert-success');
@@ -69,8 +74,12 @@ class PedidoController extends Controller
      * @param  \App\Pedido  $pedido
      * @return \Illuminate\Http\Response
      */
-    public function show(Pedido $pedido){
-        return view('admin.pedidos.detalles',compact('pedido'));
+    public function show(Pedido $pedido)
+    {
+        if (auth()->user()->hasRole('comprador')) {
+            return $pedido;
+        };
+        return view('admin.pedidos.detalles', compact('pedido'));
     }
 
     /**
@@ -80,7 +89,8 @@ class PedidoController extends Controller
      * @param  \App\Pedido  $pedido
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pedido $pedido){
+    public function update(Request $request, Pedido $pedido)
+    {
         //
     }
 
@@ -90,34 +100,36 @@ class PedidoController extends Controller
      * @param  \App\Pedido  $pedido
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pedido $pedido){
+    public function destroy(Pedido $pedido)
+    {
         //
     }
 
-    public function confirmar($pedido){
-        $hash_link = explode('_',$pedido);
+    public function confirmar($pedido)
+    {
+        $hash_link = explode('_', $pedido);
         $pedido = Pedido::whereCodigo($hash_link[1])->first();
 
-        $url_hash =base64_decode(strtr($hash_link[0], '-_', '+/'));
-        if(\Hash::check($hash_link[1],$url_hash)){
-            if($pedido->id_estado == 2){
+        $url_hash = base64_decode(strtr($hash_link[0], '-_', '+/'));
+        if (\Hash::check($hash_link[1], $url_hash)) {
+            if ($pedido->id_estado == 2) {
                 $pedido->id_estado = 4;
                 $pedido->save();
 
                 $empleados_produccion = Empleado::role("produccion")->get();
-                  foreach ($empleados_produccion as $user) {
+                foreach ($empleados_produccion as $user) {
                     $user->notify(new ElaboracionBebida($pedido));
                 }
 
                 \Session::flash('message', 'Pedido Confirmado!');
                 \Session::flash('alert-class', 'alert-success');
                 return redirect()->route('inicio');
-            }else{
+            } else {
                 \Session::flash('message', 'Este pedido ya se encuentra confirmado');
                 \Session::flash('alert-class', 'alert-error');
                 return redirect()->route('inicio');
             }
-        }else{
+        } else {
             \Session::flash('message', 'URL No válida');
             \Session::flash('alert-class', 'alert-error');
             return redirect()->route('inicio');
@@ -125,17 +137,30 @@ class PedidoController extends Controller
         }
     }
 
-    public function cancelar(Pedido $pedido){
+    public function cancelar(Pedido $pedido)
+    {
 
     }
 
     public function enviar(Pedido $pedido, Request $request)
     {
-      $data = $request->toArray();
-      return $data;
+        $data = $request->toArray();
+        $comprador = $pedido->comprador;
+        $estado_entregado = EstadoPedido::whereNombre("Entregado")->first();
+        $envio = Envio::create([
+            'id_pedido' => $pedido->id,
+            'id_empresa_transporte' => $data['empresas_transporte'],
+            'no_guia' => $data['no_guia'],
+        ]);
+        $comprador->notify(new PedidoEnviado($pedido, $envio));
+        $pedido->id_estado = $estado_entregado->id;
+        $pedido->save();
+        return redirect()->route('despacho')->with(['success'=>'Notificacion de envio entregada']);
+
     }
 
-    public function datatable(){
+    public function datatable()
+    {
 
 
     }

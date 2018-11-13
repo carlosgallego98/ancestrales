@@ -33,18 +33,18 @@
       <nav class="navbar navbar-static-top">
           <div class="container">
             <div class="navbar-header">
-              <a href="{{route('produccion')}}" class="navbar-brand"><small>Despacho</small> <b>Bebidas</b> Cristina Lozano</a>
+              <a href="{{route('despacho')}}" class="navbar-brand"><small>Despacho</small> <b>Bebidas</b> Cristina Lozano</a>
               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
                 <i class="fa fa-bars"></i>
               </button>
             </div>
 
             <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
-              <ul class="nav navbar-nav">
+              <!--ul class="nav navbar-nav">
                 <li class=""><a href="{{route('pedidos.bebidas')}}">
                   <i class="fa fa-shopping-cart"></i>
                   Pedidos</a></li>
-              </ul>
+              </ul-->
 
               <div class="nav navbar-nav">
               </div>

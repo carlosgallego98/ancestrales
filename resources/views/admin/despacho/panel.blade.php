@@ -37,7 +37,7 @@
                   </tr>
               @empty
                   <tr>
-                    <td> <h4><b>No pendidos listo para entregar </b></h4> </td>
+                    <td colspan="4" style="text-align:center;"><h4><b>No hay Pedidos listos para entregar </b></h4></td>
                   </tr>
               @endforelse
             </tbody>

@@ -20,7 +20,7 @@
     <div class="row" id="datos_empresa">
       <div class="col-md-8">
         @csrf
-        <div class="box box-widget box-body" style="min-height:200px">
+        <div class="box box-widget box-body" style="min-height:188px">
           <div class="row" style="margin: 0 auto">
               <div class="col-md-4 img-empresa text-center">
                   <img v-bind:src="empresa.img_empresa"  alt="" srcset="">
@@ -36,7 +36,7 @@
       <div class="col-md-4">
         <form class="box box-widget box-body"
         method="POST" action="{{ route('pedido.enviar',$pedido) }}" id="form-entrega">
-        @csrf  
+        @csrf
         <div class="form-group">
             <label for="no_guia">Número de Guia</label>
             <input type="text" name="no_guia" id="no_guia" class="form-control" readonly value="{{$no_guia}}">
@@ -52,7 +52,7 @@
               @endforeach
             </select>
           </div>
-          
+
         </form>
       </div>
     </div>
