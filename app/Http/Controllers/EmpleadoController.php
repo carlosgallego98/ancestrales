@@ -154,9 +154,11 @@ class EmpleadoController extends Controller
     public function datatable()
     {
         $users = Empleado::join('model_has_roles','model_has_roles.model_id','=','users.id')
+        ->where('name','!=','proveedor')
         ->join('roles','roles.id','=','model_has_roles.role_id')
         ->select('nombres','apellidos','direccion','email','cedula','users.created_at','roles.name')
-        ->role(['produccion','despacho','relaciones_publicas'])
+        ->role(['produccion','despacho','relaciones_publicas','almacenamiento'])
+        ->distinct()
         ->get();
         
         return datatables()->of($users)
