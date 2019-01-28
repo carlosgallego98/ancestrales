@@ -45,15 +45,15 @@ class ProductoController extends Controller
       $dir = str_slug($data["nombre"])."/";
 
       if($request->hasFile('img_producto')) {
-                  $extension = $request->file('img_producto')->getClientOriginalExtension();
-                  $fileNameToStore = time().'.'.$extension;
-                  $img_mini = Image::make($request->file('img_producto'))->fit(300);
-                  $img_full = Image::make($request->file('img_producto'))->resize(500,300);
-                  Storage::disk('imagen_productos')->put("{$dir}/mini_{$fileNameToStore}", $img_mini->stream('jpg',100));
-                  Storage::disk('imagen_productos')->put("{$dir}/full_{$fileNameToStore}", $img_full->stream('jpg',100));
+          $extension = $request->file('img_producto')->getClientOriginalExtension();
+          $fileNameToStore = time().'.'.$extension;
+          $img_mini = Image::make($request->file('img_producto'))->fit(300);
+          $img_full = Image::make($request->file('img_producto'))->resize(500,300);
+          Storage::disk('imagen_productos')->put("{$dir}/mini_{$fileNameToStore}", $img_mini->stream('jpg',100));
+          Storage::disk('imagen_productos')->put("{$dir}/full_{$fileNameToStore}", $img_full->stream('jpg',100));
 
 
-        } else { $fileNameToStore = 'default.jpg';}
+      } else { $fileNameToStore = 'default.jpg';}
 
       $producto = Producto::create([
         'img_producto' => $fileNameToStore,
@@ -61,13 +61,13 @@ class ProductoController extends Controller
         'precio'=> $data["precio"],
         'descripcion'=> $data["descripcion"],
         'url'=> str_slug($data["nombre"],'-'),
-      ]);
+    ]);
 
       $producto->materiales()->sync($data['ingredientes']);
 
       alert()->success('Exito', "{$data["nombre"]} registrado satisfactoriamente");
       return redirect()->route('inventario.productos');
-    }
+  }
 
     /**
      * Display the specified resource.

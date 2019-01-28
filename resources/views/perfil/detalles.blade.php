@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('titulo','Perfíl | ')
+@section('titulo','Perfíl')
 @section('contenido')
 <div class="container">
     @include('perfil.modals.editar_perfil')

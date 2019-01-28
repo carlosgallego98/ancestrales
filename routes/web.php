@@ -74,6 +74,7 @@ Route::group(['namespace' => 'Admin', 'middleware' => ['auth:empleado', 'role:re
 });
 
 Route::group(['middleware' => 'auth:empleado', ], function () {
+
     Route::get('/notificaciones', 'NotificacionController@notificaciones')->name('user.notificaciones');
     Route::post('/notificaciones/marcar-todo', 'NotificacionController@marcarLedido');
 
@@ -103,6 +104,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 Route::get('/empresa-transporte/{empresa}', 'Admin\PanelController@empresasTransporte');
+
 Route::group(['prefix' => 'datatables'], function () {
     Route::get('users', 'UserController@datatable');
     Route::get('empleados', 'EmpleadoController@datatable');

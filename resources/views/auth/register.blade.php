@@ -1,5 +1,8 @@
 @extends('layouts.auth')
 @section('titulo','Registro')
+@push('styles')
+<link rel="stylesheet" href="{{asset('vendor/bootstrap-datepicker/css/bootstrap-datepicker3.min.css')}}">
+@endpush
 @section('formulario')
 <div class="col-md-6">
     <form method="POST" class="card" action="{{ route('register') }}">
@@ -88,7 +91,7 @@
                     <div class="md-form">
                         <label for="fecha_nacimiento">Fecha Nacimiento</label>
                         <input data-date-format="yyyy-mm-dd" type="text" name="fecha_nacimiento" id="fecha_nacimiento"
-                            class="form-control" required value="{{old('fecha_nacimiento')}}">
+                            class="custom-control-label datepicker" required value="{{old('fecha_nacimiento')}}">
                     </div>
                 </div>
             </div>
@@ -100,23 +103,13 @@
     </form>
 </div>
 @endsection
-@push('styles')
-@endpush @push('scripts')
-
+@push('scripts')
+<script src="{{asset('vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}" charset="utf-8"></script>
 <script>
     $('[data-toggle="tooltip"]').tooltip()
+    $('.datepicker').datepicker({
+        format: 'yyyy-mm-dd',
+    });
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
 
 @endpush

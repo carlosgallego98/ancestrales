@@ -77,7 +77,7 @@ class PedidoController extends Controller
     public function show(Pedido $pedido)
     {
         if (auth()->user()->hasRole('comprador')) {
-            return $pedido;
+            return view('perfil.detalles_pedido',compact('pedido'));
         };
         return view('admin.pedidos.detalles', compact('pedido'));
     }

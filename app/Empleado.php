@@ -13,8 +13,6 @@ class Empleado extends Authenticatable
 
     protected $guard_name = "empleado";
 
-    protected $table = "users";
-
     protected $fillable = [
         'nombres',
         'apellidos',
