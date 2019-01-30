@@ -27,6 +27,13 @@ class UserController extends Controller
         return view('perfil.detalles',compact("pedidos"));
     }
 
+    public function pedidos()
+    {
+        $pedidos = Pedido::whereIdUsuario(Auth::user()->id)
+        ->paginate();
+        return $pedidos;
+    }
+
     public function actualizar_avatar(Request $request)
     {
         $usuario = Auth::user();
@@ -48,17 +55,6 @@ class UserController extends Controller
         }
     }
 
-   /**
-     * Display the specified resource.
-     *
-     * @param  \App\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function show(User $user)
-    {
-        //
-    }
-
     /**
      * Update the specified resource in storage.
      *
@@ -76,17 +72,6 @@ class UserController extends Controller
 
         $request->session()->flash('alert-success', 'Has actualizado tu perfil!');
         return redirect()->back();
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(User $user)
-    {
-        //
     }
 
     public function datatable()

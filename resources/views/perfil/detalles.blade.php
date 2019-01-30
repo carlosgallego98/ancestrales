@@ -68,7 +68,7 @@
                             <td><a href="{{route('productos.detalles',$pedido->producto)}}" title="Detalles de la bebida">{{$pedido->producto->nombre}}</a></td>
                             <td>{{$pedido->estado->nombre}}</td>
                             <td>{{$pedido->created_at}}</td>
-                            <td><a href="#" title="Detalles del Pedido">Detalles</a></td>
+                            <td><a href="{{route('pedidos.detalles',$pedido)}}" title="Detalles del Pedido">Detalles</a></td>
                         </tr>
                         @endforeach
                     </tbody>
