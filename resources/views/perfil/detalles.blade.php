@@ -75,7 +75,7 @@
                 </table>
                 <hr />
                 <div class="text-center">
-                    <a href="#">Ver Todos</a>
+                    <a href="{{route('pedidos')}}">Ver Todos</a>
                 </div>
                 @else
                     <div class="text-center">

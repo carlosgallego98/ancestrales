@@ -92,9 +92,9 @@ Route::group(['middleware' => 'auth:empleado', ], function () {
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/perfil', 'UserController@index')->name('perfil');
+    Route::get('/perfil/pedidos', 'UserController@pedidos')->name('pedidos');
     Route::get('/bebidas', 'HomeController@productos')->name('productos');
     Route::get('/{bebida}', 'HomeController@ver_bebida')->name('productos.detalles');
-    Route::get('/pedidos/todos', 'UserController@pedidos')->name('pedidos');
     Route::get('/pedidos/{pedido}/detalles', 'PedidoController@show')->name('pedidos.detalles');
     Route::get('/bebida/{bebida}/pedido', 'PedidoController@create')->name('productos.pedido');
     Route::get('/bebida/{pedido}/confirmar', 'PedidoController@confirmar');

@@ -31,7 +31,7 @@ class UserController extends Controller
     {
         $pedidos = Pedido::whereIdUsuario(Auth::user()->id)
         ->paginate();
-        return $pedidos;
+        return view('perfil.pedidos.todos',compact('pedidos'));
     }
 
     public function actualizar_avatar(Request $request)
@@ -41,7 +41,7 @@ class UserController extends Controller
         $image_ajustada = Image::make($imagen)->fit(300)->encode('jpg');
         $nombre_archivo = "avatar_{$usuario->id}_".time().".jpg";
         $directorio = "usuario_{$usuario->id}_{$usuario->created_at->format('dmy')}/foto_perfil/{$nombre_archivo}";
-    
+
         if (Storage::disk('subidas')->put( $directorio, $image_ajustada)) {
             $usuario->foto_perfil = $nombre_archivo;
             $usuario->save();
@@ -81,7 +81,7 @@ class UserController extends Controller
         ->select('nombres','apellidos','direccion','email','cedula','users.created_at','roles.name')
         ->role('comprador')
         ->get();
-        
+
         return datatables()->of($users)
         ->editColumn('created_at',function($user){
             return $user->created_at->format('Y-m-d');

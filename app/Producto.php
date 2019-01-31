@@ -24,7 +24,7 @@ class Producto extends Model
       if ($existe) {
         return "{$carpeta}/{$this->url}/{$tamaño}{$this->img_producto}";
       }else{
-        return "{$carpeta}/{$this->img_producto}";
+        return asset('img/producto_default.png');
       }
 
     }
