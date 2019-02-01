@@ -27,6 +27,13 @@ class UserController extends Controller
         return view('perfil.detalles',compact("pedidos"));
     }
 
+    public function pedidos()
+    {
+        $pedidos = Pedido::whereIdUsuario(Auth::user()->id)
+        ->paginate();
+        return view('perfil.pedidos.todos',compact('pedidos'));
+    }
+
     public function actualizar_avatar(Request $request)
     {
         $usuario = Auth::user();
@@ -34,7 +41,7 @@ class UserController extends Controller
         $image_ajustada = Image::make($imagen)->fit(300)->encode('jpg');
         $nombre_archivo = "avatar_{$usuario->id}_".time().".jpg";
         $directorio = "usuario_{$usuario->id}_{$usuario->created_at->format('dmy')}/foto_perfil/{$nombre_archivo}";
-    
+
         if (Storage::disk('subidas')->put( $directorio, $image_ajustada)) {
             $usuario->foto_perfil = $nombre_archivo;
             $usuario->save();
@@ -46,17 +53,6 @@ class UserController extends Controller
             $request->session()->flash('alert-danger', 'Hubo un error!');
             return redirect()->back();
         }
-    }
-
-   /**
-     * Display the specified resource.
-     *
-     * @param  \App\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function show(User $user)
-    {
-        //
     }
 
     /**
@@ -78,17 +74,6 @@ class UserController extends Controller
         return redirect()->back();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(User $user)
-    {
-        //
-    }
-
     public function datatable()
     {
         $users = User::join('model_has_roles','model_has_roles.model_id','=','users.id')
@@ -96,7 +81,7 @@ class UserController extends Controller
         ->select('nombres','apellidos','direccion','email','cedula','users.created_at','roles.name')
         ->role('comprador')
         ->get();
-        
+
         return datatables()->of($users)
         ->editColumn('created_at',function($user){
             return $user->created_at->format('Y-m-d');

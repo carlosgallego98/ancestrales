@@ -31,10 +31,9 @@
 
             <div class="px-sm-5">
                 <div class="md-form">
-                    <label for="correo">Nombre de Usuario</label>
-                    <input type="text" class="form-control" id="nombre_usuario" name="nombre_usuario" aria-describedby="emailHelp"
+                    <label for="correo">Correo Electrónico</label>
+                    <input type="text" class="form-control" id="email" name="email"
                         required autofocus>
-                    <small class="text-muted float-right" id="emailHelp"></small>
                 </div>
                 <div class="md-form">
                     <label for="password">Contraseña</label>
