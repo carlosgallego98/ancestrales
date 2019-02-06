@@ -46,18 +46,18 @@ class EmpleadoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
+    {
         $data = $request->toArray();
-        
+
         $nombre_spit = str_split($data['nombres']);
         $apellido_split = str_split($data['apellidos']);
         $correo_split = explode('@',$data['email']);
 
-        $contraseña = 
+        $contraseña =
         str_replace('-','',"{$nombre_spit[0]}{$data['cedula']}{$apellido_split[0]}");
-        
+
         $nombre_usuario = $correo_split[0];
-        
+
         $usuario = Empleado::create([
             'nombres' => $data['nombres'],
             'apellidos' => $data['apellidos'],
@@ -74,7 +74,7 @@ class EmpleadoController extends Controller
         $usuario->assignRole($role);
 
         $request->session()->flash('alert-success', $data["nombres"].' registrado Satisfactoriamente');
-        
+
         return redirect()->route('empleados');
     }
 
@@ -137,7 +137,7 @@ class EmpleadoController extends Controller
         $image_ajustada = Image::make($imagen)->fit(300)->encode('jpg');
         $nombre_archivo = "avatar_{$usuario->id}_".time().".jpg";
         $directorio = "usuario_{$usuario->id}_{$usuario->created_at->format('dmy')}/foto_perfil/{$nombre_archivo}";
-    
+
         if (Storage::disk('subidas')->put( $directorio, $image_ajustada)) {
             $usuario->foto_perfil = $nombre_archivo;
             $usuario->save();
@@ -153,17 +153,18 @@ class EmpleadoController extends Controller
 
     public function datatable()
     {
-        $users = Empleado::join('model_has_roles','model_has_roles.model_id','=','users.id')
+        $empleados = Empleado::join('model_has_roles','model_has_roles.model_id','=','empleados.id')
         ->where('name','!=','proveedor')
         ->join('roles','roles.id','=','model_has_roles.role_id')
-        ->select('nombres','apellidos','direccion','email','cedula','users.created_at','roles.name')
+        ->select('nombres','apellidos','email','cedula','empleados.created_at','roles.name')
         ->role(['produccion','despacho','relaciones_publicas','almacenamiento'])
         ->distinct()
         ->get();
-        
-        return datatables()->of($users)
+
+        return datatables()->of($empleados)
         ->editColumn('created_at',function($user){
             return $user->created_at->format('Y-m-d');
-        })->toJson();
+        })
+        ->toJson();
     }
 }

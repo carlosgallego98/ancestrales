@@ -24,8 +24,6 @@ Route::group(['middleware' => ['auth:empleado', 'role:gerente']], function () {
 
     Route::get('empleados', 'EmpleadoController@index')->name('empleados');
     Route::get('pedidos/autorizar/{pedido_proveedor}', 'PedidoProveedorController@autorizar')->name('pedido.autorizar');
-    Route::get('pedidos/en-camino', 'PedidoProveedorController@en_camino')->name('pedidos.camino');
-    Route::get('pedidos/por-confirmar', 'PedidoProveedorController@por_confirmar')->name('pedidos.confirmar');
     Route::get('empleados/registar', 'EmpleadoController@create')->name('empleados.nuevo');
     Route::post('empleados/registar/store', 'EmpleadoController@store')->name('empleados.store');
 });

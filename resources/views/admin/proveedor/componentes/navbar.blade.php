@@ -1,12 +1,12 @@
 <nav class="navbar navbar-static-top">
   <div class="container">
     <div class="navbar-header">
-      <a href="{{route('proveedor')}}" class="navbar-brand"><small>Proveedores</small> <b>Bebidas</b> Cristina Lozano</a> 
+      <a href="{{route('proveedor')}}" class="navbar-brand"><small>Proveedores</small> <b>Bebidas</b> Cristina Lozano</a>
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
         <i class="fa fa-bars"></i>
       </button>
     </div>
-    
+
     <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
       <ul class="nav navbar-nav">
         <li class=""><a href="{{route('proveedor.pedidos')}}">Pedidos</a></li>

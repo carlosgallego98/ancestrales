@@ -47,18 +47,6 @@
     </ul>
 </li>
 
-<li class="treeview">
-    <a href="#"><i class="fa fa-shopping-cart"></i> <span>Pedidos</span>
-        <span class="pull-right-container">
-            <i class="fa fa-angle-left pull-right"></i>
-        </span>
-    </a>
-    <ul class="treeview-menu">
-        <li><a href="{{route('pedidos.confirmar')}}">Por Confirmar</a></li>
-        <li><a href="{{route('pedidos.camino')}}">En Camino</a></li>
-    </ul>
-</li>
-
 @break
 
 @case('despacho')
